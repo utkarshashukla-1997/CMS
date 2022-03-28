@@ -18,7 +18,7 @@
                     <div class="card-body">
                         <div class="text-center mt-2">
                             <div class="mb-1">
-                                <a href="{{ route('login') }}"><img src="{{asset('GCN.png')}}" height="100"
+                                <a href="{{ route('login') }}"><img src="{{asset('assets/images/gcn.png')}}" height="100"
                                         alt="logo"></a>
                             </div>
                         </div>

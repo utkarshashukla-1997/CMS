@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +17,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//login
 Route::get('/', function () {
-    return view('Admin.layouts.master');
+    return view('auth.login');
+});
+Route::match(['get', 'post'], '/login', [AdminController::class,'login'])->name('login');
+//logout
+Route::get('/logout', [AdminController::class,'logout'])->name('logout');
+//Auth Admin Panel
+Route::group(['middleware' => ['auth']], function () {
+    //dashboard
+    Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
+//users
+Route::resource('users',UserController::class);
+// roles
+Route::resource('roles',RoleController::class);
+ //change password
+ Route::get('/password', [AdminController::class,'changepassword'])->name('password.index');
+ Route::put('/change-Password', [AdminController::class,'password_update'])->name('password.update');
 });
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

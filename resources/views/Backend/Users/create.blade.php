@@ -1,4 +1,4 @@
-@extends('Admin.layouts.master')
+@extends('Backend.layouts.master')
 @section('page_title','Users')
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -52,12 +52,7 @@
                                     <div class="form-group">
                                         <strong>User Email</strong>
                                         <span class="required text-danger"> * </span>
-                                        <select name="email" class="form-control @error('email') is-invalid @enderror">
-                                            <option class="bg-info" selected disabled>Choose Email.....</option>
-                                            @foreach ($employee as $emp)
-                                            <option value="{{$emp->email}}">{{$emp->email}}</option>
-                                            @endforeach
-                                        </select>
+                                        <input name="email" class="form-control @error('email') is-invalid @enderror">
                                         @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
