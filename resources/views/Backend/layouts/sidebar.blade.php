@@ -1,84 +1,43 @@
 @section('sidebar')
-   <!-- ============================================================== -->
-        <!-- left sidebar -->
+      <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-        <div class="nav-left-sidebar sidebar-dark">
-            <div class="menu-list">
-                <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav flex-column">
-                            <li class="nav-divider">
-                                Dashboard
-                            </li>
+        <aside class="left-sidebar" data-sidebarbg="skin5">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav" class="p-t-30">
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
 
-
-
-                            <li class="nav-divider">
-                                SET-UPS
-                            </li>
-                             @can('user-list')
-                            <li class="nav-item ">
-                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Users <span class="badge badge-success">6</span></a>
-                                <div id="submenu-1" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="{{route('users.index')}}">View Users</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        @endcan
-                                        @can('role-list')
-                                        <li class="nav-item ">
-                                            <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-user-circle"></i>Roles <span class="badge badge-success">6</span></a>
-                                            <div id="submenu-2" class="collapse submenu" style="">
-                                                <ul class="nav flex-column">
-                                                    <li class="nav-item">
-
-                                                                <li class="nav-item">
-                                                                    <a class="nav-link" href="{{route('roles.index')}}">View Roles</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </li>
-                                                    @endcan 
-                                                    <li class="nav-divider">
-                                                        SETTINGS
-                                                    </li>
-                                                    <li class="nav-item ">
-                                                        <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fa fa-fw fa-user-circle"></i>Change Password <span class="badge badge-success">6</span></a>
-                                                        <div id="submenu-3" class="collapse submenu" style="">
-                                                            <ul class="nav flex-column">
-                                                                <li class="nav-item">
-
-                                                                            <li class="nav-item">
-                                                                                <a class="nav-link" href="{{route('password.index')}}">Change Password</a>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </li>
-
-                                    </ul>
-                                </div>
-                            </li>
+                         @can('user-list')
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i class="nav-icon fa fa-users"></i><span class="hide-menu">Users </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href="{{route('users.index')}}" class="sidebar-link">  <i class="nav-icon fa fa-users"></i><span class="hide-menu"> View Users </span></a></li>
+                            </ul>
+                        </li>
+                        @endcan
+                        @can('role-list')
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i class="nav-icon fa fa-users"></i><span class="hide-menu">Roles </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href="{{route('roles.index')}}" class="sidebar-link"> <i class="nav-icon fa fa-users"></i><span class="hide-menu"> View Roles</span></a></li>
+                            </ul>
+                        </li>
+                        @endcan
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('password.index')}}" aria-expanded="false"><i class="nav-icon fa fa-cog"></i><span class="hide-menu">Password Settings</span></a></li>
 
 
 
 
 
-
-                        </ul>
-                    </div>
+                    </ul>
                 </nav>
+                <!-- End Sidebar navigation -->
             </div>
-        </div>
+            <!-- End Sidebar scroll-->
+        </aside>
         <!-- ============================================================== -->
-        <!-- end left sidebar -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
 
 @endsection

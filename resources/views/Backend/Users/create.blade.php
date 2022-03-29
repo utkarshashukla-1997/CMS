@@ -1,120 +1,109 @@
+
 @extends('Backend.layouts.master')
-@section('page_title','Users')
+@section('page_title',' User')
 @section('content')
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">Users</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{route('users.index')}}">Users</a></li>
-                        <li class="breadcrumb-item active">Create</li>
-                    </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
-            <!-- Small boxes (Stat box) -->
-            <div class="card">
-                <div class="card-header bg-info">
-                    <h2 class="card-title text-bold">Create User</h2>
-                    <a href="{{ route('users.index') }}" class="card-title btn bg-lightblue float-right">Back</a>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    {{-- @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">Profile</h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Change Password</li>
+                                </ol>
+                            </nav>
+                        </div>
                     </div>
-                    @endif --}}
-
-                    <form action="{{ route('users.store') }}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <strong>User Email</strong>
-                                        <span class="required text-danger"> * </span>
-                                        <input name="email" class="form-control @error('email') is-invalid @enderror">
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <form class="form-horizontal">
+                                <div class="card-body">
+                                    <h4 class="card-title">Create User</h4>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">User Email
+                                            <span class="required text-danger"> * </span></label>
+                                        <div class="col-sm-9">
+                                            <input type="email" name="email" required placeholder="Enter Email"
+                                            class="form-control   @error('email') is-invalid @enderror"
+                                            value="{{old('email','')}}" />
                                         @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
                                         </span>
                                         @enderror
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <strong>Password</strong>
-                                        <span class="required text-danger"> * </span>
-                                        <input type="password" name="password"
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Password
+                                            <span class="required text-danger"> * </span></label>
+                                        <div class="col-sm-9">
+                                            <input type="password" name="password" required placeholder="Enter New Password"
                                             class="form-control @error('password') is-invalid @enderror"
-                                            value="{{old('password','')}}" placeholder="Enter Password">
+                                            value="{{old('password','')}}" />
                                         @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
                                         </span>
                                         @enderror
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group select2-info">
-                                        <strong>Role</strong>
-                                        <span class="required text-danger"> * </span>
-                                        <select class="select2 form-control @error('roles') is-invalid @enderror"
-                                            data-placeholder="Choose Role..." style="width: 100%;" name="roles[]"
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label"> Role
+                                            <span class="required text-danger"> * </span></label>
+                                        <div class="col-sm-9">
+                                            <select class="select2 form-control m-t-15 @error('roles') is-invalid @enderror"
+                                            data-placeholder="Choose Role..." style="width: 100%;" name="roles[]" id="select2"
                                             data-live-search="true" style="width: 100%;"
                                             data-dropdown-css-class="select2-info" multiple="multiple">
                                             @foreach ($roles as $r)
                                             <option value="{{$r}}">{{$r}}</option>
                                             @endforeach
                                         </select>
-                                        @error('password')
+                                        @error('roles')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
                                         </span>
                                         @enderror
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <strong>User Name</strong>
-                                        <span class="required text-danger"> * </span>
-                                        <input type="text" name="name"
-                                            class="form-control @error('name') is-invalid @enderror"
-                                            value="{{old('name','')}}" placeholder="Enter User Name">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">User Name
+                                            <span class="required text-danger"> * </span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="name" required placeholder="Enter Email"
+                                            class="form-control   @error('name') is-invalid @enderror"
+                                            value="{{old('name','')}}" />
                                         @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
                                         </span>
                                         @enderror
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <strong>Confirm-Password</strong>
-                                        <span class="required text-danger"> * </span>
-                                        <input type="password" name="confirm-password"
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Confirm Password
+                                            <span class="required text-danger"> * </span></label>
+                                        <div class="col-sm-9">
+                                            <input type="password" name="confirm-password"
                                             class="form-control @error('confirm-password') is-invalid @enderror"
                                             value="{{old('confirm-password','')}}" placeholder="Confirm-password">
                                         @error('confirm-password')
@@ -122,20 +111,41 @@
                                             <strong>{{$message}}</strong>
                                         </span>
                                         @enderror
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                                <div class="border-top">
+                                    <div class="card-body">
+                                        <button type="button" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-1">
-                            <button type="submit" class="btn bg-lightblue">Submit</button>
-                        </div>
-                    </form>
+
+
+
+                    </div>
+
                 </div>
-                <!-- /.card-body -->
+                <!-- editor -->
+
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
             </div>
-        </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
-@endsection
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+
+        </div>
+
+        @endsection

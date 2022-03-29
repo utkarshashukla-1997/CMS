@@ -43,7 +43,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- ============================================================== -->
 <!-- Optional JavaScript -->
  <!-- Select2 -->
- <script src="{{asset('assets/select2/js/select2.full.min.js')}}"></script>
+ <script src="{{asset('assets/libs/select2/dist/js/select2.min.js')}}"></script>
+ <script src="{{asset('assets/libs/select2/dist/js/select2.full.min.js')}}"></script>
  <script type="text/javascript">
      $(document).ready(function() {
          $('.select2').select2();
@@ -52,25 +53,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
      });
  </script>
 <!-- jquery 3.3.1 -->
-<script src="{{asset('assets/vendor/jquery/jquery-3.3.1.min.js')}}"></script>
-<!-- bootstap bundle js -->
-<script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.js')}}"></script>
-<!-- slimscroll js -->
-<script src="{{asset('assets/vendor/slimscroll/jquery.slimscroll.js')}}"></script>
-<!-- main js -->
-<script src="{{asset('assets/libs/js/main-js.js')}}"></script>
-<!-- chart chartist js -->
-<script src="{{asset('assets/vendor/charts/chartist-bundle/chartist.min.js')}}"></script>
-<!-- sparkline js -->
-<script src="{{asset('assets/vendor/charts/sparkline/jquery.sparkline.js')}}"></script>
-<!-- morris js -->
-<script src="{{asset('assets/vendor/charts/morris-bundle/raphael.min.js')}}"></script>
-<script src="{{asset('assets/vendor/charts/morris-bundle/morris.js')}}"></script>
-<!-- chart c3 js -->
-<script src="{{asset('assets/vendor/charts/c3charts/c3.min.js')}}"></script>
-<script src="{{asset('assets/vendor/charts/c3charts/d3-5.4.0.min.js')}}"></script>
-<script src="{{asset('assets/vendor/charts/c3charts/C3chartjs.js')}}"></script>
-<script src="{{asset('assets/libs/js/dashboard-ecommerce.js')}}"></script>
+ <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="{{asset('assets/libs/jquery/dist/jquery.min.js')}}"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="{{asset('assets/libs/popper.js/dist/umd/popper.min.js')}}"></script>
+    <script src="{{asset('assets/libs/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js')}}"></script>
+    <script src="{{asset('assets/extra-libs/sparkline/sparkline.js')}}"></script>
+    <!--Wave Effects -->
+    <script src="{{asset('dist/js/waves.js')}}"></script>
+    <!--Menu sidebar -->
+    <script src="{{asset('dist/js/sidebarmenu.js')}}"></script>
+    <!--Custom JavaScript -->
+    <script src="{{asset('dist/js/custom.min.js')}}"></script>
+    <!--This page JavaScript -->
+    <!-- <script src="dist/js/pages/dashboards/dashboard1.js"></script> -->
+    <!-- Charts js Files -->
+    <script src="{{asset('assets/libs/flot/excanvas.js')}}"></script>
+    <script src="{{asset('assets/libs/flot/jquery.flot.js')}}"></script>
+    <script src="{{asset('assets/libs/flot/jquery.flot.pie.js')}}"></script>
+    <script src="{{asset('assets/libs/flot/jquery.flot.time.js')}}"></script>
+    <script src="{{asset('assets/libs/flot/jquery.flot.stack.js')}}"></script>
+    <script src="{{asset('assets/libs/flot/jquery.flot.crosshair.js')}}"></script>
+    <script src="{{asset('assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js')}}"></script>
+    <script src="{{asset('dist/js/pages/chart/chart-page-init.js')}}"></script>
+
+
 @include('sweetalert::alert')
 </body>
 
