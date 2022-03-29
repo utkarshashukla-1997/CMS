@@ -1,21 +1,26 @@
 @section('head')
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}">
-    <link href="{{asset('assets/vendor/fonts/circular-std/style.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('assets/libs/css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendor/fonts/fontawesome/css/fontawesome-all.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendor/charts/chartist-bundle/chartist.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendor/charts/morris-bundle/morris.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendor/charts/c3charts/c3.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendor/fonts/flag-icon-css/flag-icon.min.css')}}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="{{asset('image/png')}}" sizes="16x16" href="{{asset('assets/images/favicon.png')}}">
     <title>GCN</title>
+    <!-- Custom CSS -->
+    <link href="{{asset('assets/libs/flot/css/float-chart.css')}}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{asset('dist/css/style.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('assets/plugins/select2/css/select2.min.css')}}">
+    <link rel ="stylesheet" href="{{asset('assets/libs/select2/dist/css/select2.min.css')}}">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
-
-<body>
 @endsection

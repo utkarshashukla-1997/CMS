@@ -1,98 +1,147 @@
 @extends('Backend.layouts.master')
 @section('page_title','Dashboard')
 @section('content')
-<div class="dashboard-wrapper">
-    <div class="dashboard-ecommerce">
-        <div class="container-fluid dashboard-content ">
-            <!-- ============================================================== -->
-            <!-- pageheader  -->
-            <!-- ============================================================== -->
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="page-header">
-                        <h2 class="pageheader-title">CMS </h2>
-                        <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
-                        <div class="page-breadcrumb">
-                            <nav aria-label="breadcrumb">
-
-                            </nav>
-                        </div>
-                    </div>
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+     <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Dashboard</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>
                 </div>
-            </div>
-            <!-- ============================================================== -->
-            <!-- end pageheader  -->
-            <!-- ============================================================== -->
-            <div class="ecommerce-widget">
-
-                <div class="row">
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="text-muted">Total Revenue</h5>
-                                <div class="metric-value d-inline-block">
-                                    <h1 class="mb-1">$12099</h1>
-                                </div>
-                                <div class="metric-label d-inline-block float-right text-success font-weight-bold">
-                                    <span><i class="fa fa-fw fa-arrow-up"></i></span><span>5.86%</span>
-                                </div>
-                            </div>
-                            <div id="sparkline-revenue"></div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="text-muted">Affiliate Revenue</h5>
-                                <div class="metric-value d-inline-block">
-                                    <h1 class="mb-1">$12099</h1>
-                                </div>
-                                <div class="metric-label d-inline-block float-right text-success font-weight-bold">
-                                    <span><i class="fa fa-fw fa-arrow-up"></i></span><span>5.86%</span>
-                                </div>
-                            </div>
-                            <div id="sparkline-revenue2"></div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="text-muted">Refunds</h5>
-                                <div class="metric-value d-inline-block">
-                                    <h1 class="mb-1">0.00</h1>
-                                </div>
-                                <div class="metric-label d-inline-block float-right text-primary font-weight-bold">
-                                    <span>N/A</span>
-                                </div>
-                            </div>
-                            <div id="sparkline-revenue3"></div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="text-muted">Avg. Revenue Per User</h5>
-                                <div class="metric-value d-inline-block">
-                                    <h1 class="mb-1">$28000</h1>
-                                </div>
-                                <div class="metric-label d-inline-block float-right text-secondary font-weight-bold">
-                                    <span>-2.00%</span>
-                                </div>
-                            </div>
-                            <div id="sparkline-revenue4"></div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-
             </div>
         </div>
-
     </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Sales Cards  -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <!-- Column -->
+            <div class="col-md-6 col-lg-2 col-xlg-3">
+                <div class="card card-hover">
+                    <div class="box bg-cyan text-center">
+                        <h1 class="font-light text-white"><i class="mdi mdi-view-dashboard"></i></h1>
+                        <h6 class="text-white">Dashboard</h6>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-md-6 col-lg-4 col-xlg-3">
+                <div class="card card-hover">
+                    <div class="box bg-success text-center">
+                        <h1 class="font-light text-white"><i class="mdi mdi-chart-areaspline"></i></h1>
+                        <h6 class="text-white">Charts</h6>
+                    </div>
+                </div>
+            </div>
+             <!-- Column -->
+            <div class="col-md-6 col-lg-2 col-xlg-3">
+                <div class="card card-hover">
+                    <div class="box bg-warning text-center">
+                        <h1 class="font-light text-white"><i class="mdi mdi-collage"></i></h1>
+                        <h6 class="text-white">Widgets</h6>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-md-6 col-lg-2 col-xlg-3">
+                <div class="card card-hover">
+                    <div class="box bg-danger text-center">
+                        <h1 class="font-light text-white"><i class="mdi mdi-border-outside"></i></h1>
+                        <h6 class="text-white">Tables</h6>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-md-6 col-lg-2 col-xlg-3">
+                <div class="card card-hover">
+                    <div class="box bg-info text-center">
+                        <h1 class="font-light text-white"><i class="mdi mdi-arrow-all"></i></h1>
+                        <h6 class="text-white">Full Width</h6>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-md-6 col-lg-4 col-xlg-3">
+                <div class="card card-hover">
+                    <div class="box bg-danger text-center">
+                        <h1 class="font-light text-white"><i class="mdi mdi-receipt"></i></h1>
+                        <h6 class="text-white">Forms</h6>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-md-6 col-lg-2 col-xlg-3">
+                <div class="card card-hover">
+                    <div class="box bg-info text-center">
+                        <h1 class="font-light text-white"><i class="mdi mdi-relative-scale"></i></h1>
+                        <h6 class="text-white">Buttons</h6>
+                    </div>
+                </div>
+            </div>
+             <!-- Column -->
+            <div class="col-md-6 col-lg-2 col-xlg-3">
+                <div class="card card-hover">
+                    <div class="box bg-cyan text-center">
+                        <h1 class="font-light text-white"><i class="mdi mdi-pencil"></i></h1>
+                        <h6 class="text-white">Elements</h6>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-md-6 col-lg-2 col-xlg-3">
+                <div class="card card-hover">
+                    <div class="box bg-success text-center">
+                        <h1 class="font-light text-white"><i class="mdi mdi-calendar-check"></i></h1>
+                        <h6 class="text-white">Calnedar</h6>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-md-6 col-lg-2 col-xlg-3">
+                <div class="card card-hover">
+                    <div class="box bg-warning text-center">
+                        <h1 class="font-light text-white"><i class="mdi mdi-alert"></i></h1>
+                        <h6 class="text-white">Errors</h6>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- Sales chart -->
+        <!-- ============================================================== -->
+        
+        <!-- ============================================================== -->
+        <!-- Sales chart -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Recent comment and chats -->
+        <!-- ============================================================== -->
 
-</div>
+        <!-- ============================================================== -->
+        <!-- Recent comment and chats -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+
 @endsection
