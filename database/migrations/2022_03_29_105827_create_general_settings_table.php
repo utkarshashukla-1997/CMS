@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('general_settings', function (Blueprint $table) {
             $table->id();
+            $table->string('site_title');
+            $table->string('tagline');
+            $table->string('url');
+            $table->string('logo_image')->nullable();
+            $table->string('background_image')->nullable();
             $table->timestamps();
         });
     }

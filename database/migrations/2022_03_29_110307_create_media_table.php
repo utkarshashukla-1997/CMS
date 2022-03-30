@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('media', function (Blueprint $table) {
             $table->id();
+            $table->string('media_file')->nullable();
+            $table->date('uploaded_date');
             $table->timestamps();
         });
     }
