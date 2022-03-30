@@ -17,9 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->longText('content')->nullable();
+            $table->string('permalink');
+            $table->string('template');
+            $table->string('visibility_post');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->date('done_date');
+            $table->enum('status',['Published','Draft']);
             $table->string('featured_image')->nullable();
             $table->timestamps();
         });
