@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('email');
+            $table->string('website');
+            $table->longText('biographical_info');
+            $table->string('profile_picture')->nullable();
             $table->timestamps();
         });
     }

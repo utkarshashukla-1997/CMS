@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('parent_category');
             $table->longText('description')->nullable();
+            $table->string('image_file')->nullable();
             $table->timestamps();
         });
     }
