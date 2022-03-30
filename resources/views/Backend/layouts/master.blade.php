@@ -80,6 +80,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{asset('assets/libs/flot/jquery.flot.crosshair.js')}}"></script>
     <script src="{{asset('assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js')}}"></script>
     <script src="{{asset('dist/js/pages/chart/chart-page-init.js')}}"></script>
+    <script src="{{asset('assets/libs/select2/dist/js/select2.full.min.js')}}"></script>
+    <script src="{{asset('assets/libs/select2/dist/js/select2.min.js')}}"></script>
+    <script>
+        //***********************************//
+        // For select 2
+        //***********************************//
+        $(".select2").select2();
+</script>
+<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.ckeditor').ckeditor();
+    });
+</script>
 
 
 @include('sweetalert::alert')

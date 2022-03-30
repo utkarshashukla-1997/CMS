@@ -12,9 +12,18 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    function __construct()
     {
-        //
+        $this->middleware('permission:category-list|category-create|category-edit|category-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:category-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:category-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:category-delete', ['only' => ['destroy']]);
+    }
+    public function index(Request $request)
+    {
+        $data = Categories::orderBy('id', 'DESC')->get();
+        return view('Backend.Category.index', compact('data'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +33,8 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        $category = Categories::all();
+        return view('Backend.Category.create',compact('category'));
     }
 
     /**
@@ -35,7 +45,24 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name'=> 'required',
+            'slug' => 'required',
+            'parent_category'=> 'required',
+        ]);
+        $input = $request->all();
+        if ($request->hasFile('image_file')) {
+            $image = $request->file('image_file');
+            $image_file = "TD-" . time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path() . '/Uploads/Category/File/', $image_file);
+
+            $request->image_file = $image_file;
+            $input['image_file'] = $image_file;
+        }
+
+        $category = Categories::create($input);
+        return redirect()->route('category.index')
+            ->with('success', 'Category Created Successfully !!!',compact('category'));
     }
 
     /**
@@ -44,9 +71,10 @@ class CategoriesController extends Controller
      * @param  \App\Models\Categories  $categories
      * @return \Illuminate\Http\Response
      */
-    public function show(Categories $categories)
+    public function show($id)
     {
-        //
+        $category = Categories::find($id);
+        return view('Backend.Category.show',compact('policy'));
     }
 
     /**
@@ -55,9 +83,10 @@ class CategoriesController extends Controller
      * @param  \App\Models\Categories  $categories
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categories $categories)
+    public function edit($id)
     {
-        //
+        $category = Categories::findOrfail($id);
+        return view('Backend.Category.edit',compact('category'));
     }
 
     /**
@@ -67,9 +96,37 @@ class CategoriesController extends Controller
      * @param  \App\Models\Categories  $categories
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categories $categories)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name'=> 'required',
+            'slug' => 'required',
+            'parent_category'=> 'required',
+        ]);
+        $input = $request->all();
+        // dd($input);
+        $category = Categories::findOrFail($id);
+        if ($request->image_file != '') {
+            $path = public_path() . '/Uploads/Category/File/';
+            //code for remove old file
+            if ($category->image_file != ''  && $category->image_file != null) {
+                $file_old = $path . $category->image_file;
+                unlink($file_old);
+            }
+            if ($request->hasFile('image_file')) {
+                $image = $request->file('image_file');
+                $image_file = "TD-" . time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path() . '/Uploads/Category/File', $image_file);
+
+                $request->image_file = $image_file;
+                $input['image_file'] = $image_file;
+            }
+        }
+
+            $category->update($input);
+
+        return redirect()->route('category.index')
+            ->with('success', 'Selected Category Updated Successfully !!!');
     }
 
     /**
@@ -78,8 +135,10 @@ class CategoriesController extends Controller
      * @param  \App\Models\Categories  $categories
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categories $categories)
+    public function destroy($id)
     {
-        //
+        Categories::find($id)->delete();
+        return redirect()->route('category.index')
+            ->with('success', 'Selected Category has been Deleted Successfully !!!');
     }
 }

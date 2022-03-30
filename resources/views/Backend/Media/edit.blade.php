@@ -1,6 +1,6 @@
 
 @extends('Backend.layouts.master')
-@section('page_title',' Roles')
+@section('page_title',' Media')
 @section('content')
         <!-- ============================================================== -->
         <div class="page-wrapper">
@@ -10,12 +10,12 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Roles</h4>
+                        <h4 class="page-title">Media</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Create Role</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Media</li>
                                 </ol>
                             </nav>
                         </div>
@@ -35,54 +35,20 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form action="{{ route('roles.store') }}" method="post" enctype="multipart/form-data">
-                                @csrf
+                            <form class="form-horizontal">
                                 <div class="card-body">
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <strong>Role Name</strong>
-                                        <span class="required text-danger"> * </span>
-                                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                                            value="{{old('name','')}}" placeholder="Enter Role Name">
-                                        @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
+                                    <h4 class="card-title">Create Media File</h4>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">File Upload
+                                            <span class="required text-danger"> * </span></label>
+                                        <div class="col-sm-9">
+                                            <input type="file" name="media_file" required placeholder="Enter Name"
+                                            class="form-control"
+                                            value="{{old('media_file','')}}" />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <strong>Permission <i>(select to assign)</i> :</strong>
-                                        <br />
-                                        &ensp;
-                                        <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0"
-                                            width="100%">
-                                            <thead>
-                                                <tr>
-                                                    <th>S.N</th>
-                                                    <th>Permissions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach($permission as $value)
-                                                <tr>
-                                                    <td>{{$loop->index+1}}</td>
-                                                    <td>
-                                                        <label>
-                                                            <input type="checkbox" value="{{$value->id}}" name="permission[]"
-                                                                false> &ensp; {{$value->name}}
-                                                        </label> &ensp; <br>
-                                                    </td>
-                                                </tr>
-
-                                                @endforeach
-                                            </tbody>
-                                        </table>
 
 
-                                    </div>
-                                </div>
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body">
@@ -114,5 +80,6 @@
             <!-- End Container fluid  -->
 
         </div>
+
 
         @endsection

@@ -1,6 +1,6 @@
 
 @extends('Backend.layouts.master')
-@section('page_title',' User')
+@section('page_title',' Category')
 @section('content')
         <!-- ============================================================== -->
         <div class="page-wrapper">
@@ -10,12 +10,12 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Profile</h4>
+                        <h4 class="page-title">Category</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Users</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Category</li>
                                 </ol>
                             </nav>
                         </div>
@@ -37,57 +37,69 @@
                         <div class="card">
                             <form class="form-horizontal">
                                 <div class="card-body">
-                                    <h4 class="card-title">Create User</h4>
+                                    <h4 class="card-title">Create Category</h4>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">User Email
+                                        <label class="col-sm-3 text-right control-label col-form-label">Name
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <input type="email" name="email" required placeholder="Enter Email"
-                                            class="form-control   @error('email') is-invalid @enderror"
-                                            value="{{old('email',$user->email)}}" />
-                                        @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label"> Role
-                                            <span class="required text-danger"> * </span></label>
-                                        <div class="col-sm-9">
-                                            <select class="select2 form-control @error('roles') is-invalid @enderror"
-                                            data-placeholder="Choose Role..." style="width: 100%;" name="roles[]"
-                                            data-live-search="true" style="width: 100%;"
-                                            data-dropdown-css-class="select2-info" multiple="multiple">
-                                            @foreach ($user->roles as $r)
-                                            <option value="#" selected>{{$r->name}}</option>
-                                            @endforeach
-                                            <option class="bg-info" disabled>Select Role...</option>
-                                            @foreach ($roles as $r)
-                                            <option value="{{$r}}">{{$r}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('roles')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">User Name
-                                            <span class="required text-danger"> * </span></label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="name" required placeholder="Enter Name of User"
+                                            <input type="text" name="name" required placeholder="Enter Name"
                                             class="form-control   @error('name') is-invalid @enderror"
-                                            value="{{old('name',$user->name)}}" />
+                                            value="{{old('name','')}}" />
                                         @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
                                         </span>
                                         @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Slug
+                                            <span class="required text-danger"> * </span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="slug" required placeholder="Enter Slug"
+                                            class="form-control @error('slug') is-invalid @enderror"
+                                            value="{{old('slug','')}}" />
+                                        @error('slug')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label"> Parent Category
+                                            <span class="required text-danger"> * </span></label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control @error('parent_category') is-invalid @enderror" name="parent_category">
+                                                <option class="bg-info" disabled selected>Select Parent Category....</option>
+                                                <option value="None" {{old('parent_category')=='None' ?'selected':''}}>None
+                                                </option>
+                                                <option value="Uncategorized" {{old('parent_category')=='Female' ?'selected':''}}>Uncategorized
+                                                </option>
+                                            </select>
+                                            @error('parent_category')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{$message}}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Description
+                                        </label>
+                                        <div class="col-sm-9">
+                                             <textarea type="text" name="description"
+                                            class="ckeditor form-control" placeholder="Enter Department Description"
+                                           >{{old('description','')}}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Featured Image
+                                        </label>
+                                        <div class="col-sm-9">
+                                            <input type="file" name="image_file"
+                                            class="form-control @error('image_file') is-invalid @enderror"
+                                            value="{{old('image_file','')}}" />
                                         </div>
                                     </div>
 
@@ -96,7 +108,7 @@
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body">
-                                        <button type="button" class="btn btn-primary">Update</button>
+                                        <button type="button" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
                             </form>

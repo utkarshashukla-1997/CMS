@@ -3,6 +3,7 @@
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FrontEndController;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,8 @@ Route::resource('users',UserController::class);
 Route::resource('roles',RoleController::class);
 // frontend
 Route::resource('frontend',FrontEndController::class);
+//Category
+Route::resource('category',CategoriesController::class);
  //change password
  Route::get('/password', [AdminController::class,'changepassword'])->name('password.index');
  Route::put('/change-Password', [AdminController::class,'password_update'])->name('password.update');
