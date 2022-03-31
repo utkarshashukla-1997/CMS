@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form action="{{ route('roles.store') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('roles.update',$role->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                 <div class="col-xs-12 col-sm-12 col-md-12">
@@ -43,7 +43,7 @@
                                         <strong>Role Name</strong>
                                         <span class="required text-danger"> * </span>
                                         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                                            value="{{old('name','')}}" placeholder="Enter Role Name">
+                                            value="{{old('name',$role->name)}}" placeholder="Enter Role Name">
                                         @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -66,17 +66,19 @@
                                             </thead>
                                             <tbody>
                                                 @foreach($permission as $value)
-                                                <tr>
-                                                    <td>{{$loop->index+1}}</td>
-                                                    <td>
-                                                        <label>
-                                                            <input type="checkbox" value="{{$value->id}}" name="permission[]"
-                                                                false> &ensp; {{$value->name}}
-                                                        </label> &ensp; <br>
-                                                    </td>
-                                                </tr>
+                                        <tr>
+                                            <td>{{$loop->index+1}}</td>
+                                            <td>
+                                                <label>
+                                                    <input type="checkbox" name="permission[]" value="{{$value->id}}"
+                                                        {{in_array($value->id, $rolePermissions) ? 'checked' : false}}>
+                                                    &ensp;
+                                                    {{$value->name}}
+                                                </label> &ensp; <br>
+                                            </td>
+                                        </tr>
 
-                                                @endforeach
+                                        @endforeach
                                             </tbody>
                                         </table>
 

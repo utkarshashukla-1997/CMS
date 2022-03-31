@@ -35,6 +35,9 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
+                            <form action="{{ route('users.update',$user->id) }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
                             <form class="form-horizontal">
                                 <div class="card-body">
                                     <h4 class="card-title">Create User</h4>
@@ -96,7 +99,7 @@
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body">
-                                        <button type="button" class="btn btn-primary">Update</button>
+                                        <button type="submit" class="btn btn-primary">Update</button>
                                     </div>
                                 </div>
                             </form>

@@ -45,35 +45,38 @@
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>User Name</th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Slug</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data as $key => $user)
+                                        @foreach ($data as $key => $category)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $category->name }}</td>
+                                            <td>{!!$category->description!!}</td>
+                                            <td>{{$category->slug}}</td>
                                             <td>
-                                                <a class="btn btn-info" href="{{ route('users.show',$user->id) }}"><i
+                                                <a class="btn btn-info" href="{{ route('category.show',$category->id) }}"><i
                                                         class="fa fa-eye"></i></a>
-                                                @if ($user->id != 1)
-                                                @can('user-edit')
-                                                <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}"><i
+                                                @can('category-edit')
+                                                <a class="btn btn-primary" href="{{ route('category.edit',$category->id) }}"><i
                                                         class="fa fa-edit"></i></a>
                                                 @endcan
-                                                @can('user-delete')
+                                                @can('category-delete')
                                                 <button class="btn btn-danger waves-effect waves-light"
-                                                    data-target="#deleteUsers{{$user->id}}" data-toggle="modal" type="submit"><i
+                                                    data-target="#deleteCategory{{$category->id}}" data-toggle="modal" type="submit"><i
                                                         class="fa fa-trash-alt"></i></button>
-                                                <form action="{{ route('users.destroy', $user->id)}}" method="post"
+                                                <form action="{{ route('category.destroy', $category->id)}}" method="post"
                                                     style="display: inline-block">
                                                     @csrf
                                                     @method('DELETE')
                                                     <div class="row">
                                                         <div class="col-md-4 mt-4">
                                                             <!-- sample modal content -->
-                                                            <div id="deleteUsers{{$user->id}}" class="modal fade" tabindex="-1"
+                                                            <div id="deleteCategory{{$category->id}}" class="modal fade" tabindex="-1"
                                                                 role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog modal-lg">
                                                                     <div class="modal-content">
@@ -123,7 +126,6 @@
                                                     </div>
                                                 </form>
                                                 @endcan
-                                                @endif
                                             </td>
                                         </tr>
                                         @endforeach
@@ -131,7 +133,9 @@
                                     <tfoot>
                                         <tr>
                                             <th>Id</th>
-                                            <th>User Name</th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Slug</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>

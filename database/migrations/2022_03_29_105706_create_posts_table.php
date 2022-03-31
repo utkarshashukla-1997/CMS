@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->longText('description');
+            $table->longText('description')->nullable();
             $table->string('permalink');
             $table->string('template');
             $table->string('visibility_post');
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->unsignedBigInteger('tag_id');
             $table->foreign('tag_id')->references('id')->on('tags')->onUpdate('cascade')->onDelete('cascade');
             $table->date('published_date');
-            $table->enum('status',['Published','Draft']);
+            $table->enum('status',['Published','Draft'])->default('Draft');
             $table->string('file_image')->nullable();
             $table->timestamps();
         });

@@ -4,8 +4,10 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\TagsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FrontEndController;
+use App\Http\Controllers\MediaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +40,10 @@ Route::resource('roles',RoleController::class);
 Route::resource('frontend',FrontEndController::class);
 //Category
 Route::resource('category',CategoriesController::class);
+//Tag
+Route::resource('tag',TagsController::class);
+//Media
+Route::resource('media',MediaController::class);
  //change password
  Route::get('/password', [AdminController::class,'changepassword'])->name('password.index');
  Route::put('/change-Password', [AdminController::class,'password_update'])->name('password.update');

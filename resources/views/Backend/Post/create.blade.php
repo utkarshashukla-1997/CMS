@@ -35,17 +35,18 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form class="form-horizontal">
+                            <form action="{{ route('post.store') }}" method="post" enctype="multipart/form-data">
+                                @csrf
                                 <div class="card-body">
                                     <h4 class="card-title">Create Post</h4>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Name
+                                        <label class="col-sm-3 text-right control-label col-form-label">Title
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="name" required placeholder="Enter Name"
-                                            class="form-control   @error('name') is-invalid @enderror"
-                                            value="{{old('name','')}}" />
-                                        @error('name')
+                                            <input type="text" name="title" required placeholder="Enter Title"
+                                            class="form-control   @error('title') is-invalid @enderror"
+                                            value="{{old('title','')}}" />
+                                        @error('title')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
                                         </span>
@@ -53,13 +54,13 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Slug
+                                        <label class="col-sm-3 text-right control-label col-form-label">Permalink
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="slug" required placeholder="Enter Slug"
-                                            class="form-control @error('slug') is-invalid @enderror"
-                                            value="{{old('slug','')}}" />
-                                        @error('slug')
+                                            <input type="text" name="permalink" required placeholder="Enter Permalink"
+                                            class="form-control @error('permalink') is-invalid @enderror"
+                                            value="{{old('permalink','')}}" />
+                                        @error('permalink')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
                                         </span>
@@ -67,17 +68,39 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label"> Parent Category
+                                        <label class="col-sm-3 text-right control-label col-form-label"> Template
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <select class="form-control @error('parent_category') is-invalid @enderror" name="parent_category">
-                                                <option class="bg-info" disabled selected>Select Parent Category....</option>
-                                                <option value="None" {{old('parent_category')=='None' ?'selected':''}}>None
+                                            <select class="form-control @error('template') is-invalid @enderror" name="template">
+                                                <option class="bg-info" disabled selected>Select Template....</option>
+                                                <option value="Default Template" {{old('template')=='Default Template' ?'selected':''}}>Default Template
                                                 </option>
-                                                <option value="Uncategorized" {{old('parent_category')=='Female' ?'selected':''}}>Uncategorized
+                                                <option value="Blank" {{old('template')=='Blank' ?'selected':''}}>Blank
+                                                </option>
+                                                <option value="Single Post (No Seperators)" {{old('template')=='Single Post (No Seperators)' ?'selected':''}}>Single Post (No Seperators)
                                                 </option>
                                             </select>
-                                            @error('parent_category')
+                                            @error('template')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{$message}}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label"> Visibility Post
+                                            <span class="required text-danger"> * </span></label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control @error('visibility_post') is-invalid @enderror" name="visibility_post">
+                                                <option class="bg-info" disabled selected>Select Visibility Post....</option>
+                                                <option value="Public" {{old('visibility_post')=='Public' ?'selected':''}}>Public
+                                                </option>
+                                                <option value="Private" {{old('visibility_post')=='Private' ?'selected':''}}>Private
+                                                </option>
+                                                <option value="Password Protected" {{old('visibility_post')=='Password Protected' ?'selected':''}}>Password Protected
+                                                </option>
+                                            </select>
+                                            @error('visibility_post')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{$message}}</strong>
                                             </span>
@@ -89,26 +112,63 @@
                                         </label>
                                         <div class="col-sm-9">
                                              <textarea type="text" name="description"
-                                            class="ckeditor form-control" placeholder="Enter Department Description"
+                                            class="ckeditor form-control"
                                            >{{old('description','')}}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Category
+                                        </label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control @error('category_id') is-invalid @enderror"
+                                            name="category_id">
+                                            <option class="bg-info" disabled selected>Select Category....</option>
+                                            @foreach ($category as $category)
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('category_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Tags
+                                        </label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control @error('tag_id') is-invalid @enderror"
+                                            name="tag_id">
+                                            <option class="bg-info" disabled selected>Select Tag....</option>
+                                            @foreach ($tag as $tag)
+                                            <option value="{{$tag->id}}">{{$tag->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('tag_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Featured Image
                                         </label>
                                         <div class="col-sm-9">
-                                            <input type="file" name="image_file"
-                                            class="form-control @error('image_file') is-invalid @enderror"
-                                            value="{{old('image_file','')}}" />
+                                            <input type="file" name="file_image"
+                                            class="form-control"
+                                            value="{{old('file_image','')}}" />
                                         </div>
                                     </div>
-
-
+                                    <!--Hidden Values-->
+                                    <input type="hidden" class="form-control" value="Draft" required readonly name="status" />
+                                <input type="hidden" class="form-control" value="{{Auth::user()->id}}" required readonly name="status" />
 
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body">
-                                        <button type="button" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
                             </form>

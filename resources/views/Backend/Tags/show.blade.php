@@ -1,6 +1,6 @@
 
 @extends('Backend.layouts.master')
-@section('page_title',' User')
+@section('page_title',' Tags')
 @section('content')
         <!-- ============================================================== -->
         <div class="page-wrapper">
@@ -10,12 +10,12 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Profile</h4>
+                        <h4 class="page-title">Tags</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Users</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Tags</li>
                                 </ol>
                             </nav>
                         </div>
@@ -37,22 +37,31 @@
                         <div class="card">
 
                                 <div class="card-body">
-                                    <h4 class="card-title">User Details</h4>
+                                    <h4 class="card-title">Tag Details</h4>
+                                    <a href="{{ route('tag.index') }}" class="btn btn-success float-right">Back
+                                    </a>
                                     <div class="form-group row">
                                         <strong>Name:</strong>
-                                           {{$user->name}}
+                                           {{$tag->name}}
                                     </div>
                                     <div class="form-group row">
-                                        <strong>Email:</strong>
-                                           {{$user->email}}
+                                        <strong>Slug:</strong>
+                                           {{$tag->slug}}
                                     </div>
                                     <div class="form-group row">
-                                        <strong>Roles:</strong>
-                                            @if(!empty($user->getRoleNames()))
-                                            @foreach($user->getRoleNames() as $v)
-                                            {{ $v }} ,
-                                            @endforeach
-                                            @endif
+                                        <strong>Description:</strong>
+                                           {!!$tag->description!!}
+                                    </div>
+                                    <div class="form-group row">
+                                        <strong>Featured Image:</strong>
+                                        @if($tag->file_image!=[])
+                                        <a href="{{asset('Uploads/Tags/File/'.$tag->file_image)}}"
+                                            target="_blank">
+                                        <img src="{{ asset('Uploads/Tags/File/'.$tag->file_image) }}" alt="" width="200px">
+                                        {{$tag->file_image}}</a><br>
+                                        @else
+                                        N/A
+                                        @endif
                                     </div>
 
 

@@ -35,7 +35,9 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form class="form-horizontal">
+                            <form action="{{ route('tag.update',$tag->id) }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
                                 <div class="card-body">
                                     <h4 class="card-title">Create Tags</h4>
                                     <div class="form-group row">
@@ -44,7 +46,7 @@
                                         <div class="col-sm-9">
                                             <input type="text" name="name" required placeholder="Enter Name"
                                             class="form-control   @error('name') is-invalid @enderror"
-                                            value="{{old('name','')}}" />
+                                            value="{{old('name',$tag->name)}}" />
                                         @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -58,7 +60,7 @@
                                         <div class="col-sm-9">
                                             <input type="text" name="slug" required placeholder="Enter Slug"
                                             class="form-control @error('slug') is-invalid @enderror"
-                                            value="{{old('slug','')}}" />
+                                            value="{{old('slug',$tag->slug)}}" />
                                         @error('slug')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -73,16 +75,16 @@
                                         <div class="col-sm-9">
                                              <textarea type="text" name="description"
                                             class="ckeditor form-control" placeholder="Enter Department Description"
-                                           >{{old('description','')}}</textarea>
+                                           >{{old('description',$tag->description)}}</textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Featured Image
                                         </label>
                                         <div class="col-sm-9">
-                                            <input type="file" name="image_file"
-                                            class="form-control @error('image_file') is-invalid @enderror"
-                                            value="{{old('image_file','')}}" />
+                                            <input type="file" name="file_image"
+                                            class="form-control @error('file_image') is-invalid @enderror"
+                                            value="{{old('file_image','')}}" />
                                         </div>
                                     </div>
 
@@ -91,7 +93,7 @@
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body">
-                                        <button type="button" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary">Update</button>
                                     </div>
                                 </div>
                             </form>
