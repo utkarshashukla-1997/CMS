@@ -35,7 +35,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form class="form-horizontal">
+                            <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
+                                @csrf
                                 <div class="card-body">
                                     <h4 class="card-title">Create Category</h4>
                                     <div class="form-group row">
@@ -98,7 +99,7 @@
                                         </label>
                                         <div class="col-sm-9">
                                             <input type="file" name="image_file"
-                                            class="form-control @error('image_file') is-invalid @enderror"
+                                            class="form-control"
                                             value="{{old('image_file','')}}" />
                                         </div>
                                     </div>
@@ -108,7 +109,7 @@
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body">
-                                        <button type="button" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
                             </form>

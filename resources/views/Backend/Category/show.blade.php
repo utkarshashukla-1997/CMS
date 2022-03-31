@@ -37,22 +37,35 @@
                         <div class="card">
 
                                 <div class="card-body">
-                                    <h4 class="card-title">User Details</h4>
+                                    <h4 class="card-title">Category Details</h4>
+                                    <a href="{{ route('category.index') }}" class="btn btn-success float-right">Back
+                                    </a>
                                     <div class="form-group row">
                                         <strong>Name:</strong>
-                                           {{$user->name}}
+                                           {{$category->name}}
                                     </div>
                                     <div class="form-group row">
-                                        <strong>Email:</strong>
-                                           {{$user->email}}
+                                        <strong>Slug:</strong>
+                                           {{$category->slug}}
                                     </div>
                                     <div class="form-group row">
-                                        <strong>Roles:</strong>
-                                            @if(!empty($user->getRoleNames()))
-                                            @foreach($user->getRoleNames() as $v)
-                                            {{ $v }} ,
-                                            @endforeach
-                                            @endif
+                                        <strong>Parent Category:</strong>
+                                           {{$category->parent_category}}
+                                    </div>
+                                    <div class="form-group row">
+                                        <strong>Description:</strong>
+                                           {!!$category->description!!}
+                                    </div>
+                                    <div class="form-group row">
+                                        <strong>Featured Image:</strong>
+                                        @if($category->image_file!=[])
+                                        <a href="{{asset('Uploads/Category/File/'.$category->image_file)}}"
+                                            target="_blank">
+                                        <img src="{{ asset('Uploads/Category/File/'.$category->image_file) }}" alt="" width="200px">
+                                        {{$category->image_file}}</a><br>
+                                        @else
+                                        N/A
+                                        @endif
                                     </div>
 
 

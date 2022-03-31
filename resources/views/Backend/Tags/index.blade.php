@@ -1,5 +1,5 @@
 @extends('Backend.layouts.master')
-@section('page_title','Users')
+@section('page_title','Tags')
 @section('content')
     <!-- ============================================================== -->
     <div class="page-wrapper">
@@ -14,7 +14,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Library</li>
+                                <li class="breadcrumb-item active" aria-current="page">Tags</li>
                             </ol>
                         </nav>
                     </div>
@@ -35,9 +35,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="card-title">User Management</h3>
-                            @can('user-create')
-                            <a href="{{ route('users.create') }}" class="card-title btn btn-success float-right">Add
+                            <h3 class="card-title">Tag Management</h3>
+                            @can('tags-create')
+                            <a href="{{ route('tag.create') }}" class="card-title btn btn-success float-right">Add
                                 +</a>
                             @endcan
                             <div class="table-responsive">
@@ -45,35 +45,38 @@
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>User Name</th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Slug</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data as $key => $user)
+                                        @foreach ($data as $key => $tag)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $tag->name }}</td>
+                                            <td>{!!$tag->description!!}</td>
+                                            <td>{{$tag->slug}}</td>
                                             <td>
-                                                <a class="btn btn-info" href="{{ route('users.show',$user->id) }}"><i
+                                                <a class="btn btn-info" href="{{ route('tag.show',$tag->id) }}"><i
                                                         class="fa fa-eye"></i></a>
-                                                @if ($user->id != 1)
-                                                @can('user-edit')
-                                                <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}"><i
+                                                @can('tags-edit')
+                                                <a class="btn btn-primary" href="{{ route('tag.edit',$tag->id) }}"><i
                                                         class="fa fa-edit"></i></a>
                                                 @endcan
-                                                @can('user-delete')
+                                                @can('tags-delete')
                                                 <button class="btn btn-danger waves-effect waves-light"
-                                                    data-target="#deleteUsers{{$user->id}}" data-toggle="modal" type="submit"><i
+                                                    data-target="#deleteTag{{$tag->id}}" data-toggle="modal" type="submit"><i
                                                         class="fa fa-trash-alt"></i></button>
-                                                <form action="{{ route('users.destroy', $user->id)}}" method="post"
+                                                <form action="{{ route('tag.destroy', $tag->id)}}" method="post"
                                                     style="display: inline-block">
                                                     @csrf
                                                     @method('DELETE')
                                                     <div class="row">
                                                         <div class="col-md-4 mt-4">
                                                             <!-- sample modal content -->
-                                                            <div id="deleteUsers{{$user->id}}" class="modal fade" tabindex="-1"
+                                                            <div id="deleteTag{{$tag->id}}" class="modal fade" tabindex="-1"
                                                                 role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog modal-lg">
                                                                     <div class="modal-content">
@@ -123,7 +126,6 @@
                                                     </div>
                                                 </form>
                                                 @endcan
-                                                @endif
                                             </td>
                                         </tr>
                                         @endforeach
@@ -131,7 +133,9 @@
                                     <tfoot>
                                         <tr>
                                             <th>Id</th>
-                                            <th>User Name</th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Slug</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -144,4 +148,7 @@
             </div>
 
     </div>
+    <script>
+
+        </script>
 @endsection

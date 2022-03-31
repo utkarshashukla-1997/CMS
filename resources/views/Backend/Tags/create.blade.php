@@ -35,7 +35,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form class="form-horizontal">
+                            <form action="{{ route('tag.store') }}" method="post" enctype="multipart/form-data">
+                                @csrf
                                 <div class="card-body">
                                     <h4 class="card-title">Create Tags</h4>
                                     <div class="form-group row">
@@ -66,7 +67,7 @@
                                         @enderror
                                         </div>
                                     </div>
-                                  
+
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Description
                                         </label>
@@ -80,9 +81,9 @@
                                         <label class="col-sm-3 text-right control-label col-form-label">Featured Image
                                         </label>
                                         <div class="col-sm-9">
-                                            <input type="file" name="image_file"
-                                            class="form-control @error('image_file') is-invalid @enderror"
-                                            value="{{old('image_file','')}}" />
+                                            <input type="file" name="file_image"
+                                            class="form-control @error('file_image') is-invalid @enderror"
+                                            value="{{old('file_image','')}}" />
                                         </div>
                                     </div>
 
@@ -91,7 +92,7 @@
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body">
-                                        <button type="button" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
                             </form>

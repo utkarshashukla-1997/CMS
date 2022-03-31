@@ -28,6 +28,15 @@ class PermissionSeeder extends Seeder
          'category-create',
          'category-edit',
          'category-delete',
+         'media-list',
+         'media-create',
+         'media-edit',
+         'media-delete',
+         'tags-list',
+         'tags-create',
+         'tags-edit',
+         'tags-delete',
+
         ];
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);

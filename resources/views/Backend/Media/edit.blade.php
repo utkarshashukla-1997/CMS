@@ -35,24 +35,27 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form class="form-horizontal">
+                            <form action="{{ route('media.update',$media->id) }}" method="post" enctype="multipart/form-data">
+                                @csrf 
+                                @method('PUT')
                                 <div class="card-body">
-                                    <h4 class="card-title">Create Media File</h4>
+                                    <h4 class="card-title">Edit Media File</h4>
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">File Upload
-                                            <span class="required text-danger"> * </span></label>
+                                            </label>
                                         <div class="col-sm-9">
                                             <input type="file" name="media_file" required placeholder="Enter Name"
                                             class="form-control"
                                             value="{{old('media_file','')}}" />
                                         </div>
                                     </div>
+                            <input type="hidden" class="form-control" value="{{$d}}" required readonly name="uploaded_date" />
 
 
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body">
-                                        <button type="button" class="btn btn-primary">Update</button>
+                                        <button type="submit" class="btn btn-primary">Update</button>
                                     </div>
                                 </div>
                             </form>

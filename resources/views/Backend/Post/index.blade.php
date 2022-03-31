@@ -35,9 +35,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="card-title">User Management</h3>
-                            @can('user-create')
-                            <a href="{{ route('users.create') }}" class="card-title btn btn-success float-right">Add
+                            <h3 class="card-title">Post Management</h3>
+                            @can('post-create')
+                            <a href="{{ route('post.create') }}" class="card-title btn btn-success float-right">Add
                                 +</a>
                             @endcan
                             <div class="table-responsive">

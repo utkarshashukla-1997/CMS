@@ -38,9 +38,14 @@
 
                                 <div class="card-body">
                                     <h4 class="card-title">Media Files Details</h4>
+                                    <a href="{{ route('media.index') }}" class="btn btn-success float-right">Back
+                                    </a>
                                     <div class="form-group row">
                                         <strong>Create Media File:</strong>
-                                           {{$media->media_file}}
+                                        <a href="{{asset('Uploads/Media/File/'.$media->media_file)}}"
+                                            target="_blank">
+                                        <img src="{{ asset('Uploads/Media/File/'.$media->media_file) }}" alt="" width="200px">
+                                        {{$media->media_file}}</a><br>
                                     </div>
 
 

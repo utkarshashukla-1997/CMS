@@ -64,7 +64,7 @@
                         <!-- ============================================================== -->
                         <!-- create new -->
                         <!-- ============================================================== -->
-                        <<a class="navbar-brand" href="{{ route('frontend.index') }}"> Visit Website</a>
+
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
@@ -72,8 +72,11 @@
                             <form class="app-search position-absolute">
                                 <input type="text" class="form-control" placeholder="Search &amp; enter"> <a class="srh-btn"><i class="ti-close"></i></a>
                             </form>
+
                         </li>
+
                     </ul>
+                    <a  href="{{ route('frontend.index') }}" class="btn btn-success"> Visit Website</a>
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->

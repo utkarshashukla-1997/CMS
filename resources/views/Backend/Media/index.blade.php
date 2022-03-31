@@ -46,6 +46,7 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Uploaded File</th>
+                                            <th>Uploaded Date</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -53,11 +54,14 @@
                                         @foreach ($data as $key => $media)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $media->media_file }}</td>
+                                            <td> <a href="{{asset('Uploads/Media/File/'.$media->media_file)}}"
+                                                target="_blank">
+                                            <img src="{{ asset('Uploads/Media/File/'.$media->media_file) }}" alt="" width="200px">
+                                            {{$media->media_file}}</a><br></td>
+                                            <td>{{$media->uploaded_date}}</td>
                                             <td>
                                                 <a class="btn btn-info" href="{{ route('media.show',$media->id) }}"><i
                                                         class="fa fa-eye"></i></a>
-                                                @if ($media->id != 1)
                                                 @can('media-edit')
                                                 <a class="btn btn-primary" href="{{ route('media.edit',$media->id) }}"><i
                                                         class="fa fa-edit"></i></a>
@@ -123,7 +127,6 @@
                                                     </div>
                                                 </form>
                                                 @endcan
-                                                @endif
                                             </td>
                                         </tr>
                                         @endforeach
@@ -132,6 +135,7 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Uploaded File</th>
+                                            <th>Uploaded Date</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
