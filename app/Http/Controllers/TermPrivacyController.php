@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\TermPrivacy;
 use Illuminate\Http\Request;
 
 class TermPrivacyController extends Controller
@@ -13,7 +13,7 @@ class TermPrivacyController extends Controller
      */
     public function index()
     {
-        //
+        return view('Backend.Privacy.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class TermPrivacyController extends Controller
      */
     public function create()
     {
-        //
+        return view('Backend.Privacy.create');
     }
 
     /**

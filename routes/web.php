@@ -44,6 +44,9 @@ Route::resource('category',CategoriesController::class);
 Route::resource('tag',TagsController::class);
 //Media
 Route::resource('media',MediaController::class);
+//Comment
+Route::resource('comment',CommentController::class);
+//
  //change password
  Route::get('/password', [AdminController::class,'changepassword'])->name('password.index');
  Route::put('/change-Password', [AdminController::class,'password_update'])->name('password.update');

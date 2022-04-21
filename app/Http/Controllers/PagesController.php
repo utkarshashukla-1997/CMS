@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comments;
+use App\Models\Pages;
 use Illuminate\Http\Request;
 
-class CommentsController extends Controller
+class PagesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class CommentsController extends Controller
      */
     public function index()
     {
-        //
+        return view('Backend.Page.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class CommentsController extends Controller
      */
     public function create()
     {
-        //
+        return view('Backend.Page.create');
     }
 
     /**
@@ -41,10 +41,10 @@ class CommentsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Comments  $comments
+     * @param  \App\Models\Pages  $pages
      * @return \Illuminate\Http\Response
      */
-    public function show(Comments $comments)
+    public function show(Pages $pages)
     {
         //
     }
@@ -52,10 +52,10 @@ class CommentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Comments  $comments
+     * @param  \App\Models\Pages  $pages
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comments $comments)
+    public function edit(Pages $pages)
     {
         //
     }
@@ -64,10 +64,10 @@ class CommentsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Comments  $comments
+     * @param  \App\Models\Pages  $pages
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comments $comments)
+    public function update(Request $request, Pages $pages)
     {
         //
     }
@@ -75,10 +75,10 @@ class CommentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Comments  $comments
+     * @param  \App\Models\Pages  $pages
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comments $comments)
+    public function destroy(Pages $pages)
     {
         //
     }
