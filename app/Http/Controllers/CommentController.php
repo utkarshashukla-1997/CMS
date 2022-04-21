@@ -14,7 +14,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        return view('Backend.Comment.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+        return view('Backend.Comment.create');
     }
 
     /**

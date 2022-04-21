@@ -54,11 +54,20 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Description
+                                        <div class="col-sm-9">
+                                            <textarea type="text" name="description"
+                                            class="ckeditor form-control"
+                                           >{{old('description','')}}</textarea>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Permalink
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
                                             <input type="text" name="permalink" required placeholder="Enter Permalink"
-                                            class="form-control @error('permalink') is-invalid @enderror"
+                                            class="form-control   @error('permalink') is-invalid @enderror"
                                             value="{{old('permalink','')}}" />
                                         @error('permalink')
                                         <span class="invalid-feedback" role="alert">
@@ -68,52 +77,17 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label"> Template
+                                        <label class="col-sm-3 text-right control-label col-form-label">Author
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <select class="form-control @error('template') is-invalid @enderror" name="template">
-                                                <option class="bg-info" disabled selected>Select Template....</option>
-                                                <option value="Default Template" {{old('template')=='Default Template' ?'selected':''}}>Default Template
-                                                </option>
-                                                <option value="Blank" {{old('template')=='Blank' ?'selected':''}}>Blank
-                                                </option>
-                                                <option value="Single Post (No Seperators)" {{old('template')=='Single Post (No Seperators)' ?'selected':''}}>Single Post (No Seperators)
-                                                </option>
-                                            </select>
-                                            @error('template')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{$message}}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label"> Visibility Post
-                                            <span class="required text-danger"> * </span></label>
-                                        <div class="col-sm-9">
-                                            <select class="form-control @error('visibility_post') is-invalid @enderror" name="visibility_post">
-                                                <option class="bg-info" disabled selected>Select Visibility Post....</option>
-                                                <option value="Public" {{old('visibility_post')=='Public' ?'selected':''}}>Public
-                                                </option>
-                                                <option value="Private" {{old('visibility_post')=='Private' ?'selected':''}}>Private
-                                                </option>
-                                                <option value="Password Protected" {{old('visibility_post')=='Password Protected' ?'selected':''}}>Password Protected
-                                                </option>
-                                            </select>
-                                            @error('visibility_post')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{$message}}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Description
-                                        </label>
-                                        <div class="col-sm-9">
-                                             <textarea type="text" name="description"
-                                            class="ckeditor form-control"
-                                           >{{old('description','')}}</textarea>
+                                            <input type="text" name="user_id" required placeholder="Enter Permalink"
+                                            class="form-control   @error('user_id') is-invalid @enderror"
+                                            value="{{old('user_id','')}}" />
+                                        @error('user_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -152,6 +126,22 @@
                                         @enderror
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label"> Published Date
+                                            <span class="required text-danger"> * </span></label>
+                                        <div class="col-sm-9">
+                                            <input type="date" name="published_date" required placeholder="Enter Permalink"
+                                            class="form-control   @error('published_date') is-invalid @enderror"
+                                            value="{{old('published_date','')}}" />
+                                        @error('published_date')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
+                                        </div>
+                                    </div>
+
+
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Featured Image
                                         </label>

@@ -1,6 +1,6 @@
 
 @extends('Backend.layouts.master')
-@section('page_title',' User')
+@section('page_title',' Category')
 @section('content')
         <!-- ============================================================== -->
         <div class="page-wrapper">
@@ -10,12 +10,12 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Profile</h4>
+                        <h4 class="page-title">Category</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Users</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Category</li>
                                 </ol>
                             </nav>
                         </div>
@@ -35,17 +35,18 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form class="form-horizontal">
+                            <form action="" method="post" enctype="multipart/form-data">
+                                @csrf
                                 <div class="card-body">
-                                    <h4 class="card-title">Create User</h4>
+                                    <h4 class="card-title">Create Comment</h4>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">User Email
+                                        <label class="col-sm-3 text-right control-label col-form-label">Author
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <input type="email" name="email" required placeholder="Enter Email"
-                                            class="form-control   @error('email') is-invalid @enderror"
-                                            value="{{old('email',$user->email)}}" />
-                                        @error('email')
+                                            <input type="text" name="user_id" required placeholder="Enter Name"
+                                            class="form-control   @error('user_id') is-invalid @enderror"
+                                            value="{{old('user_id','')}}" />
+                                        @error('user_id')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
                                         </span>
@@ -53,50 +54,38 @@
                                         </div>
                                     </div>
 
+
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label"> Role
+                                        <label class="col-sm-3 text-right control-label col-form-label">Comment Done
+                                        </label>
+                                        <div class="col-sm-9">
+                                             <textarea type="text" name="comment_done"
+                                            class="ckeditor form-control" placeholder="Comment Done"
+                                           >{{old('comment_done','')}}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Submitted On
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <select class="select2 form-control @error('roles') is-invalid @enderror"
-                                            data-placeholder="Choose Role..." style="width: 100%;" name="roles[]"
-                                            data-live-search="true" style="width: 100%;"
-                                            data-dropdown-css-class="select2-info" multiple="multiple">
-                                            @foreach ($user->roles as $r)
-                                            <option value="#" selected>{{$r->name}}</option>
-                                            @endforeach
-                                            <option class="bg-info" disabled>Select Role...</option>
-                                            @foreach ($roles as $r)
-                                            <option value="{{$r}}">{{$r}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('roles')
+                                            <input type="date" name="submitted_on"
+                                            class="form-control   @error('submitted_on') is-invalid @enderror"
+                                            value="{{old('submitted_on','')}}" />
+                                        @error('submitted_on')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
                                         </span>
                                         @enderror
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">User Name
-                                            <span class="required text-danger"> * </span></label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="name" required placeholder="Enter Name of User"
-                                            class="form-control   @error('name') is-invalid @enderror"
-                                            value="{{old('name',$user->name)}}" />
-                                        @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
-                                    </div>
+
 
 
 
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body">
-                                        <button type="button" class="btn btn-primary">Update</button>
+                                        <button type="submit" class="btn btn-primary">Update</button>
                                     </div>
                                 </div>
                             </form>
