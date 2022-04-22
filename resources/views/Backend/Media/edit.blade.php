@@ -35,8 +35,18 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
+                            @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
                             <form action="{{ route('media.update',$media->id) }}" method="post" enctype="multipart/form-data">
-                                @csrf 
+                                @csrf
                                 @method('PUT')
                                 <div class="card-body">
                                     <h4 class="card-title">Edit Media File</h4>

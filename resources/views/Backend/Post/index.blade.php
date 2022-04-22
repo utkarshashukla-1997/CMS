@@ -50,6 +50,7 @@
                                             <th>Categories</th>
                                             <th>Tags</th>
                                             <th>Date</th>
+                                            <th>Post</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -61,10 +62,10 @@
                                             <td>{{$post->usr['name']}}</td>
                                             <td>{{$post->cat['name']}}</td>
                                             <td>{{$post->tagg['name']}}</td>
-                                            <td>{{$post->$published_date}}</td>
-                                           <td> <a href="{{asset('Uploads/Post/File/'.$post->featured_image)}}"
+                                            <td>{{$post->published_date}}</td>
+                                           <td> <a href="{{asset('Uploads/Post/File/'.$post->file_image)}}"
                                                 target="_blank">
-                                            <img src="{{ asset('Uploads/Post/File/'.$post->featured_image) }}" alt="" width="200px">
+                                            <img src="{{ asset('Uploads/Post/File/'.$post->file_image) }}" alt="" width="200px">
                                             {{$post->featured_image}}</a><br></td>
                                             <td>
                                                 <a class="btn btn-info" href="{{ route('post.show',$post->id) }}"><i
@@ -146,6 +147,7 @@
                                             <th>Categories</th>
                                             <th>Tags</th>
                                             <th>Date</th>
+                                            <th>Post</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>

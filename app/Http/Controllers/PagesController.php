@@ -24,7 +24,7 @@ class PagesController extends Controller
      public function index(Request $request)
     {
         $data = Pages::orderBy('id', 'DESC')->get();
-        return view('Backend.Post.index', compact('data'))
+        return view('Backend.Page.index', compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -80,7 +80,7 @@ class PagesController extends Controller
     public function show($id)
     {
         $page = Pages::find($id);
-        return view('Backend.Page.show',compact('post'));
+        return view('Backend.Page.show',compact('page'));
     }
 
     /**

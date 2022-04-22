@@ -37,6 +37,16 @@
                         <div class="card">
                             <form action="{{ route('page.update',$page->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
+                                @if (count($errors) > 0)
+                                <div class="alert alert-danger">
+                                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @endif
                                 @method('PUT')
                                 <div class="card-body">
                                     <h4 class="card-title">Create Page</h4>
@@ -127,9 +137,9 @@
                                         <label class="col-sm-3 text-right control-label col-form-label">Featured Image
                                         </label>
                                         <div class="col-sm-9">
-                                            <input type="file" name="file_image"
+                                            <input type="file" name="featured_image"
                                             class="form-control"
-                                            value="{{old('file_image','')}}" />
+                                            value="{{old('featured_image','')}}" />
                                         </div>
                                     </div>
                                     <!--Hidden Values-->

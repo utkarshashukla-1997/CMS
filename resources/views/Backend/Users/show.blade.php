@@ -39,15 +39,20 @@
                                 <div class="card-body">
                                     <h4 class="card-title">User Details</h4>
                                     <div class="form-group row">
-                                        <strong>Name:</strong>
+                                        <strong class="col-md-3">Name:</strong>
+                                        <div class="col-md-6">
                                            {{$user->name}}
                                     </div>
-                                    <div class="form-group row">
-                                        <strong>Email:</strong>
-                                           {{$user->email}}
                                     </div>
                                     <div class="form-group row">
-                                        <strong>Roles:</strong>
+                                        <strong class="col-md-3">Email:</strong>
+                                        <div class="col-md-6">
+                                           {{$user->email}}
+                                    </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <strong class="col-md-3">Roles:</strong>
+                                        <div class="col-md-6">
                                             @if(!empty($user->getRoleNames()))
                                             @foreach($user->getRoleNames() as $v)
                                             {{ $v }} ,

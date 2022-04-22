@@ -13,11 +13,13 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('Backend.Comment.index');
-    }
+        $data = Comment::orderBy('id', 'DESC')->get();
+        return view('Backend.Comment.index', compact('data'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
 
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -26,7 +28,8 @@ class CommentController extends Controller
     public function create()
     {
         $post = Post::all();
-        return view('Backend.Comment.create',compact('post'));
+        $comment = Comment::all();
+        return view('Backend.Comment.create',compact('post','comment'));
     }
 
     /**
@@ -37,7 +40,15 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'comment_done'=> 'required',
+            'post_id' => 'required',
+            'submitted_on' => 'required',
+        ]);
+        $input = $request->all();
+        $comment = Comment::create($input);
+        return redirect()->route('comment.index')
+            ->with('success', 'Comment Created Successfully !!!',compact('comment'));
     }
 
     /**
@@ -46,9 +57,10 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment $comment)
+    public function show($id)
     {
-        //
+        $comment = Comment::find($id);
+        return view('Backend.Comment.show',compact('comment'));
     }
 
     /**
@@ -57,9 +69,12 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comment $comment)
+    public function edit($id)
     {
-        //
+        $post = Post::all();
+        $comment = Comment::find($id);
+
+        return view('Backend.Comment.edit',compact('comment','post'));
     }
 
     /**
@@ -69,9 +84,19 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'comment_done'=> 'required',
+            'post_id' => 'required',
+            'submitted_on' => 'required',
+        ]);
+        $input = $request->all();
+        $comment = Comment::findOrfail($id);
+        $comment->update($input);
+
+        return redirect()->route('comment.index')
+            ->with('success', 'Selected Comment Updated Successfully !!!');
     }
 
     /**
@@ -80,8 +105,9 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy($id)
     {
-        //
+        $comment = Comment::find($id)->delete();
+        return redirect()->route('comment.index')->with('success','Selected Comment Deleted Successfully!!!',compact('comment'));
     }
 }

@@ -13,7 +13,7 @@ class Post extends Model
       return $this->belongsTo('App\Models\Categories','category_id');
     }
     public function tagg(){
-        return $this->belongsTo('App\Models\Tag','tag_id');
+        return $this->belongsTo('App\Models\Tags','tag_id');
     }
     public function usr(){
         return $this->belongsTo('App\Models\User','user_id');

@@ -41,11 +41,13 @@
                                     <a href="{{ route('media.index') }}" class="btn btn-success float-right">Back
                                     </a>
                                     <div class="form-group row">
-                                        <strong>Create Media File:</strong>
+                                        <strong class="col-md-3">Create Media File:</strong>
+                                        <div class="col-md-9">
                                         <a href="{{asset('Uploads/Media/File/'.$media->media_file)}}"
                                             target="_blank">
                                         <img src="{{ asset('Uploads/Media/File/'.$media->media_file) }}" alt="" width="200px">
                                         {{$media->media_file}}</a><br>
+                                        </div>
                                     </div>
 
 

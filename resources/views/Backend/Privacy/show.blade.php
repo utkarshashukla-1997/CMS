@@ -39,14 +39,17 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Privacy Details</h4>
                                     <div class="form-group row">
-                                        <strong>Terms and Conditions:</strong>
+                                        <strong class="col-md-3">Terms and Conditions:</strong>
+                                        <div class="col-md-6">
                                            {!!$privacy->term_condition!!}
                                     </div>
+                                    </div>
                                     <div class="form-group row">
-                                        <strong>Privacy Policy:</strong>
+                                        <strong class="col-md-3">Privacy Policy:</strong>
+                                         <div class="col-md-6">
                                            {!!$privacy->privacy_policy!!}
                                     </div>
-                                   
+
 
 
 

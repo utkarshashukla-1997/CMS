@@ -57,8 +57,8 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $comment->usr['name'] }}</td>
-                                            <td>{{$comment->comment_done}}</td>
-                                            <td>{{$comment->post['name']}}</td>
+                                            <td>{!!$comment->comment_done!!}</td>
+                                            <td>{{$comment->pos['title']}}</td>
                                             <td>{{$comment->submitted_on}}</td>
                                             <td>
                                                 <a class="btn btn-info" href="{{ route('comment.show',$comment->id) }}"><i
