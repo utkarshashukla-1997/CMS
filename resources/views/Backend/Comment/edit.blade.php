@@ -58,10 +58,10 @@
                                         <div class="col-sm-9">
                                             <select class="form-control @error('post_id') is-invalid @enderror"
                                             name="post_id">
-                                            <option value="{{$post->post_id}}" selected>{{$post->pos['name']}}
+                                            <option value="{{$comment->post_id}}" selected>{{$comment->pos['title']}}
                                             <option class="bg-info" disabled>In response to....</option>
                                             @foreach ($post as $post)
-                                            <option value="{{$post->id}}">{{$post->name}}</option>
+                                            <option value="{{$post->id}}">{{$post->title}}</option>
                                             @endforeach
                                         </select>
                                         @error('post_id')

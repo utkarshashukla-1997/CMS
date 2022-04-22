@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pages extends Model
 {
     use HasFactory;
+    protected $guarded = [];
     public function usr(){
         return $this->belongsTo('App\Models\User','user_id');
     }

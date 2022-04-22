@@ -1,6 +1,6 @@
 
 @extends('Backend.layouts.master')
-@section('page_title',' User')
+@section('page_title',' Category')
 @section('content')
         <!-- ============================================================== -->
         <div class="page-wrapper">
@@ -10,12 +10,12 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Profile</h4>
+                        <h4 class="page-title">Category</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Users</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Category</li>
                                 </ol>
                             </nav>
                         </div>
@@ -41,23 +41,32 @@
                                     <a href="{{ route('category.index') }}" class="btn btn-success float-right">Back
                                     </a>
                                     <div class="form-group row">
-                                        <strong>Name:</strong>
+                                        <strong class="col-md-3">Name:</strong>
+                                        <div class="col-md-9">
                                            {{$category->name}}
                                     </div>
+                                    </div>
                                     <div class="form-group row">
-                                        <strong>Slug:</strong>
+                                        <strong class="col-md-3">Slug:</strong>
+                                        <div class="col-md-6">
                                            {{$category->slug}}
                                     </div>
+                                    </div>
                                     <div class="form-group row">
-                                        <strong>Parent Category:</strong>
+                                        <strong class="col-md-3">Parent Category:</strong>
+                                        <div class="col-md-6">
                                            {{$category->parent_category}}
                                     </div>
-                                    <div class="form-group row">
-                                        <strong>Description:</strong>
-                                           {!!$category->description!!}
                                     </div>
                                     <div class="form-group row">
-                                        <strong>Featured Image:</strong>
+                                        <strong class="col-md-3">Description:</strong>
+                                        <div class="col-md-6">
+                                           {!!$category->description!!}
+                                    </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <strong class="col-md-3">Featured Image:</strong>
+                                        <div class="col-md-6">
                                         @if($category->image_file!=[])
                                         <a href="{{asset('Uploads/Category/File/'.$category->image_file)}}"
                                             target="_blank">
@@ -66,6 +75,7 @@
                                         @else
                                         N/A
                                         @endif
+                                    </div>
                                     </div>
 
 

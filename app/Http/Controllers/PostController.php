@@ -125,17 +125,17 @@ class PostController extends Controller
         if ($request->file_image != '') {
             $path = public_path() . '/Uploads/Post/File/';
             //code for remove old file
-            if ($post->image_file != ''  && $post->image_file != null) {
-                $file_old = $path . $post->image_file;
+            if ($post->file_image != ''  && $post->file_image != null) {
+                $file_old = $path . $post->file_image;
                 unlink($file_old);
             }
-            if ($request->hasFile('image_file')) {
-                $image = $request->file('image_file');
-                $image_file = "TD-" . time() . '.' . $image->getClientOriginalExtension();
-                $image->move(public_path() . '/Uploads/Post/File', $image_file);
+            if ($request->hasFile('file_image')) {
+                $image = $request->file('file_image');
+                $file_image = "TD-" . time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path() . '/Uploads/Post/File', $file_image);
 
-                $request->image_file = $image_file;
-                $input['image_file'] = $image_file;
+                $request->file_image = $file_image;
+                $input['file_image'] = $file_image;
             }
         }
 

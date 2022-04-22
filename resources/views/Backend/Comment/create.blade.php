@@ -44,22 +44,27 @@
 
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Comment Done
-                                        </label>
+                                            <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
                                              <textarea type="text" name="comment_done"
-                                            class="ckeditor form-control" placeholder="Comment Done"
+                                            class="ckeditor form-control @error('comment_done') is-invalid @enderror" placeholder="Comment Done"
                                            >{{old('comment_done','')}}</textarea>
+                                           @error('comment_done')
+                                           <span class="invalid-feedback" role="alert">
+                                               <strong>{{$message}}</strong>
+                                           </span>
+                                           @enderror
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label"> In Response To
-                                        </label>
+                                            <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
                                             <select class="form-control @error('post_id') is-invalid @enderror"
                                             name="post_id">
                                             <option class="bg-info" disabled selected>In response to....</option>
                                             @foreach ($post as $post)
-                                            <option value="{{$post->id}}">{{$post->name}}</option>
+                                            <option value="{{$post->id}}">{{$post->title}}</option>
                                             @endforeach
                                         </select>
                                         @error('post_id')

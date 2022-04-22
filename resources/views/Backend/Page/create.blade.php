@@ -35,6 +35,16 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
+                            @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
                             <form action="{{ route('page.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
@@ -105,7 +115,7 @@
                                         </div>
                                     </div>
 
-                                 
+
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label"> Published Date
                                             <span class="required text-danger"> * </span></label>
@@ -126,14 +136,15 @@
                                         <label class="col-sm-3 text-right control-label col-form-label">Featured Image
                                         </label>
                                         <div class="col-sm-9">
-                                            <input type="file" name="file_image"
+                                            <input type="file" name="featured_image"
                                             class="form-control"
-                                            value="{{old('file_image','')}}" />
+                                            value="{{old('featured_image','')}}" />
                                         </div>
                                     </div>
                                     <!--Hidden Values-->
                                     <input type="hidden" class="form-control" value="Draft" required readonly name="status" />
                                 <input type="hidden" class="form-control" value="{{Auth::user()->id}}" required readonly name="status" />
+                                <input type="hidden" class="form-control" value="{{Auth::user()->id}}" required readonly name="user_id" />
 
                                 </div>
                                 <div class="border-top">
