@@ -15,4 +15,7 @@ class Post extends Model
     public function tagg(){
         return $this->belongsTo('App\Models\Tag','tag_id');
     }
+    public function usr(){
+        return $this->belongsTo('App\Models\User','user_id');
+    }
 }

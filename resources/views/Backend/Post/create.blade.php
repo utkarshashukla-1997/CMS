@@ -54,7 +54,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Description
+                                        <label class="col-sm-3 text-right control-label col-form-label">Description</label>
                                         <div class="col-sm-9">
                                             <textarea type="text" name="description"
                                             class="ckeditor form-control"
@@ -76,20 +76,7 @@
                                         @enderror
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Author
-                                            <span class="required text-danger"> * </span></label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="user_id" required placeholder="Enter Permalink"
-                                            class="form-control   @error('user_id') is-invalid @enderror"
-                                            value="{{old('user_id','')}}" />
-                                        @error('user_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
-                                    </div>
+
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Category
                                         </label>
@@ -154,6 +141,7 @@
                                     <!--Hidden Values-->
                                     <input type="hidden" class="form-control" value="Draft" required readonly name="status" />
                                 <input type="hidden" class="form-control" value="{{Auth::user()->id}}" required readonly name="status" />
+                                <input type="hidden" class="form-control" value="{{Auth::user()->id}}" required readonly name="user_id" />
 
                                 </div>
                                 <div class="border-top">

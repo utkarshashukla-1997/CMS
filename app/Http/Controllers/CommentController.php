@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -24,7 +25,8 @@ class CommentController extends Controller
      */
     public function create()
     {
-        return view('Backend.Comment.create');
+        $post = Post::all();
+        return view('Backend.Comment.create',compact('post'));
     }
 
     /**

@@ -35,17 +35,18 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form action="{{ route('post.store') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('post.update',$post->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
                                 <div class="card-body">
-                                    <h4 class="card-title">Create Post</h4>
+                                    <h4 class="card-title">Edit Post</h4>
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Title
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
                                             <input type="text" name="title" required placeholder="Enter Title"
                                             class="form-control   @error('title') is-invalid @enderror"
-                                            value="{{old('title','')}}" />
+                                            value="{{old('title',$post->title)}}" />
                                         @error('title')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -58,7 +59,7 @@
                                         <div class="col-sm-9">
                                             <textarea type="text" name="description"
                                             class="ckeditor form-control"
-                                           >{{old('description','')}}</textarea>
+                                           >{{old('description',$post->description)}}</textarea>
 
                                         </div>
                                     </div>
@@ -68,7 +69,7 @@
                                         <div class="col-sm-9">
                                             <input type="text" name="permalink" required placeholder="Enter Permalink"
                                             class="form-control   @error('permalink') is-invalid @enderror"
-                                            value="{{old('permalink','')}}" />
+                                            value="{{old('permalink',$post->permalink)}}" />
                                         @error('permalink')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -76,27 +77,15 @@
                                         @enderror
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Author
-                                            <span class="required text-danger"> * </span></label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="user_id" required placeholder="Enter Permalink"
-                                            class="form-control   @error('user_id') is-invalid @enderror"
-                                            value="{{old('user_id','')}}" />
-                                        @error('user_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
-                                    </div>
+
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Category
                                         </label>
                                         <div class="col-sm-9">
                                             <select class="form-control @error('category_id') is-invalid @enderror"
                                             name="category_id">
-                                            <option class="bg-info" disabled selected>Select Category....</option>
+                                            <option value="{{$post->category_id}}" selected>{{$post->cat['name']}}
+                                            <option class="bg-info" disabled>Select Category....</option>
                                             @foreach ($category as $category)
                                             <option value="{{$category->id}}">{{$category->name}}</option>
                                             @endforeach
@@ -114,7 +103,8 @@
                                         <div class="col-sm-9">
                                             <select class="form-control @error('tag_id') is-invalid @enderror"
                                             name="tag_id">
-                                            <option class="bg-info" disabled selected>Select Tag....</option>
+                                            <option value="{{$post->category_id}}" selected>{{$post->tagg['name']}}
+                                            <option class="bg-info" disabled>Select Tag....</option>
                                             @foreach ($tag as $tag)
                                             <option value="{{$tag->id}}">{{$tag->name}}</option>
                                             @endforeach
@@ -132,7 +122,7 @@
                                         <div class="col-sm-9">
                                             <input type="date" name="published_date" required placeholder="Enter Permalink"
                                             class="form-control   @error('published_date') is-invalid @enderror"
-                                            value="{{old('published_date','')}}" />
+                                            value="{{old('published_date',$post->published_date)}}" />
                                         @error('published_date')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -154,11 +144,13 @@
                                     <!--Hidden Values-->
                                     <input type="hidden" class="form-control" value="Draft" required readonly name="status" />
                                 <input type="hidden" class="form-control" value="{{Auth::user()->id}}" required readonly name="status" />
+                                <input type="hidden" class="form-control" value="{{Auth::user()->id}}" required readonly name="user_id" />
+
 
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary">Update</button>
                                     </div>
                                 </div>
                             </form>

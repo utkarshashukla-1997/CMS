@@ -10,12 +10,12 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Profile</h4>
+                        <h4 class="page-title">Terms and Privacy</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Users</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Privacy</li>
                                 </ol>
                             </nav>
                         </div>
@@ -37,23 +37,16 @@
                         <div class="card">
 
                                 <div class="card-body">
-                                    <h4 class="card-title">User Details</h4>
+                                    <h4 class="card-title">Privacy Details</h4>
                                     <div class="form-group row">
-                                        <strong>Name:</strong>
-                                           {{$user->name}}
+                                        <strong>Terms and Conditions:</strong>
+                                           {!!$privacy->term_condition!!}
                                     </div>
                                     <div class="form-group row">
-                                        <strong>Email:</strong>
-                                           {{$user->email}}
+                                        <strong>Privacy Policy:</strong>
+                                           {!!$privacy->privacy_policy!!}
                                     </div>
-                                    <div class="form-group row">
-                                        <strong>Roles:</strong>
-                                            @if(!empty($user->getRoleNames()))
-                                            @foreach($user->getRoleNames() as $v)
-                                            {{ $v }} ,
-                                            @endforeach
-                                            @endif
-                                    </div>
+                                   
 
 
 

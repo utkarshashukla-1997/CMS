@@ -39,20 +39,24 @@
                                 <div class="card-body">
                                     <h4 class="card-title">User Details</h4>
                                     <div class="form-group row">
-                                        <strong>Name:</strong>
-                                           {{$user->name}}
+                                        <strong>Author:</strong>
+                                           {{$comment->usr['name']}}
                                     </div>
                                     <div class="form-group row">
-                                        <strong>Email:</strong>
-                                           {{$user->email}}
+                                        <strong>Comment Done:</strong>
+                                           {{$comment->comment_done}}
                                     </div>
                                     <div class="form-group row">
-                                        <strong>Roles:</strong>
-                                            @if(!empty($user->getRoleNames()))
-                                            @foreach($user->getRoleNames() as $v)
-                                            {{ $v }} ,
-                                            @endforeach
-                                            @endif
+                                        <strong>In Response To:</strong>
+                                            {{$comment->pos['name']}}
+                                    </div>
+                                    <div class="form-group row">
+                                        <strong>In Response To:</strong>
+                                            {{$comment->pos['name']}}
+                                    </div>
+                                    <div class="form-group row">
+                                        <strong>Submitted On:</strong>
+                                            {{$comment->submitted_on}}
                                     </div>
 
 

@@ -35,8 +35,9 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form action="{{ route('page.store') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('page.update',$page->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
                                 <div class="card-body">
                                     <h4 class="card-title">Create Page</h4>
                                     <div class="form-group row">
@@ -45,7 +46,7 @@
                                         <div class="col-sm-9">
                                             <input type="text" name="title" required placeholder="Enter Title"
                                             class="form-control   @error('title') is-invalid @enderror"
-                                            value="{{old('title','')}}" />
+                                            value="{{old('title',$page->title)}}" />
                                         @error('title')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -54,11 +55,11 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Content
+                                        <label class="col-sm-3 text-right control-label col-form-label">Content</label>
                                         <div class="col-sm-9">
                                             <textarea type="text" name="content"
                                             class="ckeditor form-control"
-                                           >{{old('content','')}}</textarea>
+                                           >{{old('content',$page->content)}}</textarea>
 
                                         </div>
                                     </div>
@@ -68,7 +69,7 @@
                                         <div class="col-sm-9">
                                             <input type="text" name="permalink" required placeholder="Enter Permalink"
                                             class="form-control   @error('permalink') is-invalid @enderror"
-                                            value="{{old('permalink','')}}" />
+                                            value="{{old('permalink',$page->permalink)}}" />
                                         @error('permalink')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -82,7 +83,7 @@
                                         <div class="col-sm-9">
                                             <input type="text" name="template" required placeholder="Enter Template"
                                             class="form-control   @error('template') is-invalid @enderror"
-                                            value="{{old('template','')}}" />
+                                            value="{{old('template',$page->template)}}" />
                                         @error('template')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -96,7 +97,7 @@
                                         <div class="col-sm-9">
                                             <input type="text" name="visibility_post" required placeholder="Visibility Post"
                                             class="form-control   @error('visibility_post') is-invalid @enderror"
-                                            value="{{old('visibility_post','')}}" />
+                                            value="{{old('visibility_post',$page->visibility_post)}}" />
                                         @error('visibility_post')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -104,49 +105,15 @@
                                         @enderror
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Category
-                                        </label>
-                                        <div class="col-sm-9">
-                                            <select class="form-control @error('category_id') is-invalid @enderror"
-                                            name="category_id">
-                                            <option class="bg-info" disabled selected>Select Category....</option>
-                                            @foreach ($category as $category)
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('category_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Tags
-                                        </label>
-                                        <div class="col-sm-9">
-                                            <select class="form-control @error('tag_id') is-invalid @enderror"
-                                            name="tag_id">
-                                            <option class="bg-info" disabled selected>Select Tag....</option>
-                                            @foreach ($tag as $tag)
-                                            <option value="{{$tag->id}}">{{$tag->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('tag_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
-                                    </div>
+
+
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label"> Published Date
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
                                             <input type="date" name="done_date" required placeholder="Enter Permalink"
                                             class="form-control   @error('done_date') is-invalid @enderror"
-                                            value="{{old('done_date','')}}" />
+                                            value="{{old('done_date',$page->done_date)}}" />
                                         @error('done_date')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -172,7 +139,7 @@
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary">Update</button>
                                     </div>
                                 </div>
                             </form>
