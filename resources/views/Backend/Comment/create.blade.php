@@ -1,6 +1,6 @@
 
 @extends('Backend.layouts.master')
-@section('page_title',' Category')
+@section('page_title',' Comment')
 @section('content')
         <!-- ============================================================== -->
         <div class="page-wrapper">
@@ -10,12 +10,12 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Category</h4>
+                        <h4 class="page-title">Comment</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Category</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Comment</li>
                                 </ol>
                             </nav>
                         </div>
@@ -35,24 +35,11 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form action="" method="post" enctype="multipart/form-data">
+                            <form action="{{route('comment.store')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <h4 class="card-title">Create Comment</h4>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Author
-                                            <span class="required text-danger"> * </span></label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="user_id" required placeholder="Enter Name"
-                                            class="form-control   @error('user_id') is-invalid @enderror"
-                                            value="{{old('user_id','')}}" />
-                                        @error('user_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
-                                    </div>
+                                    <input type="hidden" class="form-control" value="{{Auth::user()->id}}" required readonly name="user_id" />
 
 
                                     <div class="form-group row">
@@ -64,6 +51,25 @@
                                            >{{old('comment_done','')}}</textarea>
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label"> In Response To
+                                        </label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control @error('post_id') is-invalid @enderror"
+                                            name="post_id">
+                                            <option class="bg-info" disabled selected>In response to....</option>
+                                            @foreach ($post as $post)
+                                            <option value="{{$post->id}}">{{$post->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('post_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
+                                        </div>
+                                    </div>
+
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Submitted On
                                             <span class="required text-danger"> * </span></label>
@@ -78,7 +84,6 @@
                                         @enderror
                                         </div>
                                     </div>
-
 
 
 

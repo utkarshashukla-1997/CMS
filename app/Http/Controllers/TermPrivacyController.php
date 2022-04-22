@@ -11,9 +11,16 @@ class TermPrivacyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    {
+
+        $this->middleware('permission:privacy-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:privacy-edit', ['only' => ['edit', 'update']]);
+    }
     public function index()
     {
-        return view('Backend.Privacy.index');
+        $term = TermPrivacy::first();
+        return view('Backend.Privacy.show', compact('term'));
     }
 
     /**
@@ -23,7 +30,8 @@ class TermPrivacyController extends Controller
      */
     public function create()
     {
-        return view('Backend.Privacy.create');
+        $term = TermPrivacy::first();
+        return view('Backend.Privacy.create', compact('term'));
     }
 
     /**
@@ -34,7 +42,9 @@ class TermPrivacyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $term = TermPrivacy::create($input);
+        return redirect()->back()->with('success','New Terms and Conditions/Privacy Policy Created Successfully !!!',compact('term'));
     }
 
     /**
@@ -56,7 +66,8 @@ class TermPrivacyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $term = TermPrivacy::find($id);
+        return view('Backend.Privacy.create', compact('term'));
     }
 
     /**
@@ -68,7 +79,12 @@ class TermPrivacyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        $term = TermPrivacy::find($id);
+        $term->update($input);
+
+        return redirect()->back()
+            ->with('success', 'New Terms and Conditions/Privacy Policy Updated Successfully !!!', compact('term'));
     }
 
     /**

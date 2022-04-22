@@ -54,7 +54,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Content
+                                        <label class="col-sm-3 text-right control-label col-form-label">Content</label>
                                         <div class="col-sm-9">
                                             <textarea type="text" name="content"
                                             class="ckeditor form-control"
@@ -104,42 +104,8 @@
                                         @enderror
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Category
-                                        </label>
-                                        <div class="col-sm-9">
-                                            <select class="form-control @error('category_id') is-invalid @enderror"
-                                            name="category_id">
-                                            <option class="bg-info" disabled selected>Select Category....</option>
-                                            @foreach ($category as $category)
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('category_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Tags
-                                        </label>
-                                        <div class="col-sm-9">
-                                            <select class="form-control @error('tag_id') is-invalid @enderror"
-                                            name="tag_id">
-                                            <option class="bg-info" disabled selected>Select Tag....</option>
-                                            @foreach ($tag as $tag)
-                                            <option value="{{$tag->id}}">{{$tag->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('tag_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
-                                    </div>
+
+                                 
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label"> Published Date
                                             <span class="required text-danger"> * </span></label>

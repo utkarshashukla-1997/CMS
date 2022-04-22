@@ -21,7 +21,7 @@
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-pencil"></i><span class="hide-menu"> Posts </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="#" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">All Posts</span></a></li>
+                                <li class="sidebar-item"><a href="{{route('post.index')}}" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">All Posts</span></a></li>
                                 <li class="sidebar-item"><a href="{{route('category.index')}}" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">Categories</span></a></li>
                                 <li class="sidebar-item"><a href="{{route('tag.index')}}" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">Tags</span></a></li>
                             </ul>
@@ -34,22 +34,22 @@
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-pencil"></i><span class="hide-menu">Pages </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="#" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">All Pages</span></a></li>
+                                <li class="sidebar-item"><a href="{{route('page.index')}}" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">All Pages</span></a></li>
 
                             </ul>
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-pencil"></i><span class="hide-menu">Comments </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="#" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">All Comments</span></a></li>
+                                <li class="sidebar-item"><a href="{{route('comment.index')}}" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">All Comments</span></a></li>
 
                             </ul>
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i class="nav-icon fa fa-cog"></i><span class="hide-menu">Settings </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="#" class="sidebar-link"> <i class="nav-icon fa fa-user"></i><span class="hide-menu">Profile </span></a></li>
-                                <li class="sidebar-item"><a href="#" class="sidebar-link"> <i class="mdi mdi-account-key"></i><span class="hide-menu">General/Site </span></a></li>
-                                <li class="sidebar-item"><a href="#" class="sidebar-link"> <i class="mdi mdi-account-key"></i><span class="hide-menu">Privacy </span></a></li>
-                                <li class="sidebar-item"><a href="#" class="sidebar-link"> <i class="mdi mdi-account-key"></i><span class="hide-menu">Mail </span></a></li>
+                                <li class="sidebar-item"><a href="{{route('general.create')}}" class="sidebar-link"> <i class="mdi mdi-account-key"></i><span class="hide-menu">General/Site </span></a></li>
+                                <li class="sidebar-item"><a href="{{route('privacy.create')}}" class="sidebar-link"> <i class="mdi mdi-account-key"></i><span class="hide-menu">Privacy </span></a></li>
+                                <li class="sidebar-item"><a href="{{route('mail.create')}}" class="sidebar-link"> <i class="mdi mdi-account-key"></i><span class="hide-menu">Mail </span></a></li>
                                 <li class="sidebar-item"><a href="{{route('password.index')}}" class="sidebar-link"> <i class="mdi mdi-account-key"></i><span class="hide-menu">Password</span></a></li>
 
                             </ul>

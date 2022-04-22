@@ -45,7 +45,11 @@
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>User Name</th>
+                                            <th>Title</th>
+                                            <th>Author</th>
+                                            <th>Categories</th>
+                                            <th>Tags</th>
+                                            <th>Date</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -131,7 +135,11 @@
                                     <tfoot>
                                         <tr>
                                             <th>Id</th>
-                                            <th>User Name</th>
+                                            <th>Title</th>
+                                            <th>Author</th>
+                                            <th>Categories</th>
+                                            <th>Tags</th>
+                                            <th>Date</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>

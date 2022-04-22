@@ -24,7 +24,7 @@ class GeneralSettingsController extends Controller
      */
     public function create()
     {
-        //
+        return view('Backend.General.create');
     }
 
     /**

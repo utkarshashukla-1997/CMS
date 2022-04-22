@@ -1,6 +1,6 @@
 
 @extends('Backend.layouts.master')
-@section('page_title',' User')
+@section('page_title',' Page')
 @section('content')
         <!-- ============================================================== -->
         <div class="page-wrapper">
@@ -15,7 +15,7 @@
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Users</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Page</li>
                                 </ol>
                             </nav>
                         </div>
@@ -37,22 +37,39 @@
                         <div class="card">
 
                                 <div class="card-body">
-                                    <h4 class="card-title">User Details</h4>
+                                    <h4 class="card-title">Page Details</h4>
                                     <div class="form-group row">
-                                        <strong>Name:</strong>
-                                           {{$user->name}}
+                                        <strong>Title:</strong>
+                                           {{$page->title}}
                                     </div>
                                     <div class="form-group row">
-                                        <strong>Email:</strong>
-                                           {{$user->email}}
+                                        <strong>Content:</strong>
+                                           {{$page->content}}
                                     </div>
                                     <div class="form-group row">
-                                        <strong>Roles:</strong>
-                                            @if(!empty($user->getRoleNames()))
-                                            @foreach($user->getRoleNames() as $v)
-                                            {{ $v }} ,
-                                            @endforeach
-                                            @endif
+                                        <strong>Permalink:</strong>
+                                        {{$page->permalink}}
+
+                                    </div>
+                                    <div class="form-group row">
+                                        <strong>Template:</strong>
+                                        {{$page->template}}
+
+                                    </div>
+                                    <div class="form-group row">
+                                        <strong>Visibility Post:</strong>
+                                        {{$page->visibility_post}}
+
+                                    </div>
+                                    <div class="form-group row">
+                                        <strong>Published Date:</strong>
+                                        {{$page->done_date}}
+
+                                    </div>
+                                    <div class="form-group row">
+                                        <strong>Author:</strong>
+                                        {{$page->usr['name']}}
+
                                     </div>
 
 

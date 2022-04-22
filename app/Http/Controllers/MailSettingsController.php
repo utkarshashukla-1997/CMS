@@ -24,7 +24,7 @@ class MailSettingsController extends Controller
      */
     public function create()
     {
-        //
+        return view('Backend.Mail.create');
     }
 
     /**

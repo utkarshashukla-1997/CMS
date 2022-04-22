@@ -35,21 +35,22 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
+                            @if($privacy == null)
                             <form action="{{ route('privacy.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <h4 class="card-title">Create Privacy & Policy</h4>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Terms and Condition
+                                        <label class="col-sm-3 text-right control-label col-form-label">Terms and Condition</label>
                                         <div class="col-sm-9">
                                             <textarea type="text" name="term_condition"
                                             class="ckeditor form-control"
                                            >{{old('term_condition','')}}</textarea>
-
                                         </div>
+
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Privacy Policy
+                                        <label class="col-sm-3 text-right control-label col-form-label">Privacy Policy</label>
                                         <div class="col-sm-9">
                                             <textarea type="text" name="privacy_policy"
                                             class="ckeditor form-control"
@@ -65,6 +66,39 @@
                                     </div>
                                 </div>
                             </form>
+                            @else
+                            <form action="{{ route('privacy.update',$privacy->id) }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
+                                <div class="card-body">
+                                    <h4 class="card-title">Create Privacy & Policy</h4>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Terms and Condition
+                                        <div class="col-sm-9">
+                                            <textarea type="text" name="term_condition"
+                                            class="ckeditor form-control"
+                                           >{{old('term_condition',$privacy->term_condition)}}</textarea>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Privacy Policy
+                                        <div class="col-sm-9">
+                                            <textarea type="text" name="privacy_policy"
+                                            class="ckeditor form-control"
+                                           >{{old('privacy_policy',$privacy->privacy_policy)}}</textarea>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="border-top">
+                                    <div class="card-body">
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+                            @endif 
                         </div>
 
 
