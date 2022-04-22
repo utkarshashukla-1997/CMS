@@ -71,6 +71,14 @@
                                         {{$page->usr['name']}}
 
                                     </div>
+                                    <div class="form-group row">
+                                        <strong>Featured Image:</strong>
+                                        <td> <a href="{{asset('Uploads/Page/File/'.$page->featured_image)}}"
+                                            target="_blank">
+                                        <img src="{{ asset('Uploads/Page/File/'.$page->featured_image) }}" alt="" width="200px">
+                                        {{$page->featured_image}}</a><br></td>
+
+                                    </div>
 
 
 

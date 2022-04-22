@@ -71,6 +71,14 @@
                                         {{$post->usr['name']}}
 
                                     </div>
+                                    <div class="form-group row">
+                                        <strong>Post:</strong>
+                                        <td> <a href="{{asset('Uploads/Post/File/'.$post->featured_image)}}"
+                                            target="_blank">
+                                        <img src="{{ asset('Uploads/Post/File/'.$post->featured_image) }}" alt="" width="200px">
+                                        {{$post->featured_image}}</a><br></td>
+
+                                    </div>
 
 
 
