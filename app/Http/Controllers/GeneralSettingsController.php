@@ -12,9 +12,15 @@ class GeneralSettingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    {
+
+        $this->middleware('permission:general-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:general-edit', ['only' => ['edit', 'update']]);
+    }
     public function index()
     {
-        //
+
     }
 
     /**
@@ -24,7 +30,8 @@ class GeneralSettingsController extends Controller
      */
     public function create()
     {
-        return view('Backend.General.create');
+        $general = GeneralSettings::first();
+        return view('Backend.General.create',compact('general'));
     }
 
     /**
@@ -35,7 +42,31 @@ class GeneralSettingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'site_title'=> 'required',
+            'tagline' => 'required',
+            'url' => 'required',
+
+        ]);
+        $input = $request->all();
+        if ($request->hasFile('logo_image')) {
+            $image = $request->file('logo_image');
+            $logo_image = "TD-" . time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path() . '/Uploads/Settings/General/', $logo_image);
+
+            $request->logo_image = $logo_image;
+            $input['logo_image'] = $logo_image;
+        }
+        if ($request->hasFile('background_image')) {
+            $image = $request->file('background_image');
+            $background_image = "TD-" . time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path() . '/Uploads/Settings/General/', $background_image);
+
+            $request->background_image = $background_image;
+            $input['background_image'] = $background_image;
+        }
+        $general = GeneralSettings::create($input);
+        return redirect()->back()->with('success','General Settings Created Successfully !!!',compact('general'));
     }
 
     /**
@@ -44,9 +75,10 @@ class GeneralSettingsController extends Controller
      * @param  \App\Models\GeneralSettings  $generalSettings
      * @return \Illuminate\Http\Response
      */
-    public function show(GeneralSettings $generalSettings)
+    public function show($id)
     {
-        //
+        $general = GeneralSettings::find($id);
+        return view('Backend.General.create', compact('general'));
     }
 
     /**
@@ -55,9 +87,10 @@ class GeneralSettingsController extends Controller
      * @param  \App\Models\GeneralSettings  $generalSettings
      * @return \Illuminate\Http\Response
      */
-    public function edit(GeneralSettings $generalSettings)
+    public function edit($id)
     {
-        //
+        $general = GeneralSettings::find($id);
+        return view('Backend.General.edit', compact('general'));
     }
 
     /**
@@ -67,9 +100,20 @@ class GeneralSettingsController extends Controller
      * @param  \App\Models\GeneralSettings  $generalSettings
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, GeneralSettings $generalSettings)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'site_title'=> 'required',
+            'tagline' => 'required',
+            'url' => 'required',
+
+        ]);
+        $input = $request->all();
+        $general = GeneralSettings::find($id);
+        $general->update($input);
+
+        return redirect()->back()
+            ->with('success', 'New Terms and Conditions/Privacy Policy Updated Successfully !!!', compact('general'));
     }
 
     /**

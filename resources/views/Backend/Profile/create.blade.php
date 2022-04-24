@@ -45,63 +45,16 @@
                                 </ul>
                             </div>
                             @endif
-                            @if($)
+                            @if($profile == null)
                             <form action="" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
-                                    <h4 class="card-title">Create User</h4>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">User Email
-                                            <span class="required text-danger"> * </span></label>
-                                        <div class="col-sm-9">
-                                            <input type="email" name="email" required placeholder="Enter Email"
-                                            class="form-control   @error('email') is-invalid @enderror"
-                                            value="{{old('email','')}}" />
-                                        @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Password
-                                            <span class="required text-danger"> * </span></label>
-                                        <div class="col-sm-9">
-                                            <input type="password" name="password" required placeholder="Enter New Password"
-                                            class="form-control @error('password') is-invalid @enderror"
-                                            value="{{old('password','')}}" />
-                                        @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label"> Role
-                                            <span class="required text-danger"> * </span></label>
-                                        <div class="col-sm-9">
-                                            <select class="select2 form-control @error('roles') is-invalid @enderror"
-                                            data-placeholder="Choose Role..." style="width: 100%;" name="roles[]"
-                                            data-live-search="true" style="width: 100%;"
-                                            data-dropdown-css-class="select2-info" multiple="multiple">
-                                            @foreach ($roles as $r)
-                                            <option value="{{$r}}">{{$r}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('roles')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
-                                    </div>
+                                    <h4 class="card-title">User Profile</h4>
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">User Name
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="name" required placeholder="Enter Name of User"
+                                            <input type="text" name="name" required placeholder="Enter Username"
                                             class="form-control   @error('name') is-invalid @enderror"
                                             value="{{old('name','')}}" />
                                         @error('name')
@@ -112,17 +65,47 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Confirm Password
+                                        <label class="col-sm-3 text-right control-label col-form-label">User Email
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <input type="password" name="confirm-password"
-                                            class="form-control @error('confirm-password') is-invalid @enderror"
-                                            value="{{old('confirm-password','')}}" placeholder="Confirm-password">
-                                        @error('confirm-password')
+                                            <input type="text" name="email" required placeholder="Enter User Email"
+                                            class="form-control @error('email') is-invalid @enderror"
+                                            value="{{old('email','')}}" />
+                                        @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
                                         </span>
                                         @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label"> Website
+                                            <span class="required text-danger"> * </span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="website" required placeholder="Website"
+                                            class="form-control @error('website') is-invalid @enderror"
+                                            value="{{old('website','')}}" />
+                                        @error('website')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Biographical Info
+                                        <div class="col-sm-9">
+                                            <textarea type="text" name="biographical_info"
+                                            class="ckeditor form-control"
+                                           >{{old('biographical_info','')}}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Profile Picture
+                                        <div class="col-sm-9">
+                                            <input type="file" name="profile_picture"
+                                            class="form-control"
+                                            value="{{old('confirm-password','')}}">
                                         </div>
                                     </div>
 
@@ -135,6 +118,81 @@
                                     </div>
                                 </div>
                             </form>
+                            @else
+                            <form action="" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="card-body">
+                                    <h4 class="card-title">User Profile</h4>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">User Name
+                                            <span class="required text-danger"> * </span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="name" required placeholder="Enter Username"
+                                            class="form-control   @error('name') is-invalid @enderror"
+                                            value="{{old('name','')}}" />
+                                        @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">User Email
+                                            <span class="required text-danger"> * </span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="email" required placeholder="Enter User Email"
+                                            class="form-control @error('email') is-invalid @enderror"
+                                            value="{{old('email','')}}" />
+                                        @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label"> Website
+                                            <span class="required text-danger"> * </span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="website" required placeholder="Website"
+                                            class="form-control @error('website') is-invalid @enderror"
+                                            value="{{old('website','')}}" />
+                                        @error('website')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Biographical Info
+                                        <div class="col-sm-9">
+                                            <textarea type="text" name="biographical_info"
+                                            class="ckeditor form-control"
+                                           >{{old('biographical_info','')}}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Profile Picture
+                                        <div class="col-sm-9">
+                                            <input type="file" name="profile_picture"
+                                            class="form-control"
+                                            value="{{old('profile_picture','')}}">
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                                <div class="border-top">
+                                    <div class="card-body">
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+                            @endif
+
                         </div>
 
 

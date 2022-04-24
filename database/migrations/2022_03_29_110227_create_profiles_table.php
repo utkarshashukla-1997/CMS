@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('website');
-            $table->longText('biographical_info');
+            $table->longText('biographical_info')->nullable();
             $table->string('profile_picture')->nullable();
             $table->timestamps();
         });

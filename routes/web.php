@@ -67,6 +67,8 @@ Route::resource('post',PostController::class);
 Route::resource('privacy',TermPrivacyController::class);
 // SubCategory
 Route::resource('subcategory',SubCategoryController::class);
+// General Settings
+Route::resource('general',GeneralSettingsController::class);
  //change password
  Route::get('/password', [AdminController::class,'changepassword'])->name('password.index');
  Route::put('/change-Password', [AdminController::class,'password_update'])->name('password.update');

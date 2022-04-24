@@ -35,6 +35,16 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
+                            @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
                             <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
@@ -47,20 +57,6 @@
                                             class="form-control   @error('name') is-invalid @enderror"
                                             value="{{old('name','')}}" />
                                         @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Slug
-                                            <span class="required text-danger"> * </span></label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="slug" required placeholder="Enter Slug"
-                                            class="form-control @error('slug') is-invalid @enderror"
-                                            value="{{old('slug','')}}" />
-                                        @error('slug')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
                                         </span>
