@@ -60,6 +60,10 @@ class PermissionSeeder extends Seeder
          'privacy-create',
          'privacy-edit',
          'privacy-delete',
+         'subcategory-list',
+         'subcategory-create',
+         'subcategory-edit',
+         'subcategory-delete',
         ];
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);

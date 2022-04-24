@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\SubCategory;
+use App\Models\Categories;
 use Illuminate\Http\Request;
 
 class SubCategoryController extends Controller
@@ -12,9 +13,18 @@ class SubCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    function __construct()
     {
-        //
+        $this->middleware('permission:subcategory-list|subcategory-create|subcategory-edit|subcategory-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:subcategory-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:subcategory-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:subcategory-delete', ['only' => ['destroy']]);
+    }
+    public function index(Request $request)
+    {
+        $data = SubCategory::orderBy('id', 'DESC')->get();
+        return view('Backend.SubCategory.index', compact('data'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +34,9 @@ class SubCategoryController extends Controller
      */
     public function create()
     {
-        //
+        $subcategory = SubCategory::all();
+        $category = Categories::all();
+        return view('Backend.SubCategory.create',compact('subcategory','category'));
     }
 
     /**
@@ -35,7 +47,24 @@ class SubCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name'=> 'required',
+            'slug' => 'required',
+            'category_id'=> 'required',
+        ]);
+        $input = $request->all();
+        if ($request->hasFile('image_file')) {
+            $image = $request->file('image_file');
+            $image_file = "TD-" . time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path() . '/Uploads/SubCategory/File/', $image_file);
+
+            $request->image_file = $image_file;
+            $input['image_file'] = $image_file;
+        }
+
+        $subcategory = SubCategory::create($input);
+        return redirect()->route('subcategory.index')
+            ->with('success', 'Category Created Successfully !!!',compact('subcategory'));
     }
 
     /**
@@ -44,9 +73,10 @@ class SubCategoryController extends Controller
      * @param  \App\Models\SubCategory  $subCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(SubCategory $subCategory)
+    public function show($id)
     {
-        //
+        $subcategory = SubCategory::find($id);
+        return view('Backend.SubCategory.show',compact('subcategory'));
     }
 
     /**
@@ -55,9 +85,10 @@ class SubCategoryController extends Controller
      * @param  \App\Models\SubCategory  $subCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(SubCategory $subCategory)
+    public function edit($id)
     {
-        //
+        $subcategory = SubCategory::find($id);
+        return view('Backend.SubCategory.edit',compact('subcategory'));
     }
 
     /**
@@ -67,9 +98,37 @@ class SubCategoryController extends Controller
      * @param  \App\Models\SubCategory  $subCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SubCategory $subCategory)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name'=> 'required',
+            'slug' => 'required',
+            'parent_category'=> 'required',
+        ]);
+        $input = $request->all();
+        // dd($input);
+        $subcategory = SubCategory::findOrFail($id);
+        if ($request->image_file != '') {
+            $path = public_path() . '/Uploads/SubCategory/File/';
+            //code for remove old file
+            if ($subcategory->image_file != ''  && $subcategory->image_file != null) {
+                $file_old = $path . $subcategory->image_file;
+                unlink($file_old);
+            }
+            if ($request->hasFile('image_file')) {
+                $image = $request->file('image_file');
+                $image_file = "TD-" . time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path() . '/Uploads/SubCategory/File', $image_file);
+
+                $request->image_file = $image_file;
+                $input['image_file'] = $image_file;
+            }
+        }
+
+            $subcategory->update($input);
+
+        return redirect()->route('subcategory.index')
+            ->with('success', 'Selected Category Updated Successfully !!!');
     }
 
     /**
@@ -78,8 +137,10 @@ class SubCategoryController extends Controller
      * @param  \App\Models\SubCategory  $subCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubCategory $subCategory)
+    public function destroy($id)
     {
-        //
+        SubCategory::find($id)->delete();
+        return redirect()->route('subcategory.index')
+            ->with('success', 'Selected Category has been Deleted Successfully !!!');
     }
 }

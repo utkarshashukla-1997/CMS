@@ -13,6 +13,7 @@ use App\Http\Controllers\MailSettingsController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\TermPrivacyController;
 use Illuminate\Support\Facades\Route;
 
@@ -64,6 +65,8 @@ Route::resource('page',PagesController::class);
 Route::resource('post',PostController::class);
 // Privacy
 Route::resource('privacy',TermPrivacyController::class);
+// SubCategory
+Route::resource('subcategory',SubCategoryController::class);
  //change password
  Route::get('/password', [AdminController::class,'changepassword'])->name('password.index');
  Route::put('/change-Password', [AdminController::class,'password_update'])->name('password.update');

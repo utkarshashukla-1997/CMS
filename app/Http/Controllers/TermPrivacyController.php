@@ -19,8 +19,8 @@ class TermPrivacyController extends Controller
     }
     public function index()
     {
-        $term = TermPrivacy::first();
-        return view('Backend.Privacy.show', compact('term'));
+        $privacy = TermPrivacy::first();
+        return view('Backend.Privacy.show', compact('privacy'));
     }
 
     /**
@@ -30,8 +30,8 @@ class TermPrivacyController extends Controller
      */
     public function create()
     {
-        $term = TermPrivacy::first();
-        return view('Backend.Privacy.create', compact('term'));
+        $privacy = TermPrivacy::first();
+        return view('Backend.Privacy.create', compact('privacy'));
     }
 
     /**
@@ -43,8 +43,8 @@ class TermPrivacyController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $term = TermPrivacy::create($input);
-        return redirect()->back()->with('success','New Terms and Conditions/Privacy Policy Created Successfully !!!',compact('term'));
+        $privacy = TermPrivacy::create($input);
+        return redirect()->back()->with('success','New Terms and Conditions/Privacy Policy Created Successfully !!!',compact('privacy'));
     }
 
     /**
@@ -66,8 +66,8 @@ class TermPrivacyController extends Controller
      */
     public function edit($id)
     {
-        $term = TermPrivacy::find($id);
-        return view('Backend.Privacy.create', compact('term'));
+        $privacy = TermPrivacy::find($id);
+        return view('Backend.Privacy.create', compact('privacy'));
     }
 
     /**
@@ -80,11 +80,11 @@ class TermPrivacyController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-        $term = TermPrivacy::find($id);
-        $term->update($input);
+        $privacy = TermPrivacy::find($id);
+        $privacy->update($input);
 
         return redirect()->back()
-            ->with('success', 'New Terms and Conditions/Privacy Policy Updated Successfully !!!', compact('term'));
+            ->with('success', 'New Terms and Conditions/Privacy Policy Updated Successfully !!!', compact('privacy'));
     }
 
     /**
