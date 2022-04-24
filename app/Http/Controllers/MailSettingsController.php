@@ -12,9 +12,16 @@ class MailSettingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    {
+
+        $this->middleware('permission:mail-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:mail-edit', ['only' => ['edit', 'update']]);
+    }
     public function index()
     {
-        //
+        $mail = MailSettings::first();
+        return view('Backend.Mail.show', compact('mail'));
     }
 
     /**
@@ -24,7 +31,8 @@ class MailSettingsController extends Controller
      */
     public function create()
     {
-        return view('Backend.Mail.create');
+        $mail = MailSettings::first();
+        return view('Backend.Mail.create',compact('mail'));
     }
 
     /**
@@ -35,7 +43,19 @@ class MailSettingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'mail_mailer'=> 'required',
+            'mail_host' => 'required',
+            'mail_port' => 'required',
+            'mail_username' => 'required',
+            'mail_password'=> 'required',
+            'mail_encryption' => 'required',
+            'mail_from_address' => 'required',
+            'mail_from_name' => 'required',
+        ]);
+        $input = $request->all();
+        $mail = MailSettings::create($input);
+        return redirect()->back()->with('success','New Terms and Conditions/Privacy Policy Created Successfully !!!',compact('mail'));
     }
 
     /**
@@ -44,9 +64,9 @@ class MailSettingsController extends Controller
      * @param  \App\Models\MailSettings  $mailSettings
      * @return \Illuminate\Http\Response
      */
-    public function show(MailSettings $mailSettings)
+    public function show($id)
     {
-        //
+
     }
 
     /**
@@ -55,9 +75,10 @@ class MailSettingsController extends Controller
      * @param  \App\Models\MailSettings  $mailSettings
      * @return \Illuminate\Http\Response
      */
-    public function edit(MailSettings $mailSettings)
+    public function edit($id)
     {
-        //
+        $mail = MailSettings::find($id);
+        return view('Backend.Mail.edit',compact('mail'));
     }
 
     /**
@@ -67,9 +88,24 @@ class MailSettingsController extends Controller
      * @param  \App\Models\MailSettings  $mailSettings
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MailSettings $mailSettings)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'mail_mailer'=> 'required',
+            'mail_host' => 'required',
+            'mail_port' => 'required',
+            'mail_username' => 'required',
+            'mail_password'=> 'required',
+            'mail_encryption' => 'required',
+            'mail_from_address' => 'required',
+            'mail_from_name' => 'required',
+        ]);
+        $input = $request->all();
+        $mail = MailSettings::find($id);
+        $mail->update($input);
+
+        return redirect()->back()
+            ->with('success', 'New Terms and Conditions/Privacy Policy Updated Successfully !!!', compact('mail'));
     }
 
     /**

@@ -23,6 +23,7 @@
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="{{route('post.index')}}" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">All Posts</span></a></li>
                                 <li class="sidebar-item"><a href="{{route('category.index')}}" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">Categories</span></a></li>
+                                <li class="sidebar-item"><a href="{{route('subcategory.index')}}" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">Subcategories</span></a></li>
                                 <li class="sidebar-item"><a href="{{route('tag.index')}}" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">Tags</span></a></li>
                             </ul>
                         </li>

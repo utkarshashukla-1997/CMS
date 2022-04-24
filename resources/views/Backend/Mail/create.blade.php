@@ -46,7 +46,7 @@
                             </div>
                             @endif
                             @if($mail == null)
-                            <form action="" method="post" enctype="multipart/form-data">
+                            <form action="{{route('mail.store')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <h4 class="card-title">Mail Settings</h4>
@@ -136,8 +136,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Mail From Address</label>
-
+                                        <label class="col-sm-3 text-right control-label col-form-label">Mail From Address
+                                        <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
                                             <input type="text" name="mail_from_address"
                                             class="form-control @error('mail_from_address') is-invalid @enderror"
@@ -150,7 +150,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Mail From Name</label>
+                                        <label class="col-sm-3 text-right control-label col-form-label">Mail From Name
+                                            <span class="required text-danger"> * </span></label>
+                                        </label>
                                         <div class="col-sm-9">
                                             <input type="text" name="mail_from_name"
                                             class="form-control @error('mail_from_name') is-invalid @enderror"
@@ -173,8 +175,9 @@
                                 </div>
                             </form>
                             @else
-                            <form action="" method="post" enctype="multipart/form-data">
+                            <form action="{{route('mail.update',$mail->id)}}" method="post" enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
                                 <div class="card-body">
                                     <h4 class="card-title">Mail Settings</h4>
                                     <div class="form-group row">
@@ -183,7 +186,7 @@
                                         <div class="col-sm-9">
                                             <input type="text" name="mail_mailer" required placeholder="Mail Mailer"
                                             class="form-control   @error('mail_mailer') is-invalid @enderror"
-                                            value="{{old('mail_mailer','')}}" />
+                                            value="{{old('mail_mailer',$mail->mail_mailer)}}" />
                                         @error('mail_mailer')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -197,7 +200,7 @@
                                         <div class="col-sm-9">
                                             <input type="text" name="mail_host" required placeholder="Mail Host"
                                             class="form-control @error('mail_host') is-invalid @enderror"
-                                            value="{{old('mail_host','')}}" />
+                                            value="{{old('mail_host',$mail->mail_host)}}" />
                                         @error('mail_host')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -211,7 +214,7 @@
                                         <div class="col-sm-9">
                                             <input type="text" name="mail_port" required placeholder="Mail Port"
                                             class="form-control @error('mail_port') is-invalid @enderror"
-                                            value="{{old('mail_port','')}}" />
+                                            value="{{old('mail_port',$mail->mail_port)}}" />
                                         @error('mail_port')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -225,7 +228,7 @@
                                         <div class="col-sm-9">
                                             <input type="text" name="mail_username" required placeholder="Enter Name of User"
                                             class="form-control   @error('mail_username') is-invalid @enderror"
-                                            value="{{old('mail_username','')}}" />
+                                            value="{{old('mail_username',$mail->mail_username)}}" />
                                         @error('mail_username')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -239,7 +242,7 @@
                                         <div class="col-sm-9">
                                             <input type="password" name="mail_password"
                                             class="form-control @error('mail_password') is-invalid @enderror"
-                                            value="{{old('mail_password','')}}" placeholder="Confirm-password">
+                                            value="{{old('mail_password',$mail->mail_password)}}" placeholder="Confirm-password">
                                         @error('mail_password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -254,7 +257,7 @@
                                         <div class="col-sm-9">
                                             <input type="text" name="mail_encryption"
                                             class="form-control @error('mail_encryption') is-invalid @enderror"
-                                            value="{{old('mail_encryption','')}}" placeholder="Mail Encryption">
+                                            value="{{old('mail_encryption',$mail->mail_encryption)}}" placeholder="Mail Encryption">
                                         @error('mail_encryption')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -268,7 +271,7 @@
                                         <div class="col-sm-9">
                                             <input type="text" name="mail_from_address"
                                             class="form-control @error('mail_from_address') is-invalid @enderror"
-                                            value="{{old('mail_from_address','')}}" placeholder="Mail From Address">
+                                            value="{{old('mail_from_address',$mail->mail_from_address)}}" placeholder="Mail From Address">
                                         @error('mail_from_address')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -281,7 +284,7 @@
                                         <div class="col-sm-9">
                                             <input type="text" name="mail_from_name"
                                             class="form-control @error('mail_from_name') is-invalid @enderror"
-                                            value="{{old('mail_from_name','')}}" placeholder="Mail From Name">
+                                            value="{{old('mail_from_name',$mail->mail_from_name)}}" placeholder="Mail From Name">
                                         @error('mail_from_name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>

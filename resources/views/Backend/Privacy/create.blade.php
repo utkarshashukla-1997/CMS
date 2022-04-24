@@ -83,7 +83,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Create Privacy & Policy</h4>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Terms and Condition
+                                        <label class="col-sm-3 text-right control-label col-form-label">Terms and Condition</label>
                                         <div class="col-sm-9">
                                             <textarea type="text" name="term_condition"
                                             class="ckeditor form-control"
@@ -92,7 +92,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Privacy Policy
+                                        <label class="col-sm-3 text-right control-label col-form-label">Privacy Policy</label>
                                         <div class="col-sm-9">
                                             <textarea type="text" name="privacy_policy"
                                             class="ckeditor form-control"

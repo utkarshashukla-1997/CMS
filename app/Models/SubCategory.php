@@ -9,4 +9,7 @@ class SubCategory extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function cat(){
+        return $this->belongsTo('App\Models\Categories','category_id');
+    }
 }
