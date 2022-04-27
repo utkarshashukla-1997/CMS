@@ -10,12 +10,12 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Category</h4>
+                        <h4 class="page-title">SubCategory</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Category</li>
+                                    <li class="breadcrumb-item active" aria-current="page">SubCategory</li>
                                 </ol>
                             </nav>
                         </div>
@@ -48,20 +48,6 @@
                                             class="form-control   @error('name') is-invalid @enderror"
                                             value="{{old('name',$subcategory->name)}}" />
                                         @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Slug
-                                            <span class="required text-danger"> * </span></label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="slug" required placeholder="Enter Slug"
-                                            class="form-control @error('slug') is-invalid @enderror"
-                                            value="{{old('slug',$subcategory->slug)}}" />
-                                        @error('slug')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
                                         </span>
