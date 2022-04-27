@@ -29,6 +29,7 @@ return new class extends Migration
             $table->date('published_date');
             $table->enum('status',['Published','Draft'])->default('Draft');
             $table->string('file_image')->nullable();
+            $table->integer('post_count')->nullable(0);
             $table->timestamps();
         });
     }

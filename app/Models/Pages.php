@@ -12,4 +12,7 @@ class Pages extends Model
     public function usr(){
         return $this->belongsTo('App\Models\User','user_id');
     }
+    public function tagg(){
+        return $this->belongsToMany('App\Models\Tag','page_tag');
+    }
 }
