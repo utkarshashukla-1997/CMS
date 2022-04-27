@@ -67,7 +67,7 @@
                                     <div class="form-group row">
                                         <strong class="col-md-3">Featured Image:</strong>
                                         <div class="col-md-6">
-                                        @if($category->image_file!=[])
+                                        @if($category->image_file!=null)
                                         <a href="{{asset('Uploads/Category/File/'.$category->image_file)}}"
                                             target="_blank">
                                         <img src="{{ asset('Uploads/Category/File/'.$category->image_file) }}" alt="" width="200px">

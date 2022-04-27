@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tags;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 class TagsController extends Controller
 {
     /**
@@ -48,9 +48,13 @@ class TagsController extends Controller
 
         $this->validate($request, [
             'name'=> 'required',
-            'slug' => 'required',
+
         ]);
         $input = $request->all();
+        $tag = new Tags();
+        $tag->name = $input['name'];
+        $tag->slug = Str::slug($input['name']);
+        $tag->description = $input['description'];
         if ($request->hasFile('file_image')) {
             $image = $request->file('file_image');
             $file_image = "TD-" . time() . '.' . $image->getClientOriginalExtension();
@@ -59,8 +63,9 @@ class TagsController extends Controller
             $request->file_image = $file_image;
             $input['file_image'] = $file_image;
         }
+        $tag->save();
 
-        $tag = Tags::create($input);
+
         return redirect()->route('tag.index')
             ->with('success', 'Tags Created Successfully !!!',compact('tag'));
     }
@@ -100,11 +105,13 @@ class TagsController extends Controller
     {
         $this->validate($request, [
             'name'=> 'required',
-            'slug' => 'required',
         ]);
         $input = $request->all();
         // dd($input);
         $tag = Tags::findOrFail($id);
+        $tag->name = $input['name'];
+        $tag->slug = Str::slug($input['name']);
+        $tag->description = $input['description'];
         if ($request->file_image != '') {
             $path = public_path() . '/Uploads/Tags/File/';
             //code for remove old file

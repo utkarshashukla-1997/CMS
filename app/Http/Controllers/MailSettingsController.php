@@ -20,8 +20,7 @@ class MailSettingsController extends Controller
     }
     public function index()
     {
-        $mail = MailSettings::first();
-        return view('Backend.Mail.show', compact('mail'));
+       
     }
 
     /**

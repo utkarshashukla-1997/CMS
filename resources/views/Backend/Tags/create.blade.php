@@ -63,20 +63,7 @@
                                         @enderror
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Slug
-                                            <span class="required text-danger"> * </span></label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="slug" required placeholder="Enter Slug"
-                                            class="form-control @error('slug') is-invalid @enderror"
-                                            value="{{old('slug','')}}" />
-                                        @error('slug')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
-                                    </div>
+                                 
 
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Description

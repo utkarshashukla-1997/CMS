@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SubCategory;
 use App\Models\Categories;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 class SubCategoryController extends Controller
 {
     /**
@@ -49,10 +49,14 @@ class SubCategoryController extends Controller
     {
         $this->validate($request, [
             'name'=> 'required',
-            'slug' => 'required',
             'category_id'=> 'required',
         ]);
         $input = $request->all();
+        $subcategory = new SubCategory();
+        $subcategory->name = $input['name'];
+        $subcategory->slug = Str::slug($input['name']);
+        $subcategory->category_id = $input['category_id'];
+        $subcategory->description = $input['description'];
         if ($request->hasFile('image_file')) {
             $image = $request->file('image_file');
             $image_file = "TD-" . time() . '.' . $image->getClientOriginalExtension();
@@ -62,7 +66,7 @@ class SubCategoryController extends Controller
             $input['image_file'] = $image_file;
         }
 
-        $subcategory = SubCategory::create($input);
+        $subcategory->save();
         return redirect()->route('subcategory.index')
             ->with('success', 'Category Created Successfully !!!',compact('subcategory'));
     }
@@ -102,12 +106,16 @@ class SubCategoryController extends Controller
     {
         $this->validate($request, [
             'name'=> 'required',
-            'slug' => 'required',
-            'parent_category'=> 'required',
+
+            'category_id'=> 'required',
         ]);
         $input = $request->all();
         // dd($input);
         $subcategory = SubCategory::findOrFail($id);
+        $subcategory->name = $input['name'];
+        $subcategory->slug = Str::slug($input['name']);
+        $subcategory->parent_category = $input['category_id'];
+        $subcategory->description = $input['description'];
         if ($request->image_file != '') {
             $path = public_path() . '/Uploads/SubCategory/File/';
             //code for remove old file
@@ -125,7 +133,7 @@ class SubCategoryController extends Controller
             }
         }
 
-            $subcategory->update($input);
+            $subcategory->save();
 
         return redirect()->route('subcategory.index')
             ->with('success', 'Selected Category Updated Successfully !!!');

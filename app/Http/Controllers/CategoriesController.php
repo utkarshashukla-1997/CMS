@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categories;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 class CategoriesController extends Controller
 {
     /**
@@ -47,22 +47,25 @@ class CategoriesController extends Controller
     {
         $this->validate($request, [
             'name'=> 'required',
-            'slug' => 'required',
             'parent_category'=> 'required',
         ]);
         $input = $request->all();
-        if ($request->hasFile('image_file')) {
-            $image = $request->file('image_file');
-            $image_file = "TD-" . time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path() . '/Uploads/Category/File/', $image_file);
+        $category = new Categories();
+       $category->name = $input['name'];
+      $category->slug = Str::slug($input['name']);
+      $category->parent_category = $input['parent_category'];
+      $category->description = $input['description'];
+  if ($request->hasFile('image_file')) {
+    $image = $request->file('image_file');
+    $image_file = "TD-" . time() . '.' . $image->getClientOriginalExtension();
+    $image->move('Public/Uploads/Category/File/', $image_file);
 
-            $request->image_file = $image_file;
-            $input['image_file'] = $image_file;
-        }
+    $request->image_file = $image_file;
+    $input['image_file'] = $image_file;
+}
 
-        $category = Categories::create($input);
-        return redirect()->route('category.index')
-            ->with('success', 'Category Created Successfully !!!',compact('category'));
+        $category->save();
+       return redirect()->route('category.index')->with('success','Category Created Successfully');
     }
 
     /**
@@ -100,12 +103,15 @@ class CategoriesController extends Controller
     {
         $this->validate($request, [
             'name'=> 'required',
-            'slug' => 'required',
             'parent_category'=> 'required',
         ]);
         $input = $request->all();
         // dd($input);
-        $category = Categories::findOrFail($id);
+        $category = Categories::findOrfail($id);
+        $category->name = $input['name'];
+        $category->slug = Str::slug($input['name']);
+        $category->parent_category = $input['parent_category'];
+        $category->description = $input['description'];
         if ($request->image_file != '') {
             $path = public_path() . '/Uploads/Category/File/';
             //code for remove old file
@@ -123,7 +129,7 @@ class CategoriesController extends Controller
             }
         }
 
-            $category->update($input);
+            $category->save($input);
 
         return redirect()->route('category.index')
             ->with('success', 'Selected Category Updated Successfully !!!');
