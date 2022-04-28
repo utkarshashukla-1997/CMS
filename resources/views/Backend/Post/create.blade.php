@@ -141,13 +141,13 @@
                                         <label class="col-sm-3 text-right control-label col-form-label">Visibility Post
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <select class="form-control @error('status') is-invalid @enderror" name="status">
+                                            <select class="form-control @error('visibility_post') is-invalid @enderror" name="visibility_post">
                                                 <option class="bg-info" disabled selected>Visibility Post....</option>
-                                                <option value="Public" {{old('status')=='Public' ?'selected':''}}>Public
+                                                <option value="Public" {{old('visibility_post')=='Public' ?'selected':''}}>Public
                                                 </option>
-                                                <option value="Private" {{old('status')=='Private' ?'selected':''}}>Private
+                                                <option value="Private" {{old('visibility_post')=='Private' ?'selected':''}}>Private
                                                 </option>
-                                                <option value="Password Protected" {{old('status')=='Early Out' ?'selected':''}}>
+                                                <option value="Password Protected" {{old('visibility_post')=='Password Protected' ?'selected':''}}>
                                                     Password Protected</option>
                                             </select>
                                         @error('visibility_post')

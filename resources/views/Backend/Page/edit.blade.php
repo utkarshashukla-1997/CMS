@@ -105,9 +105,15 @@
                                         <label class="col-sm-3 text-right control-label col-form-label">Visibility Post
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="visibility_post" required placeholder="Visibility Post"
-                                            class="form-control   @error('visibility_post') is-invalid @enderror"
-                                            value="{{old('visibility_post',$page->visibility_post)}}" />
+                                            <select class="form-control @error('visibility_post') is-invalid @enderror" name="visibility_post">
+                                                <option class="bg-info" disabled selected>Visibility Post....</option>
+                                                <option value="Public" {{old('visibility_post')=='Public' ?'selected':''}} @if($page->visibility_post == 'Public') selected @endif>Public
+                                                </option>
+                                                <option value="Private" {{old('visibility_post')=='Private' ?'selected':''}} @if($page->visibility_post == 'Private') selected @endif>Private
+                                                </option>
+                                                <option value="Password Protected" {{old('visibility_post')=='Password Protected' ?'selected':''}} @if($page->visibility_post == 'Password Protected') selected @endif>
+                                                    Password Protected</option>
+                                            </select>
                                         @error('visibility_post')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
