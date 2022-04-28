@@ -47,7 +47,7 @@
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i class="nav-icon fa fa-cog"></i><span class="hide-menu">Settings </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="#" class="sidebar-link"> <i class="nav-icon fa fa-user"></i><span class="hide-menu">Profile </span></a></li>
+                                <li class="sidebar-item"><a href="{{route('profile.create')}}" class="sidebar-link"> <i class="nav-icon fa fa-user"></i><span class="hide-menu">Profile </span></a></li>
                                 <li class="sidebar-item"><a href="{{route('general.create')}}" class="sidebar-link"> <i class="mdi mdi-account-key"></i><span class="hide-menu">General/Site </span></a></li>
                                 <li class="sidebar-item"><a href="{{route('privacy.create')}}" class="sidebar-link"> <i class="mdi mdi-account-key"></i><span class="hide-menu">Privacy </span></a></li>
                                 <li class="sidebar-item"><a href="{{route('mail.create')}}" class="sidebar-link"> <i class="mdi mdi-account-key"></i><span class="hide-menu">Mail </span></a></li>

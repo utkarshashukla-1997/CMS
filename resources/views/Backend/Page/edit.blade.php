@@ -102,6 +102,32 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Tags
+                                        </label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control select2 @error('tag_id') is-invalid @enderror"
+                                            name="tag_id[]" multiple="multiple" required style="width: 100%;"
+                                            data-dropdown-css-class="select2-info">
+                                           @php
+                                               $pagetag = [];
+                                           @endphp
+                                           @foreach ($page->pageta as $page)
+                                           @php
+                                               array_push($pagetag,$pageta->name);
+                                           @endphp
+
+                                           @endforeach
+                                           <option disabled selected>
+                                            {{implode(',',$pagetag)}}
+                                        </option>
+                                        @error('tag_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Visibility Post
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">

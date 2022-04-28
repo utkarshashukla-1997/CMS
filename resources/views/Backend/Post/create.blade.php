@@ -109,8 +109,9 @@
                                         <label class="col-sm-3 text-right control-label col-form-label">Tags
                                         </label>
                                         <div class="col-sm-9">
-                                            <select class="form-control @error('tag_id') is-invalid @enderror"
-                                            name="tag_id">
+                                            <select class="select2 form-control @error('tag_id') is-invalid @enderror"
+                                            name="tag_id[]" multiple="multiple" required style="width: 100%;"
+                                            data-dropdown-css-class="select2-info" data-placeholder="Select Holiday...">
                                             <option class="bg-info" disabled selected>Select Tag....</option>
                                             @foreach ($tag as $tag)
                                             <option value="{{$tag->id}}">{{$tag->name}}</option>
@@ -186,8 +187,6 @@
                                     <input type="hidden" class="form-control" value="Draft" required readonly name="status" />
                                 <input type="hidden" class="form-control" value="{{Auth::user()->id}}" required readonly name="status" />
                                 <input type="hidden" class="form-control" value="{{Auth::user()->id}}" required readonly name="user_id" />
-
-                                </div>
                                 <div class="border-top">
                                     <div class="card-body">
                                         <button type="submit" class="btn btn-primary">Submit</button>

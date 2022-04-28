@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('visibility_post');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('tag_id');
+            $table->foreign('tag_id')->references('id')->on('tags')->onUpdate('cascade')->onDelete('cascade');
             $table->date('done_date');
             $table->enum('status',['Published','Draft']);
             $table->string('featured_image')->nullable();

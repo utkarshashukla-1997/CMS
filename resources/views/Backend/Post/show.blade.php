@@ -60,6 +60,22 @@
                                     </div>
                                     </div>
                                     <div class="form-group row">
+                                        <strong class="col-md-3">Tags:</strong>
+                                        <div class="col-md-9">
+                                            @php
+                                               $posttag = [];
+                                           @endphp
+                                           @foreach ($post->posts as $posta)
+                                           @php
+                                               array_push($posttag,$posta->name);
+                                           @endphp
+
+                                           @endforeach
+                                            {{implode(',',$posttag)}}
+
+                                    </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <strong class="col-md-3">Template:</strong>
                                         <div class="col-md-9">
                                         {{$post->template}}

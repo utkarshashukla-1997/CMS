@@ -93,7 +93,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Biographical Info
+                                        <label class="col-sm-3 text-right control-label col-form-label">Biographical Info</label>
                                         <div class="col-sm-9">
                                             <textarea type="text" name="biographical_info"
                                             class="ckeditor form-control"
@@ -101,7 +101,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Profile Picture
+                                        <label class="col-sm-3 text-right control-label col-form-label">Profile Picture</label>
                                         <div class="col-sm-9">
                                             <input type="file" name="profile_picture"
                                             class="form-control"
@@ -166,7 +166,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Biographical Info
+                                        <label class="col-sm-3 text-right control-label col-form-label">Biographical Info</label>
                                         <div class="col-sm-9">
                                             <textarea type="text" name="biographical_info"
                                             class="ckeditor form-control"
@@ -174,7 +174,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Profile Picture
+                                        <label class="col-sm-3 text-right control-label col-form-label">Profile Picture</label>
                                         <div class="col-sm-9">
                                             <input type="file" name="profile_picture"
                                             class="form-control"

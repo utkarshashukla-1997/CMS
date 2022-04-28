@@ -1,5 +1,5 @@
 @extends('Backend.layouts.master')
-@section('page_title','Users')
+@section('page_title','Posts')
 @section('content')
     <!-- ============================================================== -->
     <div class="page-wrapper">
@@ -41,7 +41,7 @@
                                 +</a>
                             @endcan
                             <div class="table-responsive">
-                                <table id="example1" class="table table-bordered table-striped">
+                                <table id="zero_config" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th>Id</th>
@@ -151,6 +151,7 @@
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
+
                                 </table>
                             </div>
 
