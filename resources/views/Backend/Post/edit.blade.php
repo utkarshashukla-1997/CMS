@@ -144,13 +144,13 @@
                                         <label class="col-sm-3 text-right control-label col-form-label">Visibility Post
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <select class="form-control @error('status') is-invalid @enderror" name="status">
+                                            <select class="form-control @error('visibility_post') is-invalid @enderror" name="status">
                                                 <option class="bg-info" disabled>Visibility Post....</option>
-                                                <option value="Public" {{old('status')=='Public' ?'selected':''}} @if($post->status == 'Public') selected @endif>Public
+                                                <option value="Public" {{old('visibility_post')=='Public' ?'selected':''}} @if($post->visibility_post == 'Public') selected @endif>Public
                                                 </option>
-                                                <option value="Private" {{old('status')=='Private' ?'selected':''}} @if($post->status == 'Private') selected @endif>Private
+                                                <option value="Private" {{old('visibility_post')=='Private' ?'selected':''}} @if($post->visibility_post == 'Private') selected @endif>Private
                                                 </option>
-                                                <option value="Password Protected" {{old('status')=='Early Out' ?'selected':''}}>
+                                                <option value="Password Protected" {{old('status')=='Early Out' ?'selected':''}} @if($post->visibility_post == 'Password Protected') selected @endif>
                                                     Password Protected</option>
                                             </select>
                                         @error('visibility_post')
