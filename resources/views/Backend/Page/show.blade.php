@@ -60,6 +60,21 @@
                                     </div>
                                     </div>
                                     <div class="form-group row">
+                                        <strong class="col-md-3">Tags:</strong>
+                                        <div class="col-md-9">
+                                            @php
+                                            $pagetag = [];
+                                        @endphp
+                                        @foreach ($page->pageta as $page)
+                                        @php
+                                            array_push($pagetag,$pageta->name);
+                                        @endphp
+
+                                        @endforeach
+                                         {{implode(',',$pagetag)}}
+                                    </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <strong class="col-md-3">Template:</strong>
                                         <div class="col-md-9">
                                         {{$page->template}}

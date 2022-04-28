@@ -59,6 +59,7 @@ class PostController extends Controller
             'published_date'=> 'required'
         ]);
         $input = $request->all();
+        $input['tag_id'] = $input['tag_id'][0];
         if ($request->hasFile('file_image')) {
             $image = $request->file('file_image');
             $file_image = "TD-" . time() . '.' . $image->getClientOriginalExtension();
@@ -69,6 +70,7 @@ class PostController extends Controller
         }
 
         $post = Post::create($input);
+        $post->tagg()->sync($request->tag_id);
         return redirect()->route('post.index')
             ->with('success', 'Post Created Successfully !!!',compact('post'));
     }
@@ -120,8 +122,11 @@ class PostController extends Controller
             'published_date'=> 'required'
         ]);
         $input = $request->all();
+        $input['tag_id'] = $input['tag_id'][0];
         // dd($input);
         $post = Post::findOrFail($id);
+
+
         if ($request->file_image != '') {
             $path = public_path() . '/Uploads/Post/File/';
             //code for remove old file
@@ -140,6 +145,7 @@ class PostController extends Controller
         }
 
             $post->update($input);
+            $post->tagg()->sync($request->tag_id);
 
         return redirect()->route('post.index')
             ->with('success', 'Selected Post Updated Successfully !!!');

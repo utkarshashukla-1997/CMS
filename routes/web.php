@@ -15,6 +15,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\TermPrivacyController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,6 +68,8 @@ Route::resource('post',PostController::class);
 Route::resource('privacy',TermPrivacyController::class);
 // SubCategory
 Route::resource('subcategory',SubCategoryController::class);
+// Profile
+Route::resource('profile',ProfileController::class);
 // General Settings
 Route::resource('general',GeneralSettingsController::class);
  //change password
