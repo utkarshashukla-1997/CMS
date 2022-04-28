@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tags;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 class TagsController extends Controller
@@ -21,7 +21,7 @@ class TagsController extends Controller
     }
     public function index(Request $request)
     {
-        $data = Tags::orderBy('id', 'DESC')->get();
+        $data = Tag::orderBy('id', 'DESC')->get();
         return view('Backend.Tags.index', compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -33,7 +33,7 @@ class TagsController extends Controller
      */
     public function create()
     {
-        $tag = Tags::all();
+        $tag = Tag::all();
         return view('Backend.Tags.create',compact('tag'));
     }
 
@@ -51,7 +51,7 @@ class TagsController extends Controller
 
         ]);
         $input = $request->all();
-        $tag = new Tags();
+        $tag = new Tag();
         $tag->name = $input['name'];
         $tag->slug = Str::slug($input['name']);
         $tag->description = $input['description'];
@@ -78,7 +78,7 @@ class TagsController extends Controller
      */
     public function show($id)
     {
-        $tag = Tags::find($id);
+        $tag = Tag::find($id);
         return view('Backend.Tags.show',compact('tag'));
     }
 
@@ -90,7 +90,7 @@ class TagsController extends Controller
      */
     public function edit($id)
     {
-        $tag = Tags::findOrfail($id);
+        $tag = Tag::findOrfail($id);
         return view('Backend.Tags.edit',compact('tag'));
     }
 
@@ -108,7 +108,7 @@ class TagsController extends Controller
         ]);
         $input = $request->all();
         // dd($input);
-        $tag = Tags::findOrFail($id);
+        $tag = Tag::findOrFail($id);
         $tag->name = $input['name'];
         $tag->slug = Str::slug($input['name']);
         $tag->description = $input['description'];
@@ -143,7 +143,7 @@ class TagsController extends Controller
      */
     public function destroy($id)
     {
-        Tags::find($id)->delete();
+        Tag::find($id)->delete();
         return redirect()->route('tag.index')->with('success','Selected Tag Deleted Successfully!!!');
 
     }
