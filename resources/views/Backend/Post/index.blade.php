@@ -50,7 +50,7 @@
                                             <th>Categories</th>
                                             <th>Tags</th>
                                             <th>Date</th>
-                                            <th>Post</th>
+                                            <th>Post<th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -61,7 +61,16 @@
                                             <td>{{ $post->title }}</td>
                                             <td>{{$post->usr['name']}}</td>
                                             <td>{{$post->cat['name']}}</td>
-                                            <td>{{$post->tagg['name']}}</td>
+                                            <td> @php
+                                                $posttag = [];
+                                            @endphp
+                                            @foreach ($post->tagg as $tag)
+                                            @php
+                                                array_push($posttag,$tag->name);
+                                            @endphp
+
+                                            @endforeach
+                                             {{implode(',',$posttag)}}</td>
                                             <td>{{$post->published_date}}</td>
                                            <td> <a href="{{asset('Uploads/Post/File/'.$post->file_image)}}"
                                                 target="_blank">
@@ -147,7 +156,7 @@
                                             <th>Categories</th>
                                             <th>Tags</th>
                                             <th>Date</th>
-                                            <th>Post</th>
+                                            <th>Post<th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>

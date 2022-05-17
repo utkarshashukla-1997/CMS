@@ -65,9 +65,9 @@
                                             @php
                                                $posttag = [];
                                            @endphp
-                                           @foreach ($post->posts as $posta)
+                                           @foreach ($post->tagg as $tag)
                                            @php
-                                               array_push($posttag,$posta->name);
+                                               array_push($posttag,$tag->name);
                                            @endphp
 
                                            @endforeach

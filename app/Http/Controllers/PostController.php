@@ -85,7 +85,7 @@ class PostController extends Controller
     {
 
         $post = Post::find($id);
-        return view('Backend.Media.show',compact('post'));
+        return view('Backend.Post.show',compact('post'));
     }
 
     /**
