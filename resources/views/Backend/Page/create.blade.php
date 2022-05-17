@@ -94,8 +94,8 @@
                                             name="tag_id[]" multiple="multiple" required style="width: 100%;"
                                             data-dropdown-css-class="select2-info" data-placeholder="Select Holiday...">
                                             <option class="bg-info" disabled selected>Select Tag....</option>
-                                            @foreach ($tag as $tag)
-                                            <option value="{{$tag->id}}">{{$tag->name}}</option>
+                                            @foreach ($tag as $taggs)
+                                            <option value="{{$taggs->id}}">{{$taggs->name}}</option>
                                             @endforeach
                                         </select>
                                         @error('tag_id')
@@ -133,25 +133,6 @@
                                                     Password Protected</option>
                                             </select>
                                         @error('visibility_post')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Tags
-                                        </label>
-                                        <div class="col-sm-9">
-                                            <select class="select2 form-control @error('tag_id') is-invalid @enderror"
-                                            name="tag_id[]" multiple="multiple" required style="width: 100%;"
-                                            data-dropdown-css-class="select2-info" data-placeholder="Select Holiday...">
-                                            <option class="bg-info" disabled selected>Select Tag....</option>
-                                            @foreach ($tag as $tag)
-                                            <option value="{{$tag->id}}">{{$tag->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('tag_id')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
                                         </span>

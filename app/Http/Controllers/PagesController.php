@@ -35,9 +35,10 @@ class PagesController extends Controller
      */
     public function create()
     {
+        $page = Pages::all();
         $category = Categories::all();
         $tag = Tag::all();
-        $page = Pages::all();
+
         return view('Backend.Page.create',compact('category','tag','page'));
     }
 
@@ -54,9 +55,11 @@ class PagesController extends Controller
             'permalink' => 'required',
             'template' => 'required',
             'visibility_post' => 'required',
-            'done_date'=> 'required'
+            'done_date'=> 'required',
+            'tag_id'=>'required',
         ]);
         $input = $request->all();
+        $input['tag_id'] = $input['tag_id'][0];
         if ($request->hasFile('featured_image')) {
             $image = $request->file('featured_image');
             $featured_image = "TD-" . time() . '.' . $image->getClientOriginalExtension();
@@ -66,6 +69,7 @@ class PagesController extends Controller
             $input['featured_image'] = $featured_image;
         }
         $page = Pages::create($input);
+        $page->tagg()->sync($request->tag_id);
         return redirect()->route('page.index')
             ->with('success', 'Page Created Successfully !!!',compact('page'));
 
