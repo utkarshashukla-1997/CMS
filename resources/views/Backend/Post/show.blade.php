@@ -106,10 +106,10 @@
                                     <div class="form-group row">
                                         <strong class="col-md-3">Post:</strong>
                                         <div class="col-md-9">
-                                        <a href="{{asset('Uploads/Post/File/'.$post->featured_image)}}"
+                                        <a href="{{asset('/Uploads/Post/File/'.$post->file_image)}}"
                                             target="_blank">
-                                        <img src="{{ asset('Uploads/Post/File/'.$post->featured_image) }}" alt="" width="200px">
-                                        {{$post->featured_image}}</a><br>
+                                        <img src="{{ asset('/Uploads/Post/File/'.$post->file_image) }}" alt="" width="200px">
+                                        {{$post->file_image}}</a><br>
 
                                     </div>
 

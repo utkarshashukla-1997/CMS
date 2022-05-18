@@ -108,17 +108,17 @@
                                             <select class="form-control select2 @error('tag_id') is-invalid @enderror"
                                             name="tag_id[]" multiple="multiple" required style="width: 100%;"
                                             data-dropdown-css-class="select2-info">
-                                           @php
-                                               $pagetag = [];
-                                           @endphp
-                                           @foreach ($page->pageta as $page)
-                                           @php
-                                               array_push($pagetag,$pageta->name);
-                                           @endphp
+                                            @php
+                                            $pagetag = [];
+                                        @endphp
+                                        @foreach ($page->pages as $pag)
+                                        @php
+                                            array_push($pagetag,$pag->name);
+                                        @endphp
 
-                                           @endforeach
-                                           <option disabled selected>
-                                            {{implode(',',$pagetag)}}
+                                        @endforeach
+                                        <option disabled selected>
+                                         {{implode(',',$pagetag)}}
                                         </option>
                                         @error('tag_id')
                                         <span class="invalid-feedback" role="alert">

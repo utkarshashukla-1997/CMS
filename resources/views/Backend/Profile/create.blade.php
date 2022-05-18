@@ -45,12 +45,48 @@
                                 </ul>
                             </div>
                             @endif
+
                             @if($profile == null)
                             <form action="" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <h4 class="card-title">User Profile</h4>
                                     <div class="form-group row">
+
+                                        <label class="col-sm-3 text-right control-label col-form-label">Profile Image
+                                            </label>
+                                        <div class="col-sm-9">
+                                            <img src="{{asset('assets/images/users/d4.jpg')}}" alt="User Image">
+
+                                        </div>
+                                    </div>
+                                    <form action="" id="form_sample_2"
+                                        class="form-horizontal" method="post" autocomplete="on" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="_method" value="PUT">
+                                        Click here to change Profile Image
+                                        <div class="form-group-row">
+
+                                        <label class="col-sm-3 text-right control-label col-form-label">
+                                            </label>
+
+                                            <div class="col-sm-3">
+                                            <input type="file" class="form-control @error('photo') is-invalid @enderror"
+                                                    name="photo" />
+                                                @error('photo')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{$message}}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                                <button type="submit" class="btn btn-primary">Update</button>
+
+
+
+                                    </form>
+                                    <div class="form-group row">
+
                                         <label class="col-sm-3 text-right control-label col-form-label">User Name
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">

@@ -62,16 +62,16 @@
                                     <div class="form-group row">
                                         <strong class="col-md-3">Tags:</strong>
                                         <div class="col-md-9">
+                                             @php
+                                                $pagetag = [];
+                                            @endphp
+                                            @foreach ($page->tagg as $tag)
                                             @php
-                                            $pagetag = [];
-                                        @endphp
-                                        @foreach ($page->pageta as $page)
-                                        @php
-                                            array_push($pagetag,$pageta->name);
-                                        @endphp
+                                                array_push($pagetag,$tag->name);
+                                            @endphp
 
-                                        @endforeach
-                                         {{implode(',',$pagetag)}}
+                                            @endforeach
+                                             {{implode(',',$pagetag)}}</td>
                                     </div>
                                     </div>
                                     <div class="form-group row">

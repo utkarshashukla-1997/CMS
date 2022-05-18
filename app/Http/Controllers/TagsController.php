@@ -60,7 +60,7 @@ class TagsController extends Controller
             $file_image = "TD-" . time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path() . '/Uploads/Tags/File/', $file_image);
 
-            $request->file_image = $file_image;
+            $tag->file_image = $file_image;
             $input['file_image'] = $file_image;
         }
         $tag->save();
@@ -122,9 +122,9 @@ class TagsController extends Controller
             if ($request->hasFile('file_image')) {
                 $image = $request->file('file_image');
                 $file_image = "TD-" . time() . '.' . $image->getClientOriginalExtension();
-                $image->move(public_path() . '/Uploads/Category/File', $file_image);
+                $image->move(public_path() . '/Uploads/Tags/File', $file_image);
 
-                $request->file_image = $file_image;
+                $tag->file_image = $file_image;
                 $input['file_image'] = $file_image;
             }
         }

@@ -55,9 +55,9 @@
                                     <div class="form-group row">
                                         <strong>Featured Image:</strong>
                                         @if($tag->file_image!=[])
-                                        <a href="{{asset('Uploads/Tags/File/'.$tag->file_image)}}"
+                                        <a href="{{asset('/Uploads/Tags/File/'.$tag->file_image)}}"
                                             target="_blank">
-                                        <img src="{{ asset('Uploads/Tags/File/'.$tag->file_image) }}" alt="" width="200px">
+                                        <img src="{{ asset('/Uploads/Tags/File/'.$tag->file_image) }}" alt="" width="200px">
                                         {{$tag->file_image}}</a><br>
                                         @else
                                         N/A
