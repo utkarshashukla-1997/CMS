@@ -48,6 +48,7 @@
                                             <th>Title</th>
                                             <th>Author</th>
                                             <th>Date</th>
+                                            <th>Tags</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -58,6 +59,16 @@
                                             <td>{{ $page->title }}</td>
                                             <td>{{$page->usr['name']}}</td>
                                             <td>{{$page->done_date}}</td>
+                                            <td> @php
+                                                $pagetag = [];
+                                            @endphp
+                                            @foreach ($page->tagg as $tag)
+                                            @php
+                                                array_push($pagetag,$tag->name);
+                                            @endphp
+
+                                            @endforeach
+                                             {{implode(',',$pagetag)}}</td>
                                             <td>
                                                 <a class="btn btn-info" href="{{ route('page.show',$page->id) }}"><i
                                                         class="fa fa-eye"></i></a>
@@ -136,6 +147,7 @@
                                             <th>Title</th>
                                             <th>Author</th>
                                             <th>Date</th>
+                                            <th>Tags</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categories;
-use App\Models\Pages;
+use App\Models\Page;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
@@ -23,7 +23,7 @@ class PagesController extends Controller
     }
      public function index(Request $request)
     {
-        $data = Pages::orderBy('id', 'DESC')->get();
+        $data = Page::orderBy('id', 'DESC')->get();
         return view('Backend.Page.index', compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -35,7 +35,7 @@ class PagesController extends Controller
      */
     public function create()
     {
-        $page = Pages::all();
+        $page = Page::all();
         $category = Categories::all();
         $tag = Tag::all();
 
@@ -68,7 +68,7 @@ class PagesController extends Controller
             $request->featured_image = $featured_image;
             $input['featured_image'] = $featured_image;
         }
-        $page = Pages::create($input);
+        $page = Page::create($input);
         $page->tagg()->sync($request->tag_id);
         return redirect()->route('page.index')
             ->with('success', 'Page Created Successfully !!!',compact('page'));
@@ -83,7 +83,7 @@ class PagesController extends Controller
      */
     public function show($id)
     {
-        $page = Pages::find($id);
+        $page = Page::find($id);
         return view('Backend.Page.show',compact('page'));
     }
 
@@ -97,7 +97,7 @@ class PagesController extends Controller
     {
         $category = Categories::all();
         $tag = Tag::all();
-        $page = Pages::find($id);
+        $page = Page::find($id);
         return view('Backend.Page.edit',compact('category','tag','page'));
     }
 
@@ -119,7 +119,7 @@ class PagesController extends Controller
         ]);
         $input = $request->all();
         // dd($input);
-        $page = Pages::findOrFail($id);
+        $page = Page::findOrFail($id);
         if ($request->featured_image != '') {
             $path = public_path() . '/Uploads/Page/File/';
             //code for remove old file
@@ -138,6 +138,7 @@ class PagesController extends Controller
         }
 
             $page->update($input);
+            $page->tagg()->sync($request->tag_id);
 
         return redirect()->route('page.index')
             ->with('success', 'Selected Page Updated Successfully !!!');
@@ -151,8 +152,8 @@ class PagesController extends Controller
      */
     public function destroy($id)
     {
-        $page = Pages::find($id)->delete();
+        $page = Page::find($id)->delete();
         return redirect()->route('page.index')
-        ->with('success','Selected Page Deleted Successfully',compact('post'));
+        ->with('success','Selected Page Deleted Successfully',compact('page'));
     }
 }

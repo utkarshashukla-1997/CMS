@@ -46,11 +46,10 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Title</th>
-                                            <th>Author</th>
                                             <th>Categories</th>
                                             <th>Tags</th>
                                             <th>Date</th>
-                                            <th>Post<th>
+
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -59,7 +58,6 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $post->title }}</td>
-                                            <td>{{$post->usr['name']}}</td>
                                             <td>{{$post->cat['name']}}</td>
                                             <td> @php
                                                 $posttag = [];
@@ -72,11 +70,8 @@
                                             @endforeach
                                              {{implode(',',$posttag)}}</td>
                                             <td>{{$post->published_date}}</td>
-                                           <td> <a href="{{asset('Uploads/Post/File/'.$post->file_image)}}"
-                                                target="_blank">
-                                            <img src="{{ asset('Uploads/Post/File/'.$post->file_image) }}" alt="" width="200px">
-                                            {{$post->featured_image}}</a><br></td>
                                             <td>
+
                                                 <a class="btn btn-info" href="{{ route('post.show',$post->id) }}"><i
                                                         class="fa fa-eye"></i></a>
                                                 @can('post-edit')
@@ -152,11 +147,9 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Title</th>
-                                            <th>Author</th>
                                             <th>Categories</th>
                                             <th>Tags</th>
                                             <th>Date</th>
-                                            <th>Post<th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>

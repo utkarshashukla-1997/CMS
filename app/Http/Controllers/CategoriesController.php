@@ -58,9 +58,9 @@ class CategoriesController extends Controller
   if ($request->hasFile('image_file')) {
     $image = $request->file('image_file');
     $image_file = "TD-" . time() . '.' . $image->getClientOriginalExtension();
-    $image->move('Public/Uploads/Category/File/', $image_file);
+    $image->move(public_path() . '/Uploads/Category/File/', $image_file);
 
-    $request->image_file = $image_file;
+    $category->image_file = $image_file;
     $input['image_file'] = $image_file;
 }
 
@@ -124,7 +124,7 @@ class CategoriesController extends Controller
                 $image_file = "TD-" . time() . '.' . $image->getClientOriginalExtension();
                 $image->move(public_path() . '/Uploads/Category/File', $image_file);
 
-                $request->image_file = $image_file;
+                $category->image_file = $image_file;
                 $input['image_file'] = $image_file;
             }
         }

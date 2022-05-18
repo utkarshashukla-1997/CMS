@@ -62,7 +62,7 @@ class SubCategoryController extends Controller
             $image_file = "TD-" . time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path() . '/Uploads/SubCategory/File/', $image_file);
 
-            $request->image_file = $image_file;
+            $subcategory->image_file = $image_file;
             $input['image_file'] = $image_file;
         }
 
@@ -128,7 +128,7 @@ class SubCategoryController extends Controller
                 $image_file = "TD-" . time() . '.' . $image->getClientOriginalExtension();
                 $image->move(public_path() . '/Uploads/SubCategory/File', $image_file);
 
-                $request->image_file = $image_file;
+                $subcategory->image_file = $image_file;
                 $input['image_file'] = $image_file;
             }
         }
