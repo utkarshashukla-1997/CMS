@@ -110,6 +110,38 @@ class GeneralSettingsController extends Controller
         ]);
         $input = $request->all();
         $general = GeneralSettings::find($id);
+        if ($request->logo_image != '') {
+            $path = public_path() . '/Uploads/Settings/General/';
+            //code for remove old file
+            if ($general->logo_image != ''  && $general->logo_image != null) {
+                $file_old = $path . $general->logo_image;
+                unlink($file_old);
+            }
+            if ($request->hasFile('logo_image')) {
+                $image = $request->file('logo_image');
+                $logo_image = "TD-" . time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path() . '/Uploads/Settings/General', $logo_image);
+
+                $request->logo_image = $logo_image;
+                $input['logo_image'] = $logo_image;
+            }
+        }
+        if ($request->background_image != '') {
+            $path = public_path() . '/Uploads/Settings/General/';
+            //code for remove old file
+            if ($general->background_image != ''  && $general->background_image != null) {
+                $file_old = $path . $general->background_image;
+                unlink($file_old);
+            }
+            if ($request->hasFile('background_image')) {
+                $image = $request->file('background_image');
+                $background_image = "TD-" . time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path() . '/Uploads/Settings/General', $background_image);
+
+                $request->background_image = $background_image;
+                $input['background_image'] = $background_image;
+            }
+        }
         $general->update($input);
 
         return redirect()->back()

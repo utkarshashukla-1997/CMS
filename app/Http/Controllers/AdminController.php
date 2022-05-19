@@ -49,4 +49,5 @@ class AdminController extends Controller
         return redirect()->route('login')->with('success', 'Your Password has been changed,Please Login again.');
         Auth::logoutOtherDevices(request('password'));
     }
+    
 }
