@@ -1,6 +1,6 @@
 
 @extends('Backend.layouts.master')
-@section('page_title',' General')
+@section('page_title',' Profile')
 @section('content')
         <!-- ============================================================== -->
         <div class="page-wrapper">
@@ -15,7 +15,7 @@
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Settings</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Users</li>
                                 </ol>
                             </nav>
                         </div>
@@ -45,16 +45,19 @@
                                 </ul>
                             </div>
                             @endif
-                           @if($general == null)
-                            <form action="{{ route('general.store') }}" method="post" enctype="multipart/form-data">
-                                @csrf
+
+
                                 <div class="card-body">
                                     <h4 class="card-title">General Settings</h4>
+                                     @if($general==null)
+                                    <form action="{{route('general.store')}}" method="post" enctype="multipart/form-data">
+                                        @csrf
                                     <div class="form-group row">
+
                                         <label class="col-sm-3 text-right control-label col-form-label">Site Title
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="site_title" required placeholder="Enter Email"
+                                            <input type="text" name="site_title" required placeholder="Enter Site Title"
                                             class="form-control   @error('site_title') is-invalid @enderror"
                                             value="{{old('site_title','')}}" />
                                         @error('site_title')
@@ -65,10 +68,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Tagline
+                                        <label class="col-sm-3 text-right control-label col-form-label">Tag Line
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="tagline" required placeholder="Enter New Password"
+                                            <input type="text" name="tagline" required placeholder="Enter User Email"
                                             class="form-control @error('tagline') is-invalid @enderror"
                                             value="{{old('tagline','')}}" />
                                         @error('tagline')
@@ -79,10 +82,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label"> URL
+                                        <label class="col-sm-3 text-right control-label col-form-label"> Website URL
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="url" required placeholder="Enter New Password"
+                                            <input type="text" name="url" required placeholder="Website"
                                             class="form-control @error('url') is-invalid @enderror"
                                             value="{{old('url','')}}" />
                                         @error('url')
@@ -93,43 +96,42 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Logo Image</label>
+                                        <label class="col-sm-3 text-right control-label col-form-label">Logo</label>
                                         <div class="col-sm-9">
-                                            <input type="file" name="logo_image" required placeholder="Enter Name of User"
+                                            <input type="file" name="logo_image"
                                             class="form-control"
                                             value="{{old('logo_image','')}}" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Background Image</label>
+                                        <label class="col-sm-3 text-right control-label col-form-label">Background
+                                        </label>
                                         <div class="col-sm-9">
                                             <input type="file" name="background_image"
                                             class="form-control"
-                                            value="{{old('background_image','')}}" placeholder="Confirm-password">
-
+                                            value="{{old('background_image','')}}" />
                                         </div>
                                     </div>
-
 
 
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body">
-                                        <button type="button" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
                             </form>
-                            @else
-                            <form action="{{ route('general.update') }}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                 @method('PUT')
+                              @else
                                 <div class="card-body">
-                                    <h4 class="card-title">General Settings</h4>
+                                    <form action="{{route('general.update',$general->id)}}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
                                     <div class="form-group row">
+
                                         <label class="col-sm-3 text-right control-label col-form-label">Site Title
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="site_title" required placeholder="Enter Email"
+                                            <input type="text" name="site_title" required placeholder="Enter Site Title"
                                             class="form-control   @error('site_title') is-invalid @enderror"
                                             value="{{old('site_title',$general->site_title)}}" />
                                         @error('site_title')
@@ -140,10 +142,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Tagline
+                                        <label class="col-sm-3 text-right control-label col-form-label">Tag Line
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="tagline" required placeholder="Enter New Password"
+                                            <input type="text" name="tagline" required placeholder="Enter User Email"
                                             class="form-control @error('tagline') is-invalid @enderror"
                                             value="{{old('tagline',$general->tagline)}}" />
                                         @error('tagline')
@@ -154,10 +156,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label"> URL
+                                        <label class="col-sm-3 text-right control-label col-form-label"> Website URL
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="url" required placeholder="Enter New Password"
+                                            <input type="text" name="url" required placeholder="Website"
                                             class="form-control @error('url') is-invalid @enderror"
                                             value="{{old('url',$general->url)}}" />
                                         @error('url')
@@ -168,32 +170,36 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Logo Image</label>
+                                        <label class="col-sm-3 text-right control-label col-form-label">Logo</label>
                                         <div class="col-sm-9">
-                                            <input type="file" name="logo_image" required placeholder="Enter Name of User"
+                                            <input type="file" name="logo_image"
                                             class="form-control"
                                             value="{{old('logo_image','')}}" />
+                                            <img src="{{ asset('Uploads/Settings/General/'.$general->logo_image) }}" alt="" width="200px">
+                                            {{$general->logo_image}}</a><br>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Background Image</label>
+                                        <label class="col-sm-3 text-right control-label col-form-label">Background
+                                        </label>
                                         <div class="col-sm-9">
                                             <input type="file" name="background_image"
                                             class="form-control"
-                                            value="{{old('background_image','')}}" placeholder="Confirm-password">
+                                            value="{{old('background_image','')}}" />
+                                            <img src="{{ asset('Uploads/Settings/General/'.$general->background_image) }}" alt="" width="200px">
+                                            {{$general->background_image}}</a><br>
                                         </div>
                                     </div>
-
 
 
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body">
-                                        <button type="button" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary">Update</button>
                                     </div>
                                 </div>
                             </form>
-                          @endif 
+                            @endif
                         </div>
 
 

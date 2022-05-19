@@ -46,45 +46,12 @@
                             </div>
                             @endif
 
-                            @if($profile == null)
-                            <form action="" method="post" enctype="multipart/form-data">
-                                @csrf
+
                                 <div class="card-body">
                                     <h4 class="card-title">User Profile</h4>
-                                    <div class="form-group row">
-
-                                        <label class="col-sm-3 text-right control-label col-form-label">Profile Image
-                                            </label>
-                                        <div class="col-sm-9">
-                                            <img src="{{asset('assets/images/users/d4.jpg')}}" alt="User Image">
-
-                                        </div>
-                                    </div>
-                                    <form action="" id="form_sample_2"
-                                        class="form-horizontal" method="post" autocomplete="on" enctype="multipart/form-data">
+                                     @if($profile==null)
+                                    <form action="{{route('profile.store')}}" method="post" enctype="multipart/form-data">
                                         @csrf
-                                        <input type="hidden" name="_method" value="PUT">
-                                        Click here to change Profile Image
-                                        <div class="form-group-row">
-
-                                        <label class="col-sm-3 text-right control-label col-form-label">
-                                            </label>
-
-                                            <div class="col-sm-3">
-                                            <input type="file" class="form-control @error('photo') is-invalid @enderror"
-                                                    name="photo" />
-                                                @error('photo')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{$message}}</strong>
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                                <button type="submit" class="btn btn-primary">Update</button>
-
-
-
-                                    </form>
                                     <div class="form-group row">
 
                                         <label class="col-sm-3 text-right control-label col-form-label">User Name
@@ -137,14 +104,14 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Profile Picture</label>
+                                        <label class="col-sm-3 text-right control-label col-form-label">Profile Picture
+                                        </label>
                                         <div class="col-sm-9">
                                             <input type="file" name="profile_picture"
                                             class="form-control"
-                                            value="{{old('confirm-password','')}}">
+                                            value="{{old('profile_picture','')}}" />
                                         </div>
                                     </div>
-
 
 
                                 </div>
@@ -154,18 +121,18 @@
                                     </div>
                                 </div>
                             </form>
-                            @else
-                            <form action="" method="post" enctype="multipart/form-data">
+                              @else
+                            <form action="{{route('profile.update',$profile->id)}}" method="post" enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
                                 <div class="card-body">
-                                    <h4 class="card-title">User Profile</h4>
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">User Name
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
                                             <input type="text" name="name" required placeholder="Enter Username"
                                             class="form-control   @error('name') is-invalid @enderror"
-                                            value="{{old('name','')}}" />
+                                            value="{{old('name',$profile->name)}}" />
                                         @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -179,7 +146,7 @@
                                         <div class="col-sm-9">
                                             <input type="text" name="email" required placeholder="Enter User Email"
                                             class="form-control @error('email') is-invalid @enderror"
-                                            value="{{old('email','')}}" />
+                                            value="{{old('email',$profile->email)}}" />
                                         @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -193,7 +160,7 @@
                                         <div class="col-sm-9">
                                             <input type="text" name="website" required placeholder="Website"
                                             class="form-control @error('website') is-invalid @enderror"
-                                            value="{{old('website','')}}" />
+                                            value="{{old('website',$profile->website)}}" />
                                         @error('website')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -206,18 +173,22 @@
                                         <div class="col-sm-9">
                                             <textarea type="text" name="biographical_info"
                                             class="ckeditor form-control"
-                                           >{{old('biographical_info','')}}</textarea>
+                                           >{{old('biographical_info',$profile->biographical_info)}}</textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Profile Picture</label>
+                                        <label class="col-sm-3 text-right control-label col-form-label">Profile Picture
+                                        </label>
                                         <div class="col-sm-9">
                                             <input type="file" name="profile_picture"
                                             class="form-control"
-                                            value="{{old('profile_picture','')}}">
+                                            value="{{old('profile_picture','')}}" />
+                                            <a href="{{asset('Uploads/Profile/Picture/'.$profile->profile_picture)}}"
+                                                target="_blank">
+                                            <img src="{{ asset('Uploads/Profile/Picture/'.$profile->profile_picture) }}" alt="" width="200px">
+                                            {{$profile->profile_picture}}</a><br>
                                         </div>
                                     </div>
-
 
 
                                 </div>
@@ -228,7 +199,6 @@
                                 </div>
                             </form>
                             @endif
-
                         </div>
 
 

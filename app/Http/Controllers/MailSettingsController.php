@@ -20,7 +20,7 @@ class MailSettingsController extends Controller
     }
     public function index()
     {
-       
+
     }
 
     /**
@@ -54,7 +54,7 @@ class MailSettingsController extends Controller
         ]);
         $input = $request->all();
         $mail = MailSettings::create($input);
-        return redirect()->back()->with('success','New Terms and Conditions/Privacy Policy Created Successfully !!!',compact('mail'));
+        return redirect()->back()->with('success','Mail Settings Created Successfully !!!',compact('mail'));
     }
 
     /**
@@ -104,7 +104,7 @@ class MailSettingsController extends Controller
         $mail->update($input);
 
         return redirect()->back()
-            ->with('success', 'New Terms and Conditions/Privacy Policy Updated Successfully !!!', compact('mail'));
+            ->with('success', 'Mail Settings Updated Successfully !!!', compact('mail'));
     }
 
     /**

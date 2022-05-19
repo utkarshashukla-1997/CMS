@@ -1,6 +1,6 @@
 
 @extends('Backend.layouts.master')
-@section('page_title',' Mail Settings')
+@section('page_title',' Profile')
 @section('content')
         <!-- ============================================================== -->
         <div class="page-wrapper">
@@ -15,7 +15,7 @@
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Settings</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Profile</li>
                                 </ol>
                             </nav>
                         </div>
@@ -45,16 +45,19 @@
                                 </ul>
                             </div>
                             @endif
-                            @if($mail == null)
-                            <form action="{{route('mail.store')}}" method="post" enctype="multipart/form-data">
-                                @csrf
+
+
                                 <div class="card-body">
                                     <h4 class="card-title">Mail Settings</h4>
+                                     @if($mail==null)
+                                    <form action="{{route('mail.store')}}" method="post" enctype="multipart/form-data">
+                                        @csrf
                                     <div class="form-group row">
+
                                         <label class="col-sm-3 text-right control-label col-form-label">Mail Mailer
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="mail_mailer" required placeholder="Mail Mailer"
+                                            <input type="text" name="mail_mailer" required placeholder="Enter Mail Mailer"
                                             class="form-control   @error('mail_mailer') is-invalid @enderror"
                                             value="{{old('mail_mailer','')}}" />
                                         @error('mail_mailer')
@@ -68,7 +71,7 @@
                                         <label class="col-sm-3 text-right control-label col-form-label">Mail Host
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="mail_host" required placeholder="Mail Host"
+                                            <input type="text" name="mail_host" required placeholder="Enter Mail Host"
                                             class="form-control @error('mail_host') is-invalid @enderror"
                                             value="{{old('mail_host','')}}" />
                                         @error('mail_host')
@@ -82,7 +85,7 @@
                                         <label class="col-sm-3 text-right control-label col-form-label"> Mail Port
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="mail_port" required placeholder="Mail Port"
+                                            <input type="text" name="mail_port" required placeholder="Enter Mail Port"
                                             class="form-control @error('mail_port') is-invalid @enderror"
                                             value="{{old('mail_port','')}}" />
                                         @error('mail_port')
@@ -93,212 +96,156 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Mail Username
-                                            <span class="required text-danger"> * </span></label>
+                                        <label class="col-sm-3 text-right control-label col-form-label">Mail Username</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="mail_username" required placeholder="Enter Name of User"
-                                            class="form-control   @error('mail_username') is-invalid @enderror"
+                                            <input type="text" name="mail_username"
+                                            class="form-control" required placeholder="Enter Mail Username"
                                             value="{{old('mail_username','')}}" />
-                                        @error('mail_username')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Mail Password
-                                            <span class="required text-danger"> * </span></label>
+                                        </label>
                                         <div class="col-sm-9">
                                             <input type="password" name="mail_password"
-                                            class="form-control @error('mail_password') is-invalid @enderror"
-                                            value="{{old('mail_password','')}}" placeholder="Confirm-password">
-                                        @error('mail_password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
+                                            class="form-control" required placeholder = "Enter Mail Password"
+                                            value="{{old('mail_password','')}}" />
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Mail Encryption
-                                            <span class="required text-danger"> * </span></label>
+                                        </label>
                                         <div class="col-sm-9">
                                             <input type="text" name="mail_encryption"
-                                            class="form-control @error('mail_encryption') is-invalid @enderror"
-                                            value="{{old('mail_encryption','')}}" placeholder="Mail Encryption">
-                                        @error('mail_encryption')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
+                                            class="form-control" required placeholder = "Enter Mail Encryption"
+                                            value="{{old('mail_encryption','')}}" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Mail From Address
-                                        <span class="required text-danger"> * </span></label>
+                                        </label>
                                         <div class="col-sm-9">
                                             <input type="text" name="mail_from_address"
-                                            class="form-control @error('mail_from_address') is-invalid @enderror"
-                                            value="{{old('mail_from_address','')}}" placeholder="Mail From Address">
-                                        @error('mail_from_address')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
+                                            class="form-control" required placeholder = "Enter Mail From Address"
+                                            value="{{old('mail_from_address','')}}" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Mail From Name
-                                            <span class="required text-danger"> * </span></label>
                                         </label>
                                         <div class="col-sm-9">
                                             <input type="text" name="mail_from_name"
-                                            class="form-control @error('mail_from_name') is-invalid @enderror"
-                                            value="{{old('mail_from_name','')}}" placeholder="Mail From Name">
-                                        @error('mail_from_name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
+                                            class="form-control" required placeholder="Enter Mail from Name"
+                                            value="{{old('mail_from_name','')}}" />
                                         </div>
                                     </div>
-
 
 
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body">
-                                        <button type="button" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
                             </form>
-                            @else
-                            <form action="{{route('mail.update',$mail->id)}}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                @method('PUT')
+                              @else
                                 <div class="card-body">
-                                    <h4 class="card-title">Mail Settings</h4>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Mail Mailer
-                                            <span class="required text-danger"> * </span></label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="mail_mailer" required placeholder="Mail Mailer"
-                                            class="form-control   @error('mail_mailer') is-invalid @enderror"
-                                            value="{{old('mail_mailer',$mail->mail_mailer)}}" />
-                                        @error('mail_mailer')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Mail Host
-                                            <span class="required text-danger"> * </span></label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="mail_host" required placeholder="Mail Host"
-                                            class="form-control @error('mail_host') is-invalid @enderror"
-                                            value="{{old('mail_host',$mail->mail_host)}}" />
-                                        @error('mail_host')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label"> Mail Port
-                                            <span class="required text-danger"> * </span></label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="mail_port" required placeholder="Mail Port"
-                                            class="form-control @error('mail_port') is-invalid @enderror"
-                                            value="{{old('mail_port',$mail->mail_port)}}" />
-                                        @error('mail_port')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Mail Username
-                                            <span class="required text-danger"> * </span></label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="mail_username" required placeholder="Enter Name of User"
-                                            class="form-control   @error('mail_username') is-invalid @enderror"
-                                            value="{{old('mail_username',$mail->mail_username)}}" />
-                                        @error('mail_username')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Mail Password
-                                            <span class="required text-danger"> * </span></label>
-                                        <div class="col-sm-9">
-                                            <input type="password" name="mail_password"
-                                            class="form-control @error('mail_password') is-invalid @enderror"
-                                            value="{{old('mail_password',$mail->mail_password)}}" placeholder="Confirm-password">
-                                        @error('mail_password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
-                                    </div>
+                                    <form action="{{route('mail.update',$mail->id)}}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="form-group row">
 
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Mail Encryption
-                                            <span class="required text-danger"> * </span></label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="mail_encryption"
-                                            class="form-control @error('mail_encryption') is-invalid @enderror"
-                                            value="{{old('mail_encryption',$mail->mail_encryption)}}" placeholder="Mail Encryption">
-                                        @error('mail_encryption')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
+                                            <label class="col-sm-3 text-right control-label col-form-label">Mail Mailer
+                                                <span class="required text-danger"> * </span></label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="mail_mailer" required placeholder="Enter Mail Mailer"
+                                                class="form-control   @error('mail_mailer') is-invalid @enderror"
+                                                value="{{old('mail_mailer',$mail->mail_mailer)}}" />
+                                            @error('mail_mailer')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{$message}}</strong>
+                                            </span>
+                                            @enderror
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Mail From Address</label>
-
-                                        <div class="col-sm-9">
-                                            <input type="text" name="mail_from_address"
-                                            class="form-control @error('mail_from_address') is-invalid @enderror"
-                                            value="{{old('mail_from_address',$mail->mail_from_address)}}" placeholder="Mail From Address">
-                                        @error('mail_from_address')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 text-right control-label col-form-label">Mail Host
+                                                <span class="required text-danger"> * </span></label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="mail_host" required placeholder="Enter Mail Host"
+                                                class="form-control @error('mail_host') is-invalid @enderror"
+                                                value="{{old('mail_host',$mail->mail_host)}}" />
+                                            @error('mail_host')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{$message}}</strong>
+                                            </span>
+                                            @enderror
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Mail From Name</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="mail_from_name"
-                                            class="form-control @error('mail_from_name') is-invalid @enderror"
-                                            value="{{old('mail_from_name',$mail->mail_from_name)}}" placeholder="Mail From Name">
-                                        @error('mail_from_name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 text-right control-label col-form-label"> Mail Port
+                                                <span class="required text-danger"> * </span></label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="mail_port" required placeholder="Enter Mail Port"
+                                                class="form-control @error('mail_port') is-invalid @enderror"
+                                                value="{{old('mail_port',$mail->mail_port)}}" />
+                                            @error('mail_port')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{$message}}</strong>
+                                            </span>
+                                            @enderror
+                                            </div>
                                         </div>
-                                    </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 text-right control-label col-form-label">Mail Username</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="mail_username"
+                                                class="form-control" required placeholder="Enter Mail Username"
+                                                value="{{old('mail_username',$mail->mail_username)}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 text-right control-label col-form-label">Mail Password
+                                            </label>
+                                            <div class="col-sm-9">
+                                                <input type="password" name="mail_password"
+                                                class="form-control" required placeholder = "Enter Mail Password"
+                                                value="{{old('mail_password',$mail->mail_password)}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 text-right control-label col-form-label">Mail Encryption
+                                            </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="mail_encryption"
+                                                class="form-control" required placeholder ="Enter Mail Encryption"
+                                                value="{{old('mail_encryption',$mail->emcryption)}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 text-right control-label col-form-label">Mail From Address
+                                            </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="mail_from_address"
+                                                class="form-control" required placeholder = "Enter Mail from address"
+                                                value="{{old('mail_from_address',$mail->mail_from_address)}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 text-right control-label col-form-label">Mail From Name
+                                            </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="mail_from_name"
+                                                class="form-control" required placeholder="Enter Mail from Name"
+                                                value="{{old('mail_from_name',$mail->mail_from_name)}}" />
+                                            </div>
+                                        </div>
 
 
-
-                                </div>
+                                    </div>
                                 <div class="border-top">
                                     <div class="card-body">
-                                        <button type="button" class="btn btn-primary">Update</button>
+                                        <button type="submit" class="btn btn-primary">Update</button>
                                     </div>
                                 </div>
                             </form>
