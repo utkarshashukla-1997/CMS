@@ -97,7 +97,7 @@ class PagesController extends Controller
     {
         $category = Categories::all();
         $tag = Tag::all();
-        $page = Page::find($id);
+        $page = Page::findOrFail($id);
         return view('Backend.Page.edit',compact('category','tag','page'));
     }
 

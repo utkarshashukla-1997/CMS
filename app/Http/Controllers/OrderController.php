@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use Illuminate\Http\Request;
 
-class FrontEndController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class FrontEndController extends Controller
      */
     public function index()
     {
-        $post = Post::all();
-        return view('Frontend.layouts.master',compact('post'));
+        //
     }
 
     /**

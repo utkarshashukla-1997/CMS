@@ -114,18 +114,25 @@
                                             <select class="form-control select2 @error('tag_id') is-invalid @enderror"
                                             name="tag_id[]" multiple="multiple" required style="width: 100%;"
                                             data-dropdown-css-class="select2-info">
-                                           @php
-                                               $posttag = [];
-                                           @endphp
-                                           @foreach ($post->posts as $posta)
-                                           @php
-                                               array_push($posttag,$posta->name);
-                                           @endphp
+                                            @php
+                                            $posttag = [];
+                                        @endphp
+                                        @foreach ($post->tagg as $tag)
+                                        @php
+                                            array_push($posttag,$tag->name);
+                                        @endphp
 
-                                           @endforeach
-                                           <option disabled selected>
+                                        @endforeach
+
+                                        <option class="bg-info" disabled>Select Tags....</option>
+                                        @foreach ($tag as $tag)
+                                        <option value="{{$tag}}">{{$tag}}</option>
+
+                                        <option disabled selected>
                                             {{implode(',',$posttag)}}
                                         </option>
+                                        @endforeach
+                                        </select>
                                         @error('tag_id')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>

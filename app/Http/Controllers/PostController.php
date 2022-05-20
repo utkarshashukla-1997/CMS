@@ -96,9 +96,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+        $post = Post::findOrfail($id);
       $category = Categories::all();
       $tag = Tag::all();
-      $post = Post::find($id);
+
       return view('Backend.Post.edit',compact('category','post','tag'));
 
     }
@@ -124,7 +125,7 @@ class PostController extends Controller
         $input = $request->all();
         $input['tag_id'] = $input['tag_id'][0];
         // dd($input);
-        $post = Post::findOrFail($id);
+        $post = Post::findOrfail($id);
 
 
         if ($request->file_image != '') {

@@ -25,86 +25,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="section-full trending-post-bx m-b20 wow fadeIn" data-wow-duration="2s" data-wow-delay="0.6s">
                 <div class="container-fluid">
                     <div class="trending-post-carousel owl-carousel owl-none">
+                        @foreach($post as $post)
+
+
                         <div class="item">
                             <div class="trending-post">
                                 <div class="dlab-post-media">
-                                    <img src="images/trending-post/pic1.jpg" alt="">
+                                    <img src="{{ asset('/Uploads/Post/File/'.$post->file_image) }}" alt="" width="200px">
                                 </div>
                                 <div class="dlab-post-info">
-                                    <h6 class="post-title"><a href="post-standart.html">Best Beauty Instagrams of the Week</a></h6>
+                                    <h6 class="post-title"><a href="post-standart.html">{{$post->title}}</a></h6>
                                     <div class="dlab-post-meta">
                                         <ul>
-                                            <li class="post-category"><a href="javascript:void(0);">Lifestyle</a></li>
-                                            <li class="post-date">at <span>12 August 2018</span></li>
+                                            <li class="post-category"><a href="javascript:void(0);">{{$post->cat->name}}</a></li>
+                                            <li class="post-date"> <span> {{$post->created_at->diffForHumans()}}</span></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="trending-post">
-                                <div class="dlab-post-media">
-                                    <img src="images/trending-post/pic2.jpg" alt="">
-                                </div>
-                                <div class="dlab-post-info">
-                                    <h6 class="post-title"><a href="post-left-sidebar.html">Really Like to Break Into the Modeling World</a></h6>
-                                    <div class="dlab-post-meta">
-                                        <ul>
-                                            <li class="post-category"><a href="javascript:void(0);">Lifestyle</a></li>
-                                            <li class="post-date">at <span>12 August 2018</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="trending-post">
-                                <div class="dlab-post-media">
-                                    <img src="images/trending-post/pic3.jpg" alt="">
-                                </div>
-                                <div class="dlab-post-info">
-                                    <h6 class="post-title"><a href="post-header-image.html">New Face of L’Oréal And More Iconic Ever</a></h6>
-                                    <div class="dlab-post-meta">
-                                        <ul>
-                                            <li class="post-category"><a href="javascript:void(0);">Lifestyle</a></li>
-                                            <li class="post-date">at <span>12 August 2018</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="trending-post">
-                                <div class="dlab-post-media">
-                                    <img src="images/trending-post/pic4.jpg" alt="">
-                                </div>
-                                <div class="dlab-post-info">
-                                    <h6 class="post-title"><a href="post-side-image.html">Best Washes Swap Into Morning Routine</a></h6>
-                                    <div class="dlab-post-meta">
-                                        <ul>
-                                            <li class="post-category"><a href="javascript:void(0);">Lifestyle</a></li>
-                                            <li class="post-date">at <span>12 August 2018</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="trending-post">
-                                <div class="dlab-post-media">
-                                    <img src="images/trending-post/pic5.jpg" alt="">
-                                </div>
-                                <div class="dlab-post-info">
-                                    <h6 class="post-title"><a href="post-gallery.html">Pop Icon’s Best Beauty Looks of All Time</a></h6>
-                                    <div class="dlab-post-meta">
-                                        <ul>
-                                            <li class="post-category"><a href="javascript:void(0);">Lifestyle</a></li>
-                                            <li class="post-date">at <span>12 August 2018</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
+
+
+
+
                     </div>
                 </div>
             </div>
