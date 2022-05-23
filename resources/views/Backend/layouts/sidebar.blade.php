@@ -25,6 +25,7 @@
                                 <li class="sidebar-item"><a href="{{route('category.index')}}" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">Categories</span></a></li>
                                 <li class="sidebar-item"><a href="{{route('subcategory.index')}}" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">Subcategories</span></a></li>
                                 <li class="sidebar-item"><a href="{{route('tag.index')}}" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">Tags</span></a></li>
+                                <li class="sidebar-item"><a href="{{route('brand.index')}}" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">Brand</span></a></li>
                             </ul>
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-pencil"></i><span class="hide-menu">Media </span></a>

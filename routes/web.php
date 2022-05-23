@@ -16,6 +16,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\TermPrivacyController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BrandController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,6 +57,8 @@ Route::resource('tag',TagsController::class);
 Route::resource('media',MediaController::class);
 //Comment
 Route::resource('comment',CommentController::class);
+// Brand
+Route::resource('brand',BrandController::class);
 // General Settings
 Route::resource('general',GeneralSettingsController::class);
 // Mail Settings
@@ -72,6 +75,7 @@ Route::resource('subcategory',SubCategoryController::class);
 Route::resource('profile',ProfileController::class);
 // General Settings
 Route::resource('general',GeneralSettingsController::class);
+
  //change password
  Route::get('/password', [AdminController::class,'changepassword'])->name('password.index');
  Route::put('/change-Password', [AdminController::class,'password_update'])->name('password.update');

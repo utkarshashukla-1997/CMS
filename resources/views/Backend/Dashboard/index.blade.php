@@ -53,7 +53,7 @@
             <div class="col-md-6 col-lg-2 col-xlg-3">
                 <div class="card card-hover">
                     <div class="box bg-warning text-center">
-                        <h1 class="font-light text-white"><i class="mdi mdi-collage"></i></h1>
+                        <h1 class="font-light text-white"><i class="mdi mdi-collage">{{$page}}</i></h1>
                         <h6 class="text-white">Total Pages</h6>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
             <div class="col-md-6 col-lg-2 col-xlg-3">
                 <div class="card card-hover">
                     <div class="box bg-danger text-center">
-                        <h1 class="font-light text-white"><i class="mdi mdi-border-outside"></i></h1>
+                        <h1 class="font-light text-white"><i class="mdi mdi-border-outside">{{$comment}}</i></h1>
                         <h6 class="text-white">Total Comments</h6>
                     </div>
                 </div>

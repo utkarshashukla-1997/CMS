@@ -49,7 +49,7 @@
                                 @endif
                                 @method('PUT')
                                 <div class="card-body">
-                                    <h4 class="card-title">Create Page</h4>
+                                    <h4 class="card-title">Edit Page</h4>
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Title
                                             <span class="required text-danger"> * </span></label>
@@ -111,15 +111,22 @@
                                             @php
                                             $pagetag = [];
                                         @endphp
-                                        @foreach ($page->pages as $pag)
+                                        @foreach ($page->tagg as $tag)
                                         @php
-                                            array_push($pagetag,$pag->name);
+                                            array_push($pagetag,$tag->name);
                                         @endphp
-
                                         @endforeach
-                                        <option disabled selected>
-                                         {{implode(',',$pagetag)}}
-                                        </option>
+                                             <option disabled selected>
+
+                                                {{implode(',',$pagetag)}}
+                                            </option>
+                                            <option class="bg-info" disabled>Select Tag....</option>
+                                        @foreach ($tag as $taggg)
+                                        <option value="{{$taggg->id}}">{{$taggg->name}}</option>
+                                        @endforeach
+                                        </select>
+
+                                        </select>
                                         @error('tag_id')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
