@@ -12,10 +12,20 @@ class BrandController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    function __construct()
     {
-        //
+        $this->middleware('permission:brand-list|brand-create|brand-edit|brand-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:brand-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:brand-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:brand-delete', ['only' => ['destroy']]);
     }
+    public function index(Request $request)
+    {
+        $data = Brand::orderBy('id', 'DESC')->get();
+        return view('Backend.Brand.index', compact('data'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -24,7 +34,8 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        $brand = Brand::all();
+        return view('Backend.Brand.create',compact('brand'));
     }
 
     /**
@@ -35,7 +46,13 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'brand_name' => 'required',
+        ]);
+        $input = $request->all();
+        $brand = Brand::create($input);
+        return redirect()->route('brand.index')
+            ->with('success', 'New Brand Created Successfully !!!', compact('brand'));
     }
 
     /**
@@ -44,9 +61,10 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function show(Brand $brand)
+    public function show($id)
     {
-        //
+        $brand = Brand::findOrfail($id);
+        return view('Backend.Brand.show',compact('brand'));
     }
 
     /**
@@ -55,9 +73,10 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function edit(Brand $brand)
+    public function edit($id)
     {
-        //
+        $brand = Brand::findOrfail($id);
+        return view('Backend.Brand.edit',compact('brand'));
     }
 
     /**
@@ -67,9 +86,19 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'brand_name' => 'required',
+
+        ]);
+
+        $input = $request->all();
+        $brand = Brand::find($id);
+        $brand->update($input);
+
+        return redirect()->route('brand.index')
+            ->with('success', 'Selected Brand Details Updated Successfully !!!');
     }
 
     /**
@@ -78,8 +107,10 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Brand $brand)
+    public function destroy($id)
     {
-        //
+
+        $brand = Brand::find($id)->delete();
+        return redirect()->route('brand.index')->with('success','Selected Brand Deleted Successfully!!!',compact('brand'));
     }
 }
