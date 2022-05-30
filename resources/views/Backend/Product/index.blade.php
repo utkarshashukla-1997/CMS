@@ -35,9 +35,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="card-title">Category Management</h3>
-                            @can('category-create')
-                            <a href="{{ route('category.create') }}" class="card-title btn btn-success float-right">Add
+                            <h3 class="card-title">Product Management</h3>
+                            @can('product-create')
+                            <a href="{{ route('product.create') }}" class="card-title btn btn-success float-right">Add
                                 +</a>
                             @endcan
                             <div class="table-responsive">
@@ -46,37 +46,61 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Name</th>
-                                            <th>Description</th>
-                                            <th>Slug</th>
+                                            <th>Image</th>
+                                            <th>Category<th>
+                                            <th>Tag</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data as $key => $category)
+                                        @foreach ($data as $key => $product)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $category->name }}</td>
-                                            <td>{!!$category->description!!}</td>
-                                            <td>{{$category->slug}}</td>
+                                            <td>{{ $product->product_name }}</td>
+                                            <td> <a href="{{asset('Uploads/Product/File/'.$product->file_image)}}"
+                                                target="_blank">
+                                            <img src="{{ asset('Uploads/Product/File/'.$product->file_image) }}" alt="" width="200px">
+                                            {{$product->file_image}}</a><br></td>
+                                            <td>{{$product->slug}}</td>
+                                            <td> @php
+                                                $productcat = [];
+                                            @endphp
+                                            @foreach ($product->cat as $category)
+                                            @php
+                                                array_push($productcat,$category->name);
+                                            @endphp
+
+                                            @endforeach
+                                             {{implode(',',$productcat)}}</td>
+                                             <td> @php
+                                                $producttag = [];
+                                            @endphp
+                                            @foreach ($product->tagg as $tag)
+                                            @php
+                                                array_push($producttag,$category->name);
+                                            @endphp
+
+                                            @endforeach
+                                             {{implode(',',$producttag)}}</td>
                                             <td>
-                                                <a class="btn btn-info" href="{{ route('category.show',$category->id) }}"><i
+                                                <a class="btn btn-info" href="{{ route('product.show',$product->id) }}"><i
                                                         class="fa fa-eye"></i></a>
-                                                @can('category-edit')
-                                                <a class="btn btn-primary" href="{{ route('category.edit',$category->id) }}"><i
+                                                @can('product-edit')
+                                                <a class="btn btn-primary" href="{{ route('product.edit',$product->id) }}"><i
                                                         class="fa fa-edit"></i></a>
                                                 @endcan
-                                                @can('category-delete')
+                                                @can('product-delete')
                                                 <button class="btn btn-danger waves-effect waves-light"
-                                                    data-target="#deleteCategory{{$category->id}}" data-toggle="modal" type="submit"><i
+                                                    data-target="#deleteProduct{{$product->id}}" data-toggle="modal" type="submit"><i
                                                         class="fa fa-trash-alt"></i></button>
-                                                <form action="{{ route('category.destroy', $category->id)}}" method="post"
+                                                <form action="{{ route('product.destroy', $product->id)}}" method="post"
                                                     style="display: inline-block">
                                                     @csrf
                                                     @method('DELETE')
                                                     <div class="row">
                                                         <div class="col-md-4 mt-4">
                                                             <!-- sample modal content -->
-                                                            <div id="deleteCategory{{$category->id}}" class="modal fade" tabindex="-1"
+                                                            <div id="deleteProduct{{$product->id}}" class="modal fade" tabindex="-1"
                                                                 role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog modal-lg">
                                                                     <div class="modal-content">
@@ -134,8 +158,9 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Name</th>
-                                            <th>Description</th>
-                                            <th>Slug</th>
+                                            <th>Image</th>
+                                            <th>Category<th>
+                                            <th>Tag</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>

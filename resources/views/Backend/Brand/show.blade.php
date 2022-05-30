@@ -47,18 +47,30 @@
                                     </div>
                                     </div>
                                     <div class="form-group row">
+                                        <strong class="col-md-3">Slug:</strong>
+                                        <div class="col-md-9">
+                                           {{$brand->slug}}
+                                    </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <strong class="col-md-3">Logo:</strong>
+                                        <div class="col-md-9">
+                                            <td> <a href="{{asset('Uploads/Brand/Logo/'.$brand->brand_logo)}}"
+                                                target="_blank">
+                                            <img src="{{ asset('Uploads/Brand/Logo/'.$brand->brand_logo) }}" alt="" width="200px">
+                                            {{$brand->brand_logo}}</a><br></td>
+                                    </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <strong class="col-md-3">Brand Description:</strong>
-                                        <div class="col-md-6">
-                                            @if($brand_description == null)
-                                            N/A
-                                            @else
-                                           {{$brand->brand_description}}
+                                        <div class="col-md-9">
+                                          {!!$brand->brand_description!!}
 
                                     </div>
                                     </div>
 
 
-                                   
+
 
 
 

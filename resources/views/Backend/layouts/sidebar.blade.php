@@ -22,12 +22,18 @@
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-pencil"></i><span class="hide-menu"> Posts </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="{{route('post.index')}}" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">All Posts</span></a></li>
+                                <li class="sidebar-item"><a href="{{route('product.index')}}" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">Products</span></a></li>
                                 <li class="sidebar-item"><a href="{{route('category.index')}}" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">Categories</span></a></li>
                                 <li class="sidebar-item"><a href="{{route('subcategory.index')}}" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">Subcategories</span></a></li>
                                 <li class="sidebar-item"><a href="{{route('tag.index')}}" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">Tags</span></a></li>
                                 <li class="sidebar-item"><a href="{{route('brand.index')}}" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">Brand</span></a></li>
                             </ul>
                         </li>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-pencil"></i><span class="hide-menu">Order Management </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href="{{route('order.index')}}" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">Orders</span></a></li>
+
+                            </ul>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-pencil"></i><span class="hide-menu">Media </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="{{route('media.index')}}" class="sidebar-link"> <i class="far fa-circle nav-icon text-info"></i><span class="hide-menu">Library</span></a></li>

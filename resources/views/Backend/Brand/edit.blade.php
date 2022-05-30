@@ -49,7 +49,7 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
-                                    <h4 class="card-title">Create Brand</h4>
+                                    <h4 class="card-title">Edit Brand</h4>
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Brand Name
                                             <span class="required text-danger"> * </span></label>
@@ -65,12 +65,20 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Brand Description
+                                        <label class="col-sm-3 text-right control-label col-form-label">Logo
+                                        </label>
+                                        <div class="col-sm-9">
+                                            <input type="file" name="brand_logo"
+                                            class="form-control"
+                                            value="{{old('brand_logo','')}}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Brand Description </label>
                                         <div class="col-sm-9">
                                             <textarea type="text" name="brand_description"
-                                    class="ckeditor form-control @error('brand_description') is-invalid @enderror"
-                                    value="{{old('brand_description',$brand->brand_description)}}" placeholder="Enter Department Description"
-                                   >{{old('brand_description','')}}</textarea>
+                                    class="ckeditor form-control @error('brand_description') is-invalid @enderror"  placeholder="Enter Department Description"
+                                   >{{old('brand_description',$brand->brand_description)}}</textarea>
                                         </div>
                                     </div>
 
