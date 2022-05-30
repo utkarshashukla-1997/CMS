@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 class BrandController extends Controller
 {
     /**
@@ -50,7 +50,20 @@ class BrandController extends Controller
             'brand_name' => 'required',
         ]);
         $input = $request->all();
-        $brand = Brand::create($input);
+        $brand = new Brand();
+        $brand->brand_name = $input['brand_name'];
+        $brand->slug = Str::slug($input['brand_name']);
+        $brand->brand_description = $input['brand_description'];
+        if ($request->hasFile('brand_logo')) {
+            $image = $request->file('brand_logo');
+            $brand_logo = "TD-" . time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path() . '/Uploads/Brand/Logo/', $brand_logo);
+
+            $brand->brand_logo = $brand_logo;
+            $input['brand_logo'] = $brand_logo;
+        }
+        $brand->save();
+
         return redirect()->route('brand.index')
             ->with('success', 'New Brand Created Successfully !!!', compact('brand'));
     }
@@ -95,8 +108,27 @@ class BrandController extends Controller
 
         $input = $request->all();
         $brand = Brand::find($id);
+        $brand->brand_name = $input['brand_name'];
+        $brand->slug = Str::slug($input['brand_name']);
+        $brand->brand_description = $input['brand_description'];
         $brand->update($input);
+        if ($request->file_image != '') {
+            $path = public_path() . '/Uploads/Brand/Logo/';
+            //code for remove old file
+            if ($brand->brand_logo != ''  && $brand->brand_logo != null) {
+                $file_old = $path . $brand->brand_logo;
+                unlink($file_old);
+            }
+            if ($request->hasFile('brand_logo')) {
+                $image = $request->file('brand_logo');
+                $brand_logo = "TD-" . time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path() . '/Uploads/Brand/Logo', $brand_logo);
 
+                $brand->brand_logo = $brand_logo;
+                $input['brand_logo'] = $brand_logo;
+            }
+        }
+        $brand->update($input);
         return redirect()->route('brand.index')
             ->with('success', 'Selected Brand Details Updated Successfully !!!');
     }

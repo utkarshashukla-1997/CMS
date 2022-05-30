@@ -1,6 +1,6 @@
 
 @extends('Backend.layouts.master')
-@section('page_title',' Category')
+@section('page_title',' Order')
 @section('content')
         <!-- ============================================================== -->
         <div class="page-wrapper">
@@ -10,12 +10,12 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Category</h4>
+                        <h4 class="page-title">Order</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Category</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Order</li>
                                 </ol>
                             </nav>
                         </div>
@@ -45,62 +45,174 @@
                                 </ul>
                             </div>
                             @endif
-                            <form action="{{ route('category.update',$category->id) }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('order.update') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
-                                    <h4 class="card-title">Create Category</h4>
+                                    <h4 class="card-title">Create Order</h4>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Name
+                                        <label class="col-sm-3 text-right control-label col-form-label">Order Number
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="name" required placeholder="Enter Name"
-                                            class="form-control   @error('name') is-invalid @enderror"
-                                            value="{{old('name',$category->name)}}" />
-                                        @error('name')
+                                            <input type="text" name="order_no" required placeholder="Enter Order Number"
+                                            class="form-control   @error('order_no') is-invalid @enderror"
+                                            value="{{old('order_no',$order->order_no)}}" />
+                                        @error('order_no')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
                                         </span>
                                         @enderror
                                         </div>
                                     </div>
-                                   
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label"> Parent Category
+                                        <label class="col-sm-3 text-right control-label col-form-label"> Customer Name
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <select class="form-control @error('parent_category') is-invalid @enderror" name="parent_category">
-                                                <option class="bg-info" disabled selected>Select Parent Category....</option>
-                                                <option value="None" {{old('parent_category')=='None' ?'selected':''}}  @if($category->parent_category == "None") selected @endif>None
+                                            <input type="text" name="customer_name" required placeholder="Enter Customer Name"
+                                            class="form-control   @error('customer_name') is-invalid @enderror"
+                                            value="{{old('customer_name',$order->customer_name)}}" />
+                                        @error('customer_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label"> Customer Email
+                                            <span class="required text-danger"> * </span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="customer_email" required placeholder="Enter Customer Email"
+                                            class="form-control   @error('customer_email') is-invalid @enderror"
+                                            value="{{old('customer_email',$order->customer_email)}}" />
+                                        @error('customer_email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Customer Address
+                                            <span class="required text-danger"> * </span>
+                                        </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="customer_address" required placeholder="Enter Customer Address"
+                                            class="form-control   @error('customer_address') is-invalid @enderror"
+                                            value="{{old('customer_address',$order->customer_address)}}" />
+                                        @error('customer_address')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Customer Country
+                                            <span class="required text-danger"> * </span>
+                                        </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="customer_country" required placeholder="Enter Customer Country"
+                                            class="form-control   @error('customer_country') is-invalid @enderror"
+                                            value="{{old('customer_country',$order->customer_country)}}" />
+                                        @error('customer_country')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label"> Ordered Products
+                                            <span class="required text-danger"> * </span></label>
+                                        <div class="col-sm-9">
+                                            <select class="select2 form-control @error('product_id') is-invalid @enderror"
+                                            name="product_id[]" multiple="multiple" required style="width: 100%;"
+                                            data-dropdown-css-class="select2-info" data-placeholder="Select Holiday...">
+                                            <option class="bg-info" disabled selected>Select Products....</option>
+                                            @foreach ($product as $product)
+                                            <option value="{{$product->id}}">{{$product->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('product_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Ordered Date
+                                            <span class="required text-danger"> * </span>
+                                        </label>
+                                        <div class="col-sm-9">
+                                            <input type="date" name="ordered_date"
+                                            class="form-control   @error('ordered_date') is-invalid @enderror"
+                                            value="{{old('ordered_date',$order->ordered_date)}}" />
+                                        @error('ordered_date')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label"> Order Status
+                                            <span class="required text-danger"> * </span></label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control @error('status') is-invalid @enderror" name="status">
+                                                <option class="bg-info" disabled selected>Select Order Status....</option>
+                                                <option value="Completed" {{old('status')=='Completed' ?'selected':''}}>Completed
                                                 </option>
-                                                <option value="Uncategorized" {{old('parent_category')=='Uncategorized' ?'selected':''}} @if($category->parent_category == "Uncategorized") selected @endif>Uncategorized
+                                                <option value="Processing" {{old('status')=='Processing' ?'selected':''}}>Processing
+                                                </option>
+                                                <option value="Cancelled" {{old('status')=='Cancelled' ?'selected':''}}>Cancelled
+                                                </option>
+                                                <option value="Refunded" {{old('status')=='Refunded' ?'selected':''}}>Refunded
+                                                </option>
+                                                <option value="On Hold" {{old('status')=='On Hold' ?'selected':''}}>On Hold
+                                                </option>
+                                                <option value="Payment Pending" {{old('status')=='Payment Pending' ?'selected':''}}>Payment Pending
                                                 </option>
                                             </select>
-                                            @error('parent_category')
+                                            @error('status')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{$message}}</strong>
                                             </span>
                                             @enderror
                                         </div>
                                     </div>
+
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Description
+                                        <label class="col-sm-3 text-right control-label col-form-label">Amount
+                                            <span class="required text-danger"> * </span>
                                         </label>
                                         <div class="col-sm-9">
-                                             <textarea type="text" name="description"
-                                            class="ckeditor form-control" placeholder="Enter Department Description"
-                                           >{{old('description',$category->description)}}</textarea>
+                                            <input type="text" name="amount" required placeholder="Enter Customer Address"
+                                            class="form-control   @error('amount') is-invalid @enderror"
+                                            value="{{old('amount',$order->amount)}}" />
+                                        @error('amount')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
                                         </div>
                                     </div>
+
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Featured Image
-                                        </label>
+                                        <label class="col-sm-3 text-right control-label col-form-label">Remarks</label>
                                         <div class="col-sm-9">
-                                            <input type="file" name="image_file"
-                                            class="form-control"
-                                            value="{{old('image_file','')}}" />
+                                            <textarea type="text" name="remarks"
+                                    class="ckeditor form-control" placeholder="Enter Department Description"
+                                   >{{old('remarks',$order->remarks)}}</textarea>
                                         </div>
                                     </div>
+
+
 
 
 

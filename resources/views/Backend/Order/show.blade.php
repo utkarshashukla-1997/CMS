@@ -1,6 +1,6 @@
 
 @extends('Backend.layouts.master')
-@section('page_title',' Category')
+@section('page_title',' Order')
 @section('content')
         <!-- ============================================================== -->
         <div class="page-wrapper">
@@ -10,12 +10,12 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Category</h4>
+                        <h4 class="page-title">Order</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Category</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Order</li>
                                 </ol>
                             </nav>
                         </div>
@@ -37,8 +37,8 @@
                         <div class="card">
 
                                 <div class="card-body">
-                                    <h4 class="card-title">Category Details</h4>
-                                    <a href="{{ route('category.index') }}" class="btn btn-success float-right">Back
+                                    <h4 class="card-title">Order Details</h4>
+                                    <a href="{{ route('order.index') }}" class="btn btn-success float-right">Back
                                     </a>
                                     <div class="form-group row">
                                         <strong class="col-md-3">Name:</strong>

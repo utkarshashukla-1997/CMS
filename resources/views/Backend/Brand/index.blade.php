@@ -46,6 +46,8 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Brand Name</th>
+                                            <th>Slug</th>
+                                            <th>Logo</th>
                                             <th>Description</th>
                                             <th>Action</th>
                                         </tr>
@@ -55,6 +57,11 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $brand->brand_name }}</td>
+                                            <td>{{$brand->slug}}</td>
+                                            <td> <a href="{{asset('Uploads/Brand/Logo/'.$brand->brand_logo)}}"
+                                                target="_blank">
+                                            <img src="{{ asset('Uploads/Brand/Logo/'.$brand->brand_logo) }}" alt="" width="200px">
+                                            {{$brand->brand_logo}}</a><br></td>
                                             <td>{!!$brand->brand_description!!}</td>
                                             <td>
                                                 <a class="btn btn-info" href="{{ route('brand.show',$brand->id) }}"><i
@@ -132,6 +139,8 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Brand Name</th>
+                                            <th>Slug</th>
+                                            <th>Logo</th>
                                             <th>Description</th>
                                             <th>Action</th>
                                         </tr>

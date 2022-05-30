@@ -67,8 +67,9 @@
                                         <label class="col-sm-3 text-right control-label col-form-label"> Category
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <select class="form-control @error('category_id') is-invalid @enderror"
-                                            name="category_id">
+                                            <select class="select2 form-control @error('category_id') is-invalid @enderror"
+                                            name="category_id[]" multiple="multiple" required style="width: 100%;"
+                                            data-dropdown-css-class="select2-info" data-placeholder="Select Holiday...">
                                             <option class="bg-info" disabled selected>Select Category....</option>
                                             @foreach ($category as $category)
                                             <option value="{{$category->id}}">{{$category->name}}</option>
@@ -82,14 +83,35 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">SubCategory
+                                            <span class="required text-danger"> * </span></label>
+                                        <div class="col-sm-9">
+                                            <select class="select2 form-control @error('subcategory_id') is-invalid @enderror"
+                                            name="subcategory_id[]" multiple="multiple" required style="width: 100%;"
+                                            data-dropdown-css-class="select2-info" data-placeholder="Select Holiday...">
+                                            <option class="bg-info" disabled selected>Select Subcategory....</option>
+                                            @foreach ($subcategory as $subcategory)
+                                            <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('subcategory_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Tag
+                                            <span class="required text-danger"> * </span>
                                         </label>
                                         <div class="col-sm-9">
-                                            <select class="form-control @error('tag_id') is-invalid @enderror"
-                                            name="tag_id">
+                                            <select class="select2 form-control @error('tag_id') is-invalid @enderror"
+                                            name="tag_id[]" multiple="multiple" required style="width: 100%;"
+                                            data-dropdown-css-class="select2-info" data-placeholder="Select Holiday...">
                                             <option class="bg-info" disabled selected>Select Tag....</option>
-                                            @foreach ($tag as $tag)
-                                            <option value="{{$tag->id}}">{{$tag->name}}</option>
+                                            @foreach ($tag as $taggs)
+                                            <option value="{{$taggs->id}}">{{$taggs->name}}</option>
                                             @endforeach
                                         </select>
                                         @error('tag_id')
@@ -101,13 +123,14 @@
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Brand
+                                            <span class="required text-danger"> * </span></label>
                                         </label>
                                         <div class="col-sm-9">
                                             <select class="form-control @error('brand_id') is-invalid @enderror"
                                             name="brand_id">
                                             <option class="bg-info" disabled selected>Select Brand....</option>
                                             @foreach ($brand as $brand)
-                                            <option value="{{$brand->id}}">{{$brand->name}}</option>
+                                            <option value="{{$brand->id}}">{{$brand->brand_name}}</option>
                                             @endforeach
                                         </select>
                                         @error('brand_id')
@@ -165,7 +188,7 @@
                                         <label class="col-sm-3 text-right control-label col-form-label"> Product Status
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <select class="form-control @error('product_status') is-invalid @enderror" name="parent_category">
+                                            <select class="form-control @error('product_status') is-invalid @enderror" name="product_status">
                                                 <option class="bg-info" disabled selected>Select Product Status....</option>
                                                 <option value="Virtual" {{old('product_status')=='Virtual' ?'selected':''}}>Virtual
                                                 </option>
@@ -180,8 +203,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label">Short Description
-                                            <span class="required text-danger"> * </span> </label>
+                                        <label class="col-sm-3 text-right control-label col-form-label">Short Description </label>
 
                                         <div class="col-sm-9">
                                             <textarea type="text" name="short_description"
@@ -190,8 +212,30 @@
 
                                         </div>
                                     </div>
-
-
+                                    <div class="form-group row">
+                                    <label class="col-sm-3 text-right control-label col-form-label">Image File
+                                        <span class="required text-danger"> * </span>
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input type="file" name="file_image" required placeholder="Enter Sales Price"
+                                        class="form-control"
+                                        value="{{old('file_image','')}}" />
+                                    @error('file_image')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                                    @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right control-label col-form-label">Other Image
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input type="file" name="other_image"
+                                        class="form-control"
+                                        value="{{old('other_image','')}}" />
+                                    </div>
+                                </div>
 
                                 </div>
                                 <div class="border-top">

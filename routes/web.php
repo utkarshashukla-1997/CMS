@@ -17,6 +17,8 @@ use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\TermPrivacyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,6 +61,10 @@ Route::resource('media',MediaController::class);
 Route::resource('comment',CommentController::class);
 // Brand
 Route::resource('brand',BrandController::class);
+// Product
+Route::resource('product',ProductController::class);
+// Order
+Route::resource('order',OrderController::class);
 // General Settings
 Route::resource('general',GeneralSettingsController::class);
 // Mail Settings

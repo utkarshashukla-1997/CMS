@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('product_name');
             $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('subcategory_id');
             $table->unsignedBigInteger('tag_id');
             $table->unsignedBigInteger('brand_id');
             $table->unsignedBigInteger('recorded_by');
@@ -30,6 +31,7 @@ return new class extends Migration
             $table->string('other_image')->nullable();
             $table->foreign('recorded_by')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('subcategory_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('tag_id')->references('id')->on('tags')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('brand_id')->references('id')->on('brands')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
