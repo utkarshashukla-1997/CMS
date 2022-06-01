@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SubCategory;
 use App\Models\Categories;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 class SubCategoryController extends Controller
@@ -35,7 +36,7 @@ class SubCategoryController extends Controller
     public function create()
     {
         $subcategory = SubCategory::all();
-        $category = Categories::all();
+        $category = Category::all();
         return view('Backend.SubCategory.create',compact('subcategory','category'));
     }
 
@@ -92,7 +93,8 @@ class SubCategoryController extends Controller
     public function edit($id)
     {
         $subcategory = SubCategory::find($id);
-        return view('Backend.SubCategory.edit',compact('subcategory'));
+        $category = Category::all();
+        return view('Backend.SubCategory.edit',compact('subcategory','category'));
     }
 
     /**

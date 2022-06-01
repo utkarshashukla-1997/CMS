@@ -10,12 +10,12 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Category</h4>
+                        <h4 class="page-title">Product</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Category</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Product</li>
                                 </ol>
                             </nav>
                         </div>
@@ -37,7 +37,7 @@
                         <div class="card">
 
                                 <div class="card-body">
-                                    <h4 class="card-title">Category Details</h4>
+                                    <h4 class="card-title">Product Details</h4>
                                     <a href="{{ route('category.index') }}" class="btn btn-success float-right">Back
                                     </a>
                                     <div class="form-group row">

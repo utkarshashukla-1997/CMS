@@ -60,7 +60,27 @@
                                             <td>{{ $order->order_no }}</td>
                                             <td>{{$order->customer_name}}</td>
                                             <td>{{$order->customer_address}}</td>
-                                            <td>{{$order->prod['name']}}</td>
+                                            <td> @php
+                                                $productorder = [];
+                                            @endphp
+                                            @foreach ($order->prod as $product)
+                                            @php
+                                                array_push($productorder,$product->product_name);
+                                            @endphp
+
+                                            @endforeach
+                                             {{implode(',',$productorder)}} &nbsp;
+                                             @php
+                                             $productorder = [];
+                                         @endphp
+                                         @foreach ($product->sub as $subcategory)
+                                         @php
+                                             array_push($productsub,$category->name);
+                                         @endphp
+
+                                         @endforeach
+                                          {{implode(',',$productsub)}}
+                                            </td>
                                             <td>{{$order->ordered_date}}</td>
                                             <td>
                                                 <a class="btn btn-info" href="{{ route('order.show',$order->id) }}"><i

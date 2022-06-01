@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categories;
+use App\Models\Category;
 use App\Models\Page;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -36,7 +36,7 @@ class PagesController extends Controller
     public function create()
     {
         $page = Page::all();
-        $category = Categories::all();
+        $category = Category::all();
         $tag = Tag::all();
 
         return view('Backend.Page.create',compact('category','tag','page'));
@@ -95,7 +95,7 @@ class PagesController extends Controller
      */
     public function edit($id)
     {
-        $category = Categories::all();
+        $category = Category::all();
         $tag = Tag::all();
         $page = Page::findOrFail($id);
         return view('Backend.Page.edit',compact('category','tag','page'));

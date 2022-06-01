@@ -46,22 +46,19 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Name</th>
-                                            <th>Image</th>
-                                            <th>Category<th>
-                                            <th>Tag</th>
-                                            <th>Action</th>
+                                            <th>Categories</th>
+                                            <th>Tags</th>
+                                            <th>Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($data as $key => $product)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $product->product_name }}</td>
-                                            <td> <a href="{{asset('Uploads/Product/File/'.$product->file_image)}}"
+                                            <td>{{ $product->product_name }} &nbsp; <a href="{{asset('Uploads/Product/File/'.$product->file_image)}}"
                                                 target="_blank">
                                             <img src="{{ asset('Uploads/Product/File/'.$product->file_image) }}" alt="" width="200px">
                                             {{$product->file_image}}</a><br></td>
-                                            <td>{{$product->slug}}</td>
                                             <td> @php
                                                 $productcat = [];
                                             @endphp
@@ -71,7 +68,18 @@
                                             @endphp
 
                                             @endforeach
-                                             {{implode(',',$productcat)}}</td>
+                                             {{implode(',',$productcat)}} &nbsp;
+                                             @php
+                                             $productsub = [];
+                                         @endphp
+                                         @foreach ($product->sub as $subcategory)
+                                         @php
+                                             array_push($productsub,$category->name);
+                                         @endphp
+
+                                         @endforeach
+                                          {{implode(',',$productsub)}}
+                                            </td>
                                              <td> @php
                                                 $producttag = [];
                                             @endphp
@@ -158,10 +166,9 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Name</th>
-                                            <th>Image</th>
-                                            <th>Category<th>
-                                            <th>Tag</th>
-                                            <th>Action</th>
+                                            <th>Categories</th>
+                                            <th>Tags</th>
+                                            <th>Date</th>
                                         </tr>
                                     </tfoot>
                                 </table>
