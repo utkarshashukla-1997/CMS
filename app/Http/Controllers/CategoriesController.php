@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categories;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 class CategoriesController extends Controller
@@ -21,7 +21,7 @@ class CategoriesController extends Controller
     }
     public function index(Request $request)
     {
-        $data = Categories::orderBy('id', 'DESC')->get();
+        $data = Category::orderBy('id', 'DESC')->get();
         return view('Backend.Category.index', compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -33,7 +33,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        $category = Categories::all();
+        $category = Category::all();
         return view('Backend.Category.create',compact('category'));
     }
 
@@ -50,7 +50,7 @@ class CategoriesController extends Controller
             'parent_category'=> 'required',
         ]);
         $input = $request->all();
-        $category = new Categories();
+        $category = new Category();
        $category->name = $input['name'];
       $category->slug = Str::slug($input['name']);
       $category->parent_category = $input['parent_category'];
@@ -76,7 +76,7 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        $category = Categories::find($id);
+        $category = Category::find($id);
         return view('Backend.Category.show',compact('category'));
     }
 
@@ -88,7 +88,7 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        $category = Categories::findOrfail($id);
+        $category = Category::findOrfail($id);
         return view('Backend.Category.edit',compact('category'));
     }
 
@@ -107,7 +107,7 @@ class CategoriesController extends Controller
         ]);
         $input = $request->all();
         // dd($input);
-        $category = Categories::findOrfail($id);
+        $category = Category::findOrfail($id);
         $category->name = $input['name'];
         $category->slug = Str::slug($input['name']);
         $category->parent_category = $input['parent_category'];
@@ -143,7 +143,7 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        Categories::find($id)->delete();
+        Category::find($id)->delete();
         return redirect()->route('category.index')
             ->with('success', 'Selected Category has been Deleted Successfully !!!');
     }

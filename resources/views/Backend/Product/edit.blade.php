@@ -48,6 +48,8 @@
                             <form action="{{ route('product.update',$product->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
+                                <input type="hidden" class="form-control" value="{{Auth::user()->id}}" required readonly
+                                name="recorded_by" />
                                 <div class="card-body">
                                     <h4 class="card-title">Edit Product</h4>
                                     <div class="form-group row">
@@ -86,8 +88,8 @@
                                         <label class="col-sm-3 text-right control-label col-form-label">SubCategory
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <select class="select2 form-control @error('subcategory_id') is-invalid @enderror"
-                                            name="subcategory_id[]" multiple="multiple" required style="width: 100%;"
+                                            <select class="select2 form-control @error('sub_category_id') is-invalid @enderror"
+                                            name="sub_category_id[]" multiple="multiple" required style="width: 100%;"
                                             data-dropdown-css-class="select2-info" data-placeholder="Select Holiday...">
                                             <option class="bg-info1" disabled selected>Select Subcategory....</option>
                                             @foreach ($subcategory as $subcategory)
@@ -129,7 +131,7 @@
                                             name="brand_id">
                                             <option class="bg-info" disabled selected>Select Brand....</option>
                                             @foreach ($brand as $brand)
-                                            <option value="{{$brand->id}}">{{$brand->name}}</option>
+                                            <option value="{{$brand->id}}">{{$brand->brand_name}}</option>
                                             @endforeach
                                         </select>
                                         @error('brand_id')
@@ -146,7 +148,7 @@
                                         <div class="col-sm-9">
                                             <textarea type="text" name="description"
                                     class="ckeditor form-control @error('description') is-invalid @enderror"
-                                   >{{old('description','')}}</textarea>
+                                   >{{old('description',$product->description)}}</textarea>
                                    @error('description')
                                    <span class="invalid-feedback" role="alert">
                                        <strong>{{$message}}</strong>
@@ -161,7 +163,7 @@
                                         <div class="col-sm-9">
                                             <input type="text" name="regular_price" required placeholder="Enter Regular Price"
                                             class="form-control   @error('regular_price') is-invalid @enderror"
-                                            value="{{old('regular_price','')}}" />
+                                            value="{{old('regular_price',$product->regular_price)}}" />
                                         @error('regular_price')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -175,7 +177,7 @@
                                         <div class="col-sm-9">
                                             <input type="text" name="sales_price" required placeholder="Enter Sales Price"
                                             class="form-control"
-                                            value="{{old('sales_price','')}}" />
+                                            value="{{old('sales_price',$product->sales_price)}}" />
                                         @error('sales_price')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -189,7 +191,7 @@
                                         <div class="col-sm-9">
                                             <textarea type="text" name="short_description"
                                     class="ckeditor form-control"
-                                   >{{old('short_description','')}}</textarea>
+                                   >{{old('short_description',$product->short_description)}}</textarea>
 
                                         </div>
                                     </div>
@@ -199,9 +201,9 @@
                                         <div class="col-sm-9">
                                             <select class="form-control @error('product_status') is-invalid @enderror" name="parent_category">
                                                 <option class="bg-info" disabled selected>Select Product Status....</option>
-                                                <option value="Virtual" {{old('product_status')=='Virtual' ?'selected':''}}>Virtual
+                                                <option value="Virtual" {{old('product_status')=='Virtual' ?'selected':''}} @if($product->product_status =='Virtual') selected @endif>Virtual
                                                 </option>
-                                                <option value="Downloadable" {{old('product_status')=='Downloadable' ?'selected':''}}>Downloadable
+                                                <option value="Downloadable" {{old('product_status')=='Downloadable' ?'selected':''}} @if($product->product_status == 'Downloadable') selected @endif>Downloadable
                                                 </option>
                                             </select>
                                             @error('product_status')

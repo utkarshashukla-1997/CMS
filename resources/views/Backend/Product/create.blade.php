@@ -50,6 +50,8 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Create Product</h4>
                                     <div class="form-group row">
+                                        <input type="hidden" class="form-control" value="{{Auth::user()->id}}" required readonly
+                                        name="recorded_by" />
                                         <label class="col-sm-3 text-right control-label col-form-label">Product Name
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
@@ -86,8 +88,8 @@
                                         <label class="col-sm-3 text-right control-label col-form-label">SubCategory
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <select class="select2 form-control @error('subcategory_id') is-invalid @enderror"
-                                            name="subcategory_id[]" multiple="multiple" required style="width: 100%;"
+                                            <select class="select2 form-control @error('sub_category_id') is-invalid @enderror"
+                                            name="sub_category_id[]" multiple="multiple" required style="width: 100%;"
                                             data-dropdown-css-class="select2-info" data-placeholder="Select Holiday...">
                                             <option class="bg-info" disabled selected>Select Subcategory....</option>
                                             @foreach ($subcategory as $subcategory)

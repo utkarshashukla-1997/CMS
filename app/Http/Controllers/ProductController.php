@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\Categories;
+use App\Models\Category;
 use App\Models\Tag;
 use App\Models\SubCategory;
 use App\Models\Brand;
@@ -18,10 +18,10 @@ class ProductController extends Controller
      */
     function __construct()
     {
-        $this->middleware('permission:order-list|order-create|order-edit|order-delete', ['only' => ['index', 'show']]);
-        $this->middleware('permission:order-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:order-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:order-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:product-list|product-create|product-edit|product-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:product-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:product-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:product-delete', ['only' => ['destroy']]);
     }
     public function index(Request $request)
     {
@@ -38,7 +38,7 @@ class ProductController extends Controller
     public function create()
     {
         $product = Product::all();
-        $category = Categories::all();
+        $category = Category::all();
         $tag = Tag::all();
         $subcategory = SubCategory::all();
         $brand = Brand::all();
@@ -56,7 +56,7 @@ class ProductController extends Controller
         $this->validate($request, [
             'product_name' => 'required',
             'category_id' => 'required',
-            'subcategory_id'=> 'required',
+            'sub_category_id'=> 'required',
             'tag_id' => 'required',
             'brand_id' => 'required',
             'description' => 'required',
@@ -66,10 +66,10 @@ class ProductController extends Controller
         ]);
         $input = $request->all();
         $product = new Product();
-        $product->name = $input['name'];
-        $product->slug = Str::slug($input['name']);
+        $product->product_name = $input['product_name'];
+        $product->slug = Str::slug($input['product_name']);
         $product->category_id = $input['category_id'][0];
-        $product->subcategory_id = $input['subcategory'][0];
+        $product->sub_category_id = $input['sub_category_id'][0];
         $product->tag_id = $input['tag_id'][0];
         $product->brand_id = $input['brand_id'];
         $product->description = $input['description'];
@@ -77,6 +77,7 @@ class ProductController extends Controller
         $product->sales_price = $input['sales_price'];
         $product->short_description = $input['short_description'];
         $product->product_status = $input['product_status'];
+        $product->recorded_by = $input['recorded_by'];
 
         if ($request->hasFile('file_image')) {
             $image = $request->file('file_image');
@@ -97,6 +98,7 @@ class ProductController extends Controller
         $product->save();
         $product->cat()->sync($request->category_id);
         $product->tagg()->sync($request->tag_id);
+        $product->sub()->sync($request->subcategory_id);
         return redirect()->route('product.index')
             ->with('success', 'New Product Created Successfully !!!', compact('product'));
     }
@@ -122,7 +124,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrfail($id);
-        $category = Categories::all();
+        $category = Category::all();
         $tag = Tag::all();
         $subcategory = SubCategory::all();
         $brand = Brand::all();
@@ -139,15 +141,14 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'order_no' => 'required',
-            'customer_name' => 'required',
-            'customer_email' => 'required',
-            'customer_address' => 'required',
-            'customer_country' => 'required',
-             'product' => 'required',
-             'ordered_date' => 'required',
-             'status' => 'required',
-             'amount' => 'required'
+            'product_name' => 'required',
+            'category_id' => 'required',
+            'sub_category_id'=> 'required',
+            'tag_id' => 'required',
+            'brand_id' => 'required',
+            'description' => 'required',
+             'regular_price' => 'required',
+             'product_status' => 'required',
 
         ]);
         $input = $request->all();

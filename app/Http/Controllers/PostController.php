@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categories;
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -36,7 +36,7 @@ class PostController extends Controller
     public function create()
     {
         $post = Post::all();
-        $category = Categories::all();
+        $category = Category::all();
         $tag = Tag::all();
         return view('Backend.Post.create',compact('post','category','tag'));
     }
@@ -97,7 +97,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findOrfail($id);
-      $category = Categories::all();
+      $category = Category::all();
       $tag = Tag::all();
 
       return view('Backend.Post.edit',compact('category','post','tag'));
