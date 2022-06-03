@@ -95,10 +95,13 @@ class ProductController extends Controller
             $product->other_image = $other_image;
             $input['other_image'] = $other_image;
         }
+
         $product->save();
         $product->cat()->sync($request->category_id);
+        $product->sub()->sync($request->sub_category_id);
         $product->tagg()->sync($request->tag_id);
-        $product->sub()->sync($request->subcategory_id);
+
+
         return redirect()->route('product.index')
             ->with('success', 'New Product Created Successfully !!!', compact('product'));
     }

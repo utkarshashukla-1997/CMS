@@ -59,6 +59,7 @@ class OrderController extends Controller
 
         ]);
         $input = $request->all();
+        $input['product'] = $input['product'][0];
         $order = Order::create($input);
         $order->prod()->sync($request->product);
         return redirect()->route('order.index')

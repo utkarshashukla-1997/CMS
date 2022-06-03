@@ -50,6 +50,8 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Create Order</h4>
                                     <div class="form-group row">
+                                        <input type="hidden" class="form-control" value="{{Auth::user()->id}}" required readonly
+                                        name="recorded_by" />
                                         <label class="col-sm-3 text-right control-label col-form-label">Order Number
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
@@ -127,15 +129,15 @@
                                         <label class="col-sm-3 text-right control-label col-form-label"> Ordered Products
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <select class="select2 form-control @error('product_id') is-invalid @enderror"
-                                            name="product_id[]" multiple="multiple" required style="width: 100%;"
+                                            <select class="select2 form-control @error('product') is-invalid @enderror"
+                                            name="product[]" multiple="multiple" required style="width: 100%;"
                                             data-dropdown-css-class="select2-info" data-placeholder="Select Holiday...">
                                             <option class="bg-info" disabled selected>Select Products....</option>
                                             @foreach ($product as $product)
-                                            <option value="{{$product->id}}">{{$product->name}}</option>
+                                            <option value="{{$product->id}}">{{$product->product_name}}</option>
                                             @endforeach
                                         </select>
-                                        @error('product_id')
+                                        @error('product')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
                                         </span>
