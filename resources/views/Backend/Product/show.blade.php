@@ -38,45 +38,83 @@
 
                                 <div class="card-body">
                                     <h4 class="card-title">Product Details</h4>
-                                    <a href="{{ route('category.index') }}" class="btn btn-success float-right">Back
+                                    <a href="{{ route('product.index') }}" class="btn btn-success float-right">Back
                                     </a>
                                     <div class="form-group row">
-                                        <strong class="col-md-3">Name:</strong>
+                                        <strong class="col-md-3">Product Name:</strong>
                                         <div class="col-md-9">
-                                           {{$category->name}}
+                                           {{$product->product_name}}
                                     </div>
                                     </div>
                                     <div class="form-group row">
-                                        <strong class="col-md-3">Slug:</strong>
+                                        <strong class="col-md-3">Category:</strong>
                                         <div class="col-md-6">
-                                           {{$category->slug}}
+
                                     </div>
                                     </div>
                                     <div class="form-group row">
-                                        <strong class="col-md-3">Parent Category:</strong>
+                                        <strong class="col-md-3">Sub Category:</strong>
                                         <div class="col-md-6">
-                                           {{$category->parent_category}}
+
                                     </div>
                                     </div>
                                     <div class="form-group row">
-                                        <strong class="col-md-3">Description:</strong>
+                                        <strong class="col-md-3">Tag:</strong>
                                         <div class="col-md-6">
-                                           {!!$category->description!!}
+
                                     </div>
                                     </div>
                                     <div class="form-group row">
-                                        <strong class="col-md-3">Featured Image:</strong>
+                                        <strong class="col-md-3">Brand:</strong>
                                         <div class="col-md-6">
-                                        @if($category->image_file!=null)
-                                        <a href="{{asset('Uploads/Category/File/'.$category->image_file)}}"
-                                            target="_blank">
-                                        <img src="{{ asset('Uploads/Category/File/'.$category->image_file) }}" alt="" width="200px">
-                                        {{$category->image_file}}</a><br>
-                                        @else
-                                        N/A
-                                        @endif
+
                                     </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <strong class="col-md-3">Product Description:</strong>
+                                        <div class="col-md-6">
+
+                                    </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <strong class="col-md-3">Regular Price:</strong>
+                                        <div class="col-md-6">
+
+                                    </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <strong class="col-md-3">Sales Price:</strong>
+                                        <div class="col-md-6">
+
+                                    </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <strong class="col-md-3">Product Status:</strong>
+                                        <div class="col-md-6">
+
+                                    </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <strong class="col-md-3">Short Description:</strong>
+                                        <div class="col-md-6">
+
+                                    </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <strong class="col-md-3">Image File:</strong>
+                                        <div class="col-md-6">
+
+                                    </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <strong class="col-md-3">Other File:</strong>
+                                        <div class="col-md-6">
+
+                                    </div>
+                                    </div>
+                                </div>
+
+
 
 
 

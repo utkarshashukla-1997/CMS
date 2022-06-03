@@ -49,8 +49,10 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
-                                    <h4 class="card-title">Create Order</h4>
+                                    <h4 class="card-title">Edit Order</h4>
                                     <div class="form-group row">
+                                        <input type="hidden" class="form-control" value="{{Auth::user()->id}}" required readonly
+                                        name="recorded_by" />
                                         <label class="col-sm-3 text-right control-label col-form-label">Order Number
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">

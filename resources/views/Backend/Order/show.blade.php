@@ -41,42 +41,66 @@
                                     <a href="{{ route('order.index') }}" class="btn btn-success float-right">Back
                                     </a>
                                     <div class="form-group row">
-                                        <strong class="col-md-3">Name:</strong>
+                                        <strong class="col-md-3">Order Number:</strong>
                                         <div class="col-md-9">
                                            {{$category->name}}
                                     </div>
                                     </div>
                                     <div class="form-group row">
-                                        <strong class="col-md-3">Slug:</strong>
+                                        <strong class="col-md-3">Customer Name:</strong>
                                         <div class="col-md-6">
                                            {{$category->slug}}
                                     </div>
                                     </div>
                                     <div class="form-group row">
-                                        <strong class="col-md-3">Parent Category:</strong>
+                                        <strong class="col-md-3">Customer Email:</strong>
                                         <div class="col-md-6">
                                            {{$category->parent_category}}
                                     </div>
                                     </div>
                                     <div class="form-group row">
-                                        <strong class="col-md-3">Description:</strong>
+                                        <strong class="col-md-3">Customer Address:</strong>
                                         <div class="col-md-6">
                                            {!!$category->description!!}
                                     </div>
                                     </div>
                                     <div class="form-group row">
-                                        <strong class="col-md-3">Featured Image:</strong>
+                                        <strong class="col-md-3">Customer Country:</strong>
                                         <div class="col-md-6">
-                                        @if($category->image_file!=null)
-                                        <a href="{{asset('Uploads/Category/File/'.$category->image_file)}}"
-                                            target="_blank">
-                                        <img src="{{ asset('Uploads/Category/File/'.$category->image_file) }}" alt="" width="200px">
-                                        {{$category->image_file}}</a><br>
-                                        @else
-                                        N/A
-                                        @endif
+
                                     </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <strong class="col-md-3">Ordered Products:</strong>
+                                        <div class="col-md-6">
+
+                                    </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <strong class="col-md-3">Ordered Date:</strong>
+                                        <div class="col-md-6">
+
+                                    </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <strong class="col-md-3">Ordered Status:</strong>
+                                        <div class="col-md-6">
+
+                                    </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <strong class="col-md-3">Amount:</strong>
+                                        <div class="col-md-6">
+
+                                    </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <strong class="col-md-3">Remarks:</strong>
+                                        <div class="col-md-6">
+
+                                    </div>
+                                    </div>
+                                    
 
 
 
