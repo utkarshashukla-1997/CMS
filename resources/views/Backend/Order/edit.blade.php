@@ -45,7 +45,7 @@
                                 </ul>
                             </div>
                             @endif
-                            <form action="{{ route('order.update') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('order.update',$order->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
@@ -127,18 +127,30 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-3 text-right control-label col-form-label"> Ordered Products
-                                            <span class="required text-danger"> * </span></label>
+                                        <label class="col-sm-3 text-right control-label col-form-label">Ordered Products
+                                        </label>
                                         <div class="col-sm-9">
-                                            <select class="select2 form-control @error('product_id') is-invalid @enderror"
-                                            name="product_id[]" multiple="multiple" required style="width: 100%;"
-                                            data-dropdown-css-class="select2-info" data-placeholder="Select Holiday...">
-                                            <option class="bg-info" disabled selected>Select Products....</option>
-                                            @foreach ($product as $product)
-                                            <option value="{{$product->id}}">{{$product->name}}</option>
+                                            <select class="form-control select2 @error('product') is-invalid @enderror"
+                                            name="product[]" multiple="multiple" required style="width: 100%;"
+                                            data-dropdown-css-class="select2-info">
+                                            @php
+                                                $productorder = [];
+                                            @endphp
+                                            @foreach ($order->prod as $produc)
+                                            @php
+                                                array_push($productorder,$produc->product_name);
+                                            @endphp
                                             @endforeach
+                                             <option disabled selected>
+
+                                                {{implode(',',$productorder)}}
+                                            </option>
+                                            <option class="bg-info" disabled>Select Products....</option>
+                                        @foreach ($product as $prod)
+                                        <option value="{{$prod->id}}">{{$prod->product_name}}</option>
+                                        @endforeach
                                         </select>
-                                        @error('product_id')
+                                        @error('product')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
                                         </span>
@@ -168,17 +180,17 @@
                                         <div class="col-sm-9">
                                             <select class="form-control @error('status') is-invalid @enderror" name="status">
                                                 <option class="bg-info" disabled selected>Select Order Status....</option>
-                                                <option value="Completed" {{old('status')=='Completed' ?'selected':''}}>Completed
+                                                <option value="Completed" {{old('status')=='Completed' ?'selected':''}} @if($order->status == 'Completed') selected @endif>Completed
                                                 </option>
-                                                <option value="Processing" {{old('status')=='Processing' ?'selected':''}}>Processing
+                                                <option value="Processing" {{old('status')=='Processing' ?'selected':''}} @if($order->status == 'Processing') selected @endif>Processing
                                                 </option>
-                                                <option value="Cancelled" {{old('status')=='Cancelled' ?'selected':''}}>Cancelled
+                                                <option value="Cancelled" {{old('status')=='Cancelled' ?'selected':''}} @if($order->status == 'Cancelled') selected @endif>Cancelled
                                                 </option>
-                                                <option value="Refunded" {{old('status')=='Refunded' ?'selected':''}}>Refunded
+                                                <option value="Refunded" {{old('status')=='Refunded' ?'selected':''}} @if($order->status == 'Cancelled') selected @endif>Refunded
                                                 </option>
-                                                <option value="On Hold" {{old('status')=='On Hold' ?'selected':''}}>On Hold
+                                                <option value="On Hold" {{old('status')=='On Hold' ?'selected':''}} @if($order->status == 'On Hold') selected @endif>On Hold
                                                 </option>
-                                                <option value="Payment Pending" {{old('status')=='Payment Pending' ?'selected':''}}>Payment Pending
+                                                <option value="Payment Pending" {{old('status')=='Payment Pending' ?'selected':''}} @if($order->status == 'Payment Pending') selected @endif>Payment Pending
                                                 </option>
                                             </select>
                                             @error('status')

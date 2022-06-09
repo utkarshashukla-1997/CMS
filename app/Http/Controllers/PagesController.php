@@ -118,6 +118,7 @@ class PagesController extends Controller
             'done_date'=> 'required'
         ]);
         $input = $request->all();
+        $input['tag_id'] = $input['tag_id'][0];
         // dd($input);
         $page = Page::findOrFail($id);
         if ($request->featured_image != '') {

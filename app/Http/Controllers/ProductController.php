@@ -156,9 +156,10 @@ class ProductController extends Controller
         ]);
         $input = $request->all();
         $product = Product::findOrfail($id);
-        $product->name = $input['name'];
-        $product->slug = Str::slug($input['name']);
+        $product->product_name = $input['product_name'];
+        $product->slug = Str::slug($input['product_name']);
         $product->category_id = $input['category_id'][0];
+        $product->sub_category_id = $input['sub_category_id'][0];
         $product->tag_id = $input['tag_id'][0];
         $product->brand_id = $input['brand_id'];
         $product->description = $input['description'];
@@ -166,8 +167,7 @@ class ProductController extends Controller
         $product->sales_price = $input['sales_price'];
         $product->short_description = $input['short_description'];
         $product->product_status = $input['product_status'];
-        $product->status = $input['status'];
-        $product->amount = $input['amount'];
+        $product->recorded_by = $input['recorded_by'];
         if ($request->file_image != '') {
             $path = public_path() . '/Uploads/Product/File/';
             //code for remove old file
@@ -201,8 +201,9 @@ class ProductController extends Controller
             }
         }
         $product->update($input);
+        $product->cat()->sync($request->category_id);
+        $product->sub()->sync($request->sub_category_id);
         $product->tagg()->sync($request->tag_id);
-        $product->tagg()->sync($request->category_id);
         return redirect()->route('product.index')
             ->with('success', 'New Product Created Successfully !!!', compact('product'));
     }

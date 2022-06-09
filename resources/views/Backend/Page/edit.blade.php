@@ -111,9 +111,9 @@
                                             @php
                                             $pagetag = [];
                                         @endphp
-                                        @foreach ($page->tagg as $tag)
+                                        @foreach ($page->tagg as $ta)
                                         @php
-                                            array_push($pagetag,$tag->name);
+                                            array_push($pagetag,$ta->name);
                                         @endphp
                                         @endforeach
                                              <option disabled selected>
@@ -124,8 +124,6 @@
                                         @foreach ($tag as $taggg)
                                         <option value="{{$taggg->id}}">{{$taggg->name}}</option>
                                         @endforeach
-                                        </select>
-
                                         </select>
                                         @error('tag_id')
                                         <span class="invalid-feedback" role="alert">
