@@ -73,6 +73,7 @@ Route::resource('mail',MailSettingsController::class);
 Route::resource('page',PagesController::class);
 // Post
 Route::resource('post',PostController::class);
+Route::any('post/{id}','PostController@edit')->name('post.edit');
 // Privacy
 Route::resource('privacy',TermPrivacyController::class);
 // SubCategory

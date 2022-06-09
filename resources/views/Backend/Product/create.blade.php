@@ -216,10 +216,9 @@
                                     </div>
                                     <div class="form-group row">
                                     <label class="col-sm-3 text-right control-label col-form-label">Image File
-                                        <span class="required text-danger"> * </span>
                                     </label>
                                     <div class="col-sm-9">
-                                        <input type="file" name="file_image" required placeholder="Enter Sales Price"
+                                        <input type="file" name="file_image" placeholder="Enter Sales Price"
                                         class="form-control"
                                         value="{{old('file_image','')}}" />
                                     @error('file_image')

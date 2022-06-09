@@ -49,67 +49,100 @@
                                     <div class="form-group row">
                                         <strong class="col-md-3">Category:</strong>
                                         <div class="col-md-6">
+                                            @php
+                                            $productcat = [];
+                                        @endphp
+                                        @foreach ($product->cat as $cate)
+                                        @php
+                                            array_push($productcat,$cate->name);
+                                        @endphp
 
+                                        @endforeach
+                                         {{implode(',',$productcat)}} &nbsp;
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                         <strong class="col-md-3">Sub Category:</strong>
                                         <div class="col-md-6">
+                                            @php
+                                            $productsub = [];
+                                        @endphp
+                                        @foreach ($product->sub as $subcat)
+                                        @php
+                                            array_push($productsub,$subcat->name);
+                                        @endphp
 
+                                        @endforeach
+                                         {{implode(',',$productsub)}}
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                         <strong class="col-md-3">Tag:</strong>
                                         <div class="col-md-6">
+                                            @php
+                                            $producttag = [];
+                                        @endphp
+                                        @foreach ($product->tagg as $ta)
+                                        @php
+                                            array_push($producttag,$ta->name);
+                                        @endphp
 
+                                        @endforeach
+                                         {{implode(',',$producttag)}}
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                         <strong class="col-md-3">Brand:</strong>
                                         <div class="col-md-6">
-
+                                        {{$product->brandd['brand_name']}}
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                         <strong class="col-md-3">Product Description:</strong>
                                         <div class="col-md-6">
-
+                                        {!!$product->description!!}
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                         <strong class="col-md-3">Regular Price:</strong>
                                         <div class="col-md-6">
-
+                                         {{$product->regular_price}}
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                         <strong class="col-md-3">Sales Price:</strong>
                                         <div class="col-md-6">
-
+                                         {{$product->sales_price}}
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                         <strong class="col-md-3">Product Status:</strong>
                                         <div class="col-md-6">
-
+                                          {!!$product->product_status!!}
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                         <strong class="col-md-3">Short Description:</strong>
                                         <div class="col-md-6">
-
+                                         {!!$product->short_description!!}
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                         <strong class="col-md-3">Image File:</strong>
                                         <div class="col-md-6">
-
+                                            <a href="{{asset('Uploads/Product/File/'.$product->file_image)}}"
+                                                target="_blank">
+                                            <img src="{{ asset('Uploads/Product/File/'.$product->file_image) }}" alt="" width="200px">
+                                            {{$product->file_image}}</a><br>
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                         <strong class="col-md-3">Other File:</strong>
                                         <div class="col-md-6">
-
+                                            <a href="{{asset('Uploads/Product/File/'.$product->file_image)}}"
+                                                target="_blank">
+                                            <img src="{{ asset('Uploads/Product/File/'.$product->file_image) }}" alt="" width="200px">
+                                            {{$product->file_image}}</a><br>
                                     </div>
                                     </div>
                                 </div>

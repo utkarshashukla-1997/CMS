@@ -43,64 +43,78 @@
                                     <div class="form-group row">
                                         <strong class="col-md-3">Order Number:</strong>
                                         <div class="col-md-9">
-                                           {{$category->name}}
+                                           {{$order->order_no}}
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                         <strong class="col-md-3">Customer Name:</strong>
                                         <div class="col-md-6">
-                                           {{$category->slug}}
+                                           {{$order->customer_name}}
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                         <strong class="col-md-3">Customer Email:</strong>
                                         <div class="col-md-6">
-                                           {{$category->parent_category}}
+                                           {{$order->customer_email}}
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                         <strong class="col-md-3">Customer Address:</strong>
                                         <div class="col-md-6">
-                                           {!!$category->description!!}
+                                           {{$order->customer_address}}
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                         <strong class="col-md-3">Customer Country:</strong>
                                         <div class="col-md-6">
-
+                                        {{$order->customer_country}}
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                         <strong class="col-md-3">Ordered Products:</strong>
                                         <div class="col-md-6">
+                                            @php
+                                            $productorder = [];
+                                        @endphp
+                                        @foreach ($order->prod as $product)
+                                        @php
+                                            array_push($productorder,$product->product_name);
+                                        @endphp
 
+                                        @endforeach
+                                         {{implode(',',$productorder)}}
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                         <strong class="col-md-3">Ordered Date:</strong>
                                         <div class="col-md-6">
-
+                                         {{$order->ordered_date}}
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                         <strong class="col-md-3">Ordered Status:</strong>
                                         <div class="col-md-6">
-
+                                          {{$order->status}}
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                         <strong class="col-md-3">Amount:</strong>
                                         <div class="col-md-6">
-
+                                         {{$order->amount}}
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                         <strong class="col-md-3">Remarks:</strong>
                                         <div class="col-md-6">
-
+                                        {!!$order->remarks!!}
                                     </div>
                                     </div>
-                                    
+                                    <div class="form-group row">
+                                        <strong class="col-md-3">Recorded By:</strong>
+                                        <div class="col-md-6">
+                                        {{$order->usr['name']}}
+                                    </div>
+                                    </div>
 
 
 

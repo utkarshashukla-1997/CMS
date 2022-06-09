@@ -62,9 +62,9 @@
                                             <td> @php
                                                 $productcat = [];
                                             @endphp
-                                            @foreach ($product->cat as $category)
+                                            @foreach ($product->cat as $cate)
                                             @php
-                                                array_push($productcat,$category->name);
+                                                array_push($productcat,$cate->name);
                                             @endphp
 
                                             @endforeach
@@ -72,9 +72,9 @@
                                              @php
                                              $productsub = [];
                                          @endphp
-                                         @foreach ($product->sub as $subcategory)
+                                         @foreach ($product->sub as $subcat)
                                          @php
-                                             array_push($productsub,$category->name);
+                                             array_push($productsub,$subcat->name);
                                          @endphp
 
                                          @endforeach
@@ -83,9 +83,9 @@
                                              <td> @php
                                                 $producttag = [];
                                             @endphp
-                                            @foreach ($product->tagg as $tag)
+                                            @foreach ($product->tagg as $ta)
                                             @php
-                                                array_push($producttag,$category->name);
+                                                array_push($producttag,$ta->name);
                                             @endphp
 
                                             @endforeach

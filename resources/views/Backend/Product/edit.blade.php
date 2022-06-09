@@ -69,51 +69,92 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label"> Category
                                             <span class="required text-danger"> * </span></label>
-                                        <div class="col-sm-9">
-                                            <select class="form-control @error('category_id') is-invalid @enderror"
-                                            name="category_id">
-                                            <option class="bg-info2" disabled selected>Select Category....</option>
+                                            <div class="col-sm-9">
+                                                <select class="form-control select2 @error('category_id') is-invalid @enderror"
+                                                name="category_id[]" multiple="multiple" required style="width: 100%;"
+                                                data-dropdown-css-class="select2-info">
+                                                @php
+                                            $productcat = [];
+                                        @endphp
+                                        @foreach ($product->cat as $cate)
+                                        @php
+                                            array_push($productcat,$cate->name);
+                                        @endphp
+
+                                        @endforeach
+                                        <option disabled selected>
+                                         {{implode(',',$productcat)}}
+                                                </option>
+                                                <option class="bg-info" disabled>Select Categories...</option>
                                             @foreach ($category as $category)
                                             <option value="{{$category->id}}">{{$category->name}}</option>
                                             @endforeach
-                                        </select>
-                                        @error('category_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
+                                            </select>
+                                            @error('category_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{$message}}</strong>
+                                            </span>
+                                            @enderror
+                                            </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">SubCategory
                                             <span class="required text-danger"> * </span></label>
-                                        <div class="col-sm-9">
-                                            <select class="select2 form-control @error('sub_category_id') is-invalid @enderror"
-                                            name="sub_category_id[]" multiple="multiple" required style="width: 100%;"
-                                            data-dropdown-css-class="select2-info" data-placeholder="Select Holiday...">
-                                            <option class="bg-info1" disabled selected>Select Subcategory....</option>
+                                            <div class="col-sm-9">
+                                                <select class="form-control select2 @error('sub_category_id') is-invalid @enderror"
+                                                name="sub_category_id[]" multiple="multiple" required style="width: 100%;"
+                                                data-dropdown-css-class="select2-info">
+                                                @php
+                                                $productsub = [];
+                                            @endphp
+                                            @foreach ($product->sub as $subcat)
+                                            @php
+                                                array_push($productsub,$subcat->name);
+                                            @endphp
+
+                                            @endforeach
+                                                 <option disabled selected>
+
+                                                    {{implode(',',$productsub)}}
+                                                </option>
+                                                <option class="bg-info" disabled>Select SubCategories...</option>
                                             @foreach ($subcategory as $subcategory)
                                             <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
                                             @endforeach
-                                        </select>
-                                        @error('subcategory_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                        </div>
+                                            </select>
+                                            @error('sub_category_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{$message}}</strong>
+                                            </span>
+                                            @enderror
+                                            </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Tag
                                             <span class="required text-danger"> * </span>
                                         </label>
                                         <div class="col-sm-9">
-                                            <select class="form-control @error('tag_id') is-invalid @enderror"
-                                            name="tag_id">
-                                            <option class="bg-info" disabled selected>Select Tag....</option>
-                                            @foreach ($tag as $tag)
-                                            <option value="{{$tag->id}}">{{$tag->name}}</option>
-                                            @endforeach
+                                            <select class="form-control select2 @error('tag_id') is-invalid @enderror"
+                                            name="tag_id[]" multiple="multiple" required style="width: 100%;"
+                                            data-dropdown-css-class="select2-info">
+                                             @php
+                                            $producttag = [];
+                                        @endphp
+                                        @foreach ($product->tagg as $ta)
+                                        @php
+                                            array_push($producttag,$ta->name);
+                                        @endphp
+
+                                        @endforeach
+
+                                             <option disabled selected>
+
+                                                {{implode(',',$producttag)}}
+                                            </option>
+                                            <option class="bg-info" disabled>Select Tags....</option>
+                                        @foreach ($tag as $tag)
+                                        <option value="{{$tag->id}}">{{$tag->name}}</option>
+                                        @endforeach
                                         </select>
                                         @error('tag_id')
                                         <span class="invalid-feedback" role="alert">
@@ -129,9 +170,10 @@
                                         <div class="col-sm-9">
                                             <select class="form-control @error('brand_id') is-invalid @enderror"
                                             name="brand_id">
-                                            <option class="bg-info" disabled selected>Select Brand....</option>
-                                            @foreach ($brand as $brand)
-                                            <option value="{{$brand->id}}">{{$brand->brand_name}}</option>
+                                            <option value="{{$product->brand_id}}" selected>{{$product->brandd['brand_name']}}
+                                            <option class="bg-info" disabled>Select Brand....</option>
+                                            @foreach ($brand as $bran)
+                                            <option value="{{$bran->id}}">{{$bran->brand_name}}</option>
                                             @endforeach
                                         </select>
                                         @error('brand_id')
@@ -199,7 +241,7 @@
                                         <label class="col-sm-3 text-right control-label col-form-label"> Product Status
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <select class="form-control @error('product_status') is-invalid @enderror" name="parent_category">
+                                            <select class="form-control @error('product_status') is-invalid @enderror" name="product_status">
                                                 <option class="bg-info" disabled selected>Select Product Status....</option>
                                                 <option value="Virtual" {{old('product_status')=='Virtual' ?'selected':''}} @if($product->product_status =='Virtual') selected @endif>Virtual
                                                 </option>
@@ -215,24 +257,18 @@
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Image File
-                                            <span class="required text-danger"> * </span>
                                         </label>
                                         <div class="col-sm-9">
-                                            <input type="file" name="file_image" required placeholder="Enter Sales Price"
+                                            <input type="file" name="file_image"
                                             class="form-control"
                                             value="{{old('file_image','')}}" />
-                                        @error('file_image')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label">Other Image
                                         </label>
                                         <div class="col-sm-9">
-                                            <input type="file" name="other_image" required placeholder="Enter Sales Price"
+                                            <input type="file" name="other_image"
                                             class="form-control"
                                             value="{{old('other_image','')}}" />
                                         </div>

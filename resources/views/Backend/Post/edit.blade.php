@@ -117,20 +117,18 @@
                                             @php
                                             $posttag = [];
                                         @endphp
-                                        @foreach ($post->tagg as $tag)
+                                        @foreach ($post->tagg as $ta)
                                         @php
-                                            array_push($posttag,$tag->name);
+                                            array_push($posttag,$ta->name);
                                         @endphp
-
                                         @endforeach
+                                             <option disabled selected>
 
-                                        <option class="bg-info" disabled>Select Tags....</option>
-                                        @foreach ($tag as $tag)
-                                        <option value="{{$tag}}">{{$tag}}</option>
-
-                                        <option disabled selected>
-                                            {{implode(',',$posttag)}}
-                                        </option>
+                                                {{implode(',',$posttag)}}
+                                            </option>
+                                            <option class="bg-info" disabled>Select Tag....</option>
+                                        @foreach ($tag as $taggg)
+                                        <option value="{{$taggg->id}}">{{$taggg->name}}</option>
                                         @endforeach
                                         </select>
                                         @error('tag_id')
@@ -158,7 +156,7 @@
                                         <label class="col-sm-3 text-right control-label col-form-label">Visibility Post
                                             <span class="required text-danger"> * </span></label>
                                         <div class="col-sm-9">
-                                            <select class="form-control @error('visibility_post') is-invalid @enderror" name="status">
+                                            <select class="form-control @error('visibility_post') is-invalid @enderror" name="visibility_post">
                                                 <option class="bg-info" disabled>Visibility Post....</option>
                                                 <option value="Public" {{old('visibility_post')=='Public' ?'selected':''}} @if($post->visibility_post == 'Public') selected @endif>Public
                                                 </option>

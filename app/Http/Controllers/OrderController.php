@@ -114,6 +114,7 @@ class OrderController extends Controller
         ]);
 
         $input = $request->all();
+        $input['product'] = $input['product'][0];
         $order = Order::find($id);
         $order->update($input);
         $order->prod()->sync($request->product);
