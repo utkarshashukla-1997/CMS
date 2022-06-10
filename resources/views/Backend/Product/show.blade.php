@@ -128,6 +128,12 @@
                                     </div>
                                     </div>
                                     <div class="form-group row">
+                                        <strong class="col-md-3">Capacity/Size:</strong>
+                                        <div class="col-md-6">
+                                         {{$product->capacity_size}}
+                                    </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <strong class="col-md-3">Image File:</strong>
                                         <div class="col-md-6">
                                             <a href="{{asset('Uploads/Product/File/'.$product->file_image)}}"

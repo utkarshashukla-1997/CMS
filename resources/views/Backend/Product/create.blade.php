@@ -188,20 +188,15 @@
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-right control-label col-form-label"> Product Status
-                                            <span class="required text-danger"> * </span></label>
+                                            </label>
                                         <div class="col-sm-9">
-                                            <select class="form-control @error('product_status') is-invalid @enderror" name="product_status">
+                                            <select class="form-control" name="product_status">
                                                 <option class="bg-info" disabled selected>Select Product Status....</option>
                                                 <option value="Virtual" {{old('product_status')=='Virtual' ?'selected':''}}>Virtual
                                                 </option>
                                                 <option value="Downloadable" {{old('product_status')=='Downloadable' ?'selected':''}}>Downloadable
                                                 </option>
                                             </select>
-                                            @error('product_status')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{$message}}</strong>
-                                            </span>
-                                            @enderror
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -212,6 +207,15 @@
                                     class="ckeditor form-control"
                                    >{{old('short_description','')}}</textarea>
 
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Capacity/Size
+                                            </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="capacity_size" required placeholder="Enter Capacity/Size of the Product"
+                                            class="form-control"
+                                            value="{{old('capacity_size','')}}" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
