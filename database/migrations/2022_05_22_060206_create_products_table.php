@@ -24,8 +24,9 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->longText('description');
             $table->string('regular_price');
+            $table->string('capacity_size')->nullable();
             $table->string('sales_price')->nullable();
-            $table->enum('product_status', ['Virtual','Downloadable']);
+            $table->enum('product_status', ['Virtual','Downloadable'])->nullable();
             $table->longText('short_description')->nullable();
             $table->string('file_image')->nullable();
             $table->string('other_image')->nullable();

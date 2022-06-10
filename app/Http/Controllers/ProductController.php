@@ -61,7 +61,6 @@ class ProductController extends Controller
             'brand_id' => 'required',
             'description' => 'required',
              'regular_price' => 'required',
-             'product_status' => 'required',
 
         ]);
         $input = $request->all();
@@ -78,6 +77,7 @@ class ProductController extends Controller
         $product->short_description = $input['short_description'];
         $product->product_status = $input['product_status'];
         $product->recorded_by = $input['recorded_by'];
+        $product->capacity_size = $input['capacity_size'];
 
         if ($request->hasFile('file_image')) {
             $image = $request->file('file_image');
@@ -151,7 +151,6 @@ class ProductController extends Controller
             'brand_id' => 'required',
             'description' => 'required',
              'regular_price' => 'required',
-             'product_status' => 'required',
 
         ]);
         $input = $request->all();
@@ -168,6 +167,7 @@ class ProductController extends Controller
         $product->short_description = $input['short_description'];
         $product->product_status = $input['product_status'];
         $product->recorded_by = $input['recorded_by'];
+        $product->capacity_size = $input['capacity_size'];
         if ($request->file_image != '') {
             $path = public_path() . '/Uploads/Product/File/';
             //code for remove old file
