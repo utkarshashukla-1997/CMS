@@ -155,12 +155,12 @@ class ProductController extends Controller
 
         ]);
         $input = $request->all();
+        $input['category_id'] = $input['category_id'][0];
+        $input['sub_category_id'] = $input['sub_category_id'][0];
+        $input['tag_id'] = $input['tag_id'][0];
         $product = Product::findOrfail($id);
         $product->product_name = $input['product_name'];
         $product->slug = Str::slug($input['product_name']);
-        $product->category_id = $input['category_id'][0];
-        $product->sub_category_id = $input['sub_category_id'][0];
-        $product->tag_id = $input['tag_id'][0];
         $product->brand_id = $input['brand_id'];
         $product->description = $input['description'];
         $product->regular_price = $input['regular_price'];
